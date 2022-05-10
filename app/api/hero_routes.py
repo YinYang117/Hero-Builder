@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user, login_required
+from app.models import User, Hero, db
+from app.forms import NewHero
+from app.forms import EditHero
+# from flask_login import current_user
 
-auth_routes = Blueprint('auth', __name__)
+auth_routes = Blueprint('heros', __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -17,66 +17,66 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+# # form.errors come from using a Form() to validate or run custom functions
+# # can catch errors on the front end
+# # example:
+#     if current_user.is_authenticated:
+#         return current_user.to_dict()
+#     return {'errors': ['Unauthorized']}
 
-@auth_routes.route('/')
-def authenticate():
-    """
-    Authenticates a user.
-    """
-    if current_user.is_authenticated:
-        return current_user.to_dict()
-    return {'errors': ['Unauthorized']}
-
-
-@auth_routes.route('/login', methods=['POST'])
-def login():
-    """
-    Logs a user in
-    """
-    form = LoginForm()
-    # Get the csrf_token from the request cookie and put it into the
-    # form manually to validate_on_submit can be used
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
-        login_user(user)
-        return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+#     if form.validate_on_submit():
+#         return stuff
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/logout')
-def logout():
+
+@hero_routes.route('/all', methods=['GET'])
+def all_heros():
     """
-    Logs a user out
+    Returns all Heros. Requires User be logged in with main Admin account. Intended for backend use only.
     """
-    logout_user()
-    return {'message': 'User logged out'}
+    data = request.get_json(force=True) # not needed if using form.
+    if data["id"] == 1:
+        # if data["user.id"] == 1:
+        heros = Hero.query.all()
+        all_heros = {}
+        for hero in heros:
+            all_heros[hero.id] = hero.to_js_obj
+        return all_heros
+    else:
+        return {}
 
 
-@auth_routes.route('/signup', methods=['POST'])
-def sign_up():
+@hero_routes.route('/', methods=['GET', 'POST'])
+def heros():
     """
-    Creates a new user and logs them in
+    Main route for getting all a User's Heros, and Hero creation.
     """
-    form = SignUpForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        user = User(
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password']
-        )
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    if request.method == "GET":
+        data = request.get_json(force=True) # not needed if using form.
+        # passing userId
+        heros = Hero.query.filter(Hero.owner_id == data["userId"]).all()
+        all_heros = {}
+        for hero in heros:
+            all_heros[hero.id] = hero.to_js_obj
+        return all_heros
 
+    if request.method == "POST":
+        form = EditHero()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            hero = form.populate_obj(Hero)
+            db.session.add(hero)
+            db.session.commit()
+            return hero.to_js_obj
+        else:
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@auth_routes.route('/unauthorized')
-def unauthorized():
+@hero_routes.route('/:id', methods=['GET', 'PUT', 'DELETE'])
+def specific_hero():
     """
-    Returns unauthorized JSON when flask-login authentication fails
+    Main route for getting, editing, and deleting a Hero.
     """
-    return {'errors': ['Unauthorized']}, 401
+    
+    
