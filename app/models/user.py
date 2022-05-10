@@ -10,6 +10,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    
+    heros = db.relationship("Hero", back_populates="owner")
+    abilities = db.relationship("Ability", back_populates="owner")
 
     @property
     def password(self):
@@ -23,6 +26,13 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email
+        }
+
+    def to_js_obj(self):
         return {
             'id': self.id,
             'username': self.username,
