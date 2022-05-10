@@ -73,10 +73,32 @@ def heros():
         else:
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+
 @hero_routes.route('/:id', methods=['GET', 'PUT', 'DELETE'])
 def specific_hero():
     """
     Main route for getting, editing, and deleting a Hero.
     """
-    
-    
+    hero = Hero.query.get(id)
+    if hero:
+        if request.method == "GET":
+            return hero.to_js_obj
+        
+        if request.method == "PUT":
+            form = EditHero
+            form['csrf_token'].data = request.cookies['csrf_token']
+            if form.validate_on_submit():
+                form.populate_obj(hero)
+                return hero.to_js_obj
+            else:
+                return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+        if request.method == "DELETE":
+            data = request.get_json(force=True) # passing userId
+            if hero.owner_id == data["userId"]:
+                db.session.delete(hero)
+                db.session.commit()
+                return {'deletion': 'successful'}
+            else:
+                return {'errors': ['User Id passed did not match Hero owner.']}
+
