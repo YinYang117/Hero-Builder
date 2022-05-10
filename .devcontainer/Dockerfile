@@ -19,3 +19,12 @@ sudo -u postgres psql -c "CREATE DATABASE python_project WITH OWNER vscode"
 
 # auto configure flask app to connect to internal postgres
 ENV DATABASE_URL=postgresql://vscode:password@localhost/python_project
+
+
+# sudo -u postgres psql -c "CREATE USER hero_builder_dev WITH PASSWORD 'arst';" && \
+# sudo -u postgres psql -c "ALTER USER hero_builder_dev WITH SUPERUSER;" && \
+# sudo -u postgres psql -c "CREATE DATABASE hero_builder_app WITH OWNER hero_builder_dev" && \
+# sudo -u postgres psql -c "CREATE DATABASE python_project WITH OWNER hero_builder_dev"
+
+# # auto configure flask app to connect to internal postgres
+# ENV DATABASE_URL=postgresql://hero_builder_dev:arst@localhost/python_project
