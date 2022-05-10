@@ -3,7 +3,7 @@ from wtforms import StringField, IntegerField, SubmitField, SelectField, Boolean
 from wtforms.validators import DataRequired
 
 
-class NewTrip(FlaskForm):
+class NewAbility(FlaskForm):
     ownerId = IntegerField("Owner", validators=[DataRequired()])
     name = StringField("Trip Name", validators=[DataRequired()])
     destination = StringField("Destination", validators=[DataRequired()])
@@ -13,7 +13,7 @@ class NewTrip(FlaskForm):
     submit = SubmitField("Submit")
 
 
-class EditTrip(FlaskForm):
+class EditAbility(FlaskForm):
     name = StringField("Trip Name", validators=[DataRequired()])
     destination = StringField("Destination", validators=[DataRequired()])
     imageUrl = StringField("Image URL", validators=[DataRequired()])

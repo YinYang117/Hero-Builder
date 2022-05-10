@@ -1,5 +1,6 @@
 from .db import db
 from datetime import date
+from .hero_abilities import hero_abilities
 
 class Ability(db.Model):
     __tablename__ = "abilities"
@@ -50,16 +51,16 @@ class Ability(db.Model):
             "name": self.name,
             "description": self.description,
             "abilityImage": self.ability_image,
-            "usesResource": self.uses_resource
+            "usesResource": self.uses_resource,
             "resourceName": self.resource_name,
-            "resourceCost": self.resource_cost
-            "usesCharges": self.uses_charges
-            "numCharges": self.num_charges
-            "chargeRechargeRate": self.charge_recharge_rate
-            "usesCooldown": self.uses_cooldown
-            "cooldown": self.cooldown
-            "channeled": self.channeled
-            "channelTime": self.channel_time
+            "resourceCost": self.resource_cost,
+            "usesCharges": self.uses_charges,
+            "numCharges": self.num_charges,
+            "chargeRechargeRate": self.charge_recharge_rate,
+            "usesCooldown": self.uses_cooldown,
+            "cooldown": self.cooldown,
+            "channeled": self.channeled,
+            "channelTime": self.channel_time,
             "details": self.details,
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,
