@@ -55,25 +55,23 @@ def hero_creation():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         hero = Hero(
-            owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-            name = db.Column(db.String(50), nullable=False)
-            intro = db.Column(db.String(500), nullable=False)
-            hero_image = db.Column(db.String, nullable=False)
-            hp = db.Column(db.Integer, nullable=False)
-            resource = db.Column(db.Boolean, nullable=False)
-            resource_name = db.Column(db.String(20), nullable=True)
-            resource_amount = db.Column(db.Integer, nullable=True)
-            physical_armor = db.Column(db.Integer, nullable=False)
-            magic_resist = db.Column(db.Integer, nullable=False)
-            attack_damage = db.Column(db.Integer, nullable=False)
-            attack_range = db.Column(db.Integer, nullable=False)
-            attack_speed = db.Column(db.Float(precision=1), nullable=False)
-            move_speed = db.Column(db.Float(precision=1), nullable=False)
-            num_of_abilities = db.Column(db.Integer, nullable=False)
-            details = db.Column(db.String, nullable=True)
+            owner_id = form.data["ownerId"],
+            name = form.data["name"],
+            intro = form.data["intro"],
+            hero_image = form.data["heroImage"],
+            hp = form.data["hp"],
+            resource = form.data["resource"],
+            resource_name = form.data["resourceName"],
+            resource_amount = form.data["resourceAmount"],
+            physical_armor = form.data["physicalArmor"],
+            magic_resist = form.data["magicResist"],
+            attack_damage = form.data["attackDamage"],
+            attack_range = form.data["attackRange"],
+            attack_speed = form.data["attackSpeed"],
+            move_speed = form.data["moveSpeed"],
+            num_of_abilities = form.data["numOfAbilities"],
+            details = form.data["details"],
         )
-
-
         db.session.add(hero)
         db.session.commit()
         return hero.to_js_obj
@@ -93,36 +91,52 @@ def heros(id):
         return all_heros
 
 
-# @hero_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-# def specific_hero(id):
-#     """
-#     Main route for getting, editing, and deleting a Hero.
-#     """
-#     hero = Hero.query.get(id)
-#     if hero:
-#         if request.method == "GET":
-#             return hero.to_js_obj
+@hero_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def specific_hero(id):
+    """
+    Main route for getting, editing, and deleting a Hero.
+    """
+    hero = Hero.query.get(id)
+    if hero:
+        if request.method == "GET":
+            return hero.to_js_obj
         
-#         if request.method == "PUT":
-#             form = EditHero
-#             form['csrf_token'].data = request.cookies['csrf_token']
-#             if form.validate_on_submit():
-#                 form.populate_obj(hero)
-#                 updt = date.today()
-#                 hero.updated_at = updt
-#                 db.session.add(hero)
-#                 db.session.commit()
-#                 return hero.to_js_obj
-#             else:
-#                 return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        if request.method == "PUT":
+            form = EditHero
+            form['csrf_token'].data = request.cookies['csrf_token']
+            if form.validate_on_submit():
+                hero.name = form.data["name"],
+                hero.intro = form.data["intro"],
+                hero.hero_image = form.data["heroImage"],
+                hero.hp = form.data["hp"],
+                hero.resource = form.data["resource"],
+                hero.resource_name = form.data["resourceName"],
+                hero.resource_amount = form.data["resourceAmount"],
+                hero.physical_armor = form.data["physicalArmor"],
+                hero.magic_resist = form.data["magicResist"],
+                hero.attack_damage = form.data["attackDamage"],
+                hero.attack_range = form.data["attackRange"],
+                hero.attack_speed = form.data["attackSpeed"],
+                hero.move_speed = form.data["moveSpeed"],
+                hero.num_of_abilities = form.data["numOfAbilities"],
+                hero.details = form.data["details"],
 
-#         if request.method == "DELETE":
-#             data = request.get_json(force=True) # passing userId
-#             if hero.owner_id == data["userId"]:
-#                 db.session.delete(hero)
-#                 db.session.commit()
-#                 return {'deletion': 'successful'}
-#             else:
-#                 return {'errors': ['User Id passed did not match Hero owner.']}
-#     else:
-#         return {}
+                updt = date.today()
+                hero.updated_at = updt
+
+                db.session.add(hero)
+                db.session.commit()
+                return hero.to_js_obj
+            else:
+                return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+        if request.method == "DELETE":
+            data = request.get_json(force=True) # passing userId
+            if hero.owner_id == data["userId"]:
+                db.session.delete(hero)
+                db.session.commit()
+                return {'deletion': 'successful'}
+            else:
+                return {'errors': ['User Id passed did not match Hero owner.']}
+    else:
+        return {}
