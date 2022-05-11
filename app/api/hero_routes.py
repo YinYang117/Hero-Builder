@@ -3,7 +3,6 @@ from app.models import User, Hero, db
 from app.forms import NewHero
 from app.forms import EditHero
 from datetime import date
-# from flask_login import current_user
 
 hero_routes = Blueprint('heros', __name__)
 
@@ -48,15 +47,13 @@ def all_heros():
         return {}
 
 
-@hero_routes.route('/', methods=['GET', 'POST'])
+@hero_routes.route('/user/:id', methods=['GET', 'POST'])
 def heros():
     """
     Main route for getting all a User's Heros, and Hero creation.
     """
     if request.method == "GET":
-        data = request.get_json(force=True)
-        # passing userId
-        heros = Hero.query.filter(Hero.owner_id == data["userId"]).all()
+        heros = Hero.query.filter(Hero.owner_id == id).all()
         all_heros = {}
         for hero in heros:
             all_heros[hero.id] = hero.to_js_obj
@@ -67,6 +64,7 @@ def heros():
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             hero = form.populate_obj(Hero)
+            hero.owner_id = id
             db.session.add(hero)
             db.session.commit()
             return hero.to_js_obj
@@ -89,6 +87,8 @@ def specific_hero():
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
                 form.populate_obj(hero)
+                updt = date.today()
+                hero.updated_at = updt
                 db.session.add(hero)
                 db.session.commit()
                 return hero.to_js_obj

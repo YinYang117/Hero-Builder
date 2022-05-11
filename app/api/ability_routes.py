@@ -89,6 +89,8 @@ def specific_abil():
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
                 form.populate_obj(abil)
+                updt = date.today()
+                abil.updated_at = updt
                 db.session.add(abil)
                 db.session.commit()
                 return abil.to_js_obj
