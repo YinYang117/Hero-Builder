@@ -29,11 +29,6 @@ class Hero(db.Model):
     owner = db.relationship("User", back_populates="heros")
     hero_equipped_abilities = db.relationship("Ability", secondary=hero_abilities, back_populates="used_by_hero")
 
-num_of_abilities
-    # # @property
-    # def num_of_abilities(self):
-    #     return self.num_of_abilities
-
     @property
     def to_js_obj(self):
         return {

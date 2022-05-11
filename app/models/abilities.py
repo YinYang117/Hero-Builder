@@ -29,22 +29,6 @@ class Ability(db.Model):
     used_by_hero = db.relationship("Hero", secondary=hero_abilities, back_populates="hero_equipped_abilities")
 
     @property
-    def uses_resource(self):
-        return self.uses_resource
-
-    @property
-    def uses_cooldown(self):
-        return self.uses_cooldown
-
-    @property
-    def uses_charges(self):
-        return self.uses_charges
-
-    @property
-    def channeled(self):
-        return self.channeled
-
-    @property
     def to_js_obj(self):
         return {
             "id": self.id,

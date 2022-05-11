@@ -25,7 +25,7 @@ pipenv run flask seed all
 
 Add a model
 pipenv run flask db migrate     generate a migration
-pipenv run flask db migrate -m  "updates to models"
+pipenv run flask db migrate -m  "updates to hero"
 pipenv run flask db upgrade     apply table / model changes to the database
 
 
