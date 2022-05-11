@@ -3,23 +3,21 @@ from wtforms import StringField, IntegerField, SubmitField, SelectField, Boolean
 from wtforms.validators import DataRequired, Length, NumberRange, ValidationError, InputRequired
 from app.models import Hero
 
-# Vars set to camelcase
 
+# Vars set to camelcase
 def resourceNameCheck(form, field):
     # If resource is True, validate resource name
     resource = form.data["resource"]
-    print("----------------------- RESOURCE", resource)
-    if resource == True:
+    if resource is True:
         name = form.data["resourceName"]
         if len(name) < 2 or len(name) > 20:
             ValidationError('Resource Name must be between 2 and 20 characters long.')
 
 
 def resourceAmountCheck(form, field):
-    # If resource is True, validate resource name
+    # If resource is True, validate resource amount
     resource = form.data["resource"]
-    print("----------------------- RESOURCE", resource)
-    if resource == True:
+    if resource is True:
         amount = form.data["resourceAmount"]
         if amount < 10 or amount > 3000:
             ValidationError('Resource Amount must be between 10 and 3000.')
