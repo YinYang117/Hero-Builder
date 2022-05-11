@@ -19,7 +19,7 @@ class Ability(db.Model):
     uses_cooldown = db.Column(db.Boolean, nullable=False)
     cooldown = db.Column(db.Integer, nullable=True)
     channeled = db.Column(db.Boolean, nullable=False)
-    channel_time = db.Column(db.Float(precision=3), nullable=True)
+    channel_time = db.Column(db.Float(precision=1), nullable=True)
     ultimate = db.Column(db.Boolean, nullable=False)
     details = db.Column(db.String, nullable=True)
     created_at = db.Column(db.Date, nullable=False, default=date.today)
@@ -62,6 +62,7 @@ class Ability(db.Model):
             "cooldown": self.cooldown,
             "channeled": self.channeled,
             "channelTime": self.channel_time,
+            "ultimate": self.ultimate
             "details": self.details,
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,

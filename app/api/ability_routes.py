@@ -1,10 +1,11 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user, login_required
+from app.models import User, Ability, db
+from app.forms import NewAbility
+from app.forms import EditAbility
+from datetime import date
+# from flask_login import current_user
 
-auth_routes = Blueprint('auth', __name__)
+ability_routes = Blueprint('abilities', __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -17,66 +18,90 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+# # form.errors come from using a Form() to validate or run custom functions
+# # can catch errors on the front end
+# # example:
+#     if current_user.is_authenticated:
+#         return current_user.to_dict()
+#     return {'errors': ['Unauthorized']}
 
-@auth_routes.route('/')
-def authenticate():
-    """
-    Authenticates a user.
-    """
-    if current_user.is_authenticated:
-        return current_user.to_dict()
-    return {'errors': ['Unauthorized']}
-
-
-@auth_routes.route('/login', methods=['POST'])
-def login():
-    """
-    Logs a user in
-    """
-    form = LoginForm()
-    # Get the csrf_token from the request cookie and put it into the
-    # form manually to validate_on_submit can be used
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
-        login_user(user)
-        return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+#     if form.validate_on_submit():
+#         return stuff
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/logout')
-def logout():
+@ability_routes.route('/all', methods=['GET'])
+def all_heros():
     """
-    Logs a user out
+    Returns all Abilities. Requires User be logged in with main Admin account. Intended for backend use only.
     """
-    logout_user()
-    return {'message': 'User logged out'}
+    data = request.get_json(force=True)
+    if data["userId"] == 1:
+    # if data["user.id"] == 1:
+        abilities = Ability.query.all()
+        all_abl = {}
+        for abil in abilities:
+            all_abl[abil.id] = abil.to_js_obj
+        return all_abl
+    else:
+        return {}
 
 
-@auth_routes.route('/signup', methods=['POST'])
-def sign_up():
+@ability_routes.route('/', methods=['GET', 'POST'])
+def abilities():
     """
-    Creates a new user and logs them in
+    Main route for getting all a User's Abilities, and Ability Creation.
     """
-    form = SignUpForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        user = User(
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password']
-        )
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    if request.method == 'GET':
+        data = request.get_json(force=True)
+        # passing userId
+        abils = Ability.query.filter(Ability.owner_id == data["userId"]).all()
+        all_abl = {}
+        for abil in abilities:
+            all_abl[abil.id] = abil.to_js_obj
+        return all_abl
+
+    if request.method == "POST":
+        form = EditAbility()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            abil = form.populate_obj(Ability)
+            db.session.add(abil)
+            db.session.commit()
+            return abil.to_js_obj
+        else:
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/unauthorized')
-def unauthorized():
+@ability_routes.route('/:id', methods=['GET', 'PUT', 'DELETE'])
+def specific_abil():
     """
-    Returns unauthorized JSON when flask-login authentication fails
+    Main route for getting, editing, and deleting an Ability.
     """
-    return {'errors': ['Unauthorized']}, 401
+    abil = Ability.query.get(id)
+    if abil:
+        if request.method == "GET":
+            return abil.to_js_obj
+        
+        if request.method == "PUT":
+            form = EditAbility
+            form['csrf_token'].data = request.cookies['csrf_token']
+            if form.validate_on_submit():
+                form.populate_obj(abil)
+                db.session.add(abil)
+                db.session.commit()
+                return abil.to_js_obj
+            else:
+                return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+        if request.method == "DELETE":
+            data = request.get_json(force=True) # passing userId
+            if abil.owner_id == data["userId"]:
+                db.session.delete(abil)
+                db.session.commit()
+                return {'deletion': 'successful'}
+            else:
+                return {"errors": ["User Id passed did not match Ability's owner."]}
+    else:
+        return {}

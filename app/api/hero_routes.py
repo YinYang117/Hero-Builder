@@ -2,9 +2,10 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, Hero, db
 from app.forms import NewHero
 from app.forms import EditHero
+from datetime import date
 # from flask_login import current_user
 
-auth_routes = Blueprint('heros', __name__)
+hero_routes = Blueprint('heros', __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -30,15 +31,14 @@ def validation_errors_to_error_messages(validation_errors):
 #         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-
 @hero_routes.route('/all', methods=['GET'])
 def all_heros():
     """
     Returns all Heros. Requires User be logged in with main Admin account. Intended for backend use only.
     """
-    data = request.get_json(force=True) # not needed if using form.
-    if data["id"] == 1:
-        # if data["user.id"] == 1:
+    data = request.get_json(force=True)
+    if data["userId"] == 1:
+    # if data["user.id"] == 1:
         heros = Hero.query.all()
         all_heros = {}
         for hero in heros:
@@ -54,7 +54,7 @@ def heros():
     Main route for getting all a User's Heros, and Hero creation.
     """
     if request.method == "GET":
-        data = request.get_json(force=True) # not needed if using form.
+        data = request.get_json(force=True)
         # passing userId
         heros = Hero.query.filter(Hero.owner_id == data["userId"]).all()
         all_heros = {}
@@ -89,6 +89,8 @@ def specific_hero():
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
                 form.populate_obj(hero)
+                db.session.add(hero)
+                db.session.commit()
                 return hero.to_js_obj
             else:
                 return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -101,4 +103,5 @@ def specific_hero():
                 return {'deletion': 'successful'}
             else:
                 return {'errors': ['User Id passed did not match Hero owner.']}
-
+    else:
+        return {}

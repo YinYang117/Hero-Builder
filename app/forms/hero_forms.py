@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, SelectField, BooleanField, DateField
+from wtforms import StringField, IntegerField, SubmitField, SelectField, BooleanField, DateField, FloatField
 from wtforms.validators import DataRequired, Length, NumberRange
 from app.models import Hero
 
@@ -13,7 +13,7 @@ def resourceNameCheck(form, field):
         if len(name) < 2 or len(name) > 20:
             ValidationError('Resource Name must be between 2 and 20 characters long.')
 
-def resourceNameCheck(form, field):
+def resourceAmountCheck(form, field):
     # If resource is True, validate resource name
     resource = form.data["resource"]
     if resource is True:
@@ -29,16 +29,16 @@ class NewHero(FlaskForm):
     heroImage = StringField("Hero Image", validators=[DataRequired()])
     hp = IntegerField("HitPoints", validators=[DataRequired(), NumberRange(min=100, max=10000)])
     resource = BooleanField("Resource", validators=[DataRequired()])
-    resourceName = db.Column("Resource Name", validators=[resourceNameCheck])
-    resourceAmount = db.Column("Resource Amount", validators=[resourceAmountCheck])
-    physicalArmor = db.Column("Physical Armor", validators=[DataRequired(), NumberRange(min=0, max=500)])
-    magicResist = db.Column("Magic Resist", validators=[DataRequired(), NumberRange(min=0, max=500)])
-    attackDamage = db.Column("Attack Damage", validators=[DataRequired(), NumberRange(min=10, max=2000)])
-    attackRange = db.Column("Attack Range", validators=[DataRequired(), NumberRange(min=1, max=500)])
-    attackSpeed = db.Column("Attack Speed", validators=[DataRequired(), NumberRange(min=0.1, max=10.0)])
-    moveSpeed = db.Column("Move Speed", validators=[DataRequired(), NumberRange(min=1.0, max=20.0)])
-    numOfAbilities = db.Column("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
-    details = db.Column("Hero Details")
+    resourceName = StringField("Resource Name", validators=[resourceNameCheck])
+    resourceAmount = IntegerField("Resource Amount", validators=[resourceAmountCheck])
+    physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=0, max=500)])
+    magicResist = IntegerField("Magic Resist", validators=[DataRequired(), NumberRange(min=0, max=500)])
+    attackDamage = IntegerField("Attack Damage", validators=[DataRequired(), NumberRange(min=10, max=2000)])
+    attackRange = IntegerField("Attack Range", validators=[DataRequired(), NumberRange(min=1, max=500)])
+    attackSpeed = FloatField("Attack Speed", validators=[DataRequired(), NumberRange(min=0.1, max=10.0)])
+    moveSpeed = FloatField("Move Speed", validators=[DataRequired(), NumberRange(min=1.0, max=20.0)])
+    numOfAbilities = IntegerField("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
+    details = StringField("Hero Details")
     submit = SubmitField("Submit")
     # created_at and updated_at on API
 
@@ -49,14 +49,14 @@ class EditHero(FlaskForm):
     heroImage = StringField("Hero Image", validators=[DataRequired()])
     hp = IntegerField("HitPoints", validators=[DataRequired(), NumberRange(min=100, max=10000)])
     resource = BooleanField("Resource", validators=[DataRequired()])
-    resourceName = db.Column("Resource Name", validators=[resourceNameCheck])
-    resourceAmount = db.Column("Resource Amount", validators=[resourceAmountCheck])
-    physicalArmor = db.Column("Physical Armor", validators=[DataRequired(), NumberRange(min=0, max=500)])
-    magicResist = db.Column("Magic Resist", validators=[DataRequired(), NumberRange(min=0, max=500)])
-    attackDamage = db.Column("Attack Damage", validators=[DataRequired(), NumberRange(min=10, max=2000)])
-    attackRange = db.Column("Attack Range", validators=[DataRequired(), NumberRange(min=1, max=500)])
-    attackSpeed = db.Column("Attack Speed", validators=[DataRequired(), NumberRange(min=0.1, max=10.0)])
-    moveSpeed = db.Column("Move Speed", validators=[DataRequired(), NumberRange(min=1.0, max=20.0)])
-    numOfAbilities = db.Column("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
-    details = db.Column("Hero Details")
+    resourceName = StringField("Resource Name", validators=[resourceNameCheck])
+    resourceAmount = IntegerField("Resource Amount", validators=[resourceAmountCheck])
+    physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=0, max=500)])
+    magicResist = IntegerField("Magic Resist", validators=[DataRequired(), NumberRange(min=0, max=500)])
+    attackDamage = IntegerField("Attack Damage", validators=[DataRequired(), NumberRange(min=10, max=2000)])
+    attackRange = IntegerField("Attack Range", validators=[DataRequired(), NumberRange(min=1, max=500)])
+    attackSpeed = FloatField("Attack Speed", validators=[DataRequired(), NumberRange(min=0.1, max=10.0)])
+    moveSpeed = FloatField("Move Speed", validators=[DataRequired(), NumberRange(min=1.0, max=20.0)])
+    numOfAbilities = IntegerField("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
+    details = StringField("Hero Details")
     submit = SubmitField("Submit")
