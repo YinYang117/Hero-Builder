@@ -62,7 +62,7 @@ class Ability(db.Model):
             "cooldown": self.cooldown,
             "channeled": self.channeled,
             "channelTime": self.channel_time,
-            "ultimate": self.ultimate
+            "ultimate": self.ultimate,
             "details": self.details,
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,

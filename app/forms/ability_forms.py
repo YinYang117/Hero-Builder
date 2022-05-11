@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, SelectField, BooleanField, DateField, FloatField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Length
 
 # Vars set to camelcase
 

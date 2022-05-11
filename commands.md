@@ -25,7 +25,7 @@ pipenv run flask seed all
 
 Add a model
 pipenv run flask db migrate     generate a migration
-pipenv run flask db migrate -m  "create a table message"
+pipenv run flask db migrate -m  "initial models"
 pipenv run flask db upgrade     apply table / model changes to the database
 
 
