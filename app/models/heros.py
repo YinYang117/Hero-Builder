@@ -1,6 +1,7 @@
 from .db import db
 from datetime import date
 from .hero_abilities import hero_abilities
+from app.models import User
 
 class Hero(db.Model):
     __tablename__ = "heros"
@@ -18,8 +19,8 @@ class Hero(db.Model):
     magic_resist = db.Column(db.Integer, nullable=False)
     attack_damage = db.Column(db.Integer, nullable=False)
     attack_range = db.Column(db.Integer, nullable=False)
-    attack_speed = db.Column(db.Integer, nullable=False)
-    move_speed = db.Column(db.Integer, nullable=False)
+    attack_speed = db.Column(db.Float(precision=1), nullable=False)
+    move_speed = db.Column(db.Float(precision=1), nullable=False)
     num_of_abilities = db.Column(db.Integer, nullable=False)
     details = db.Column(db.String, nullable=True)
     created_at = db.Column(db.Date, nullable=False, default=date.today)
