@@ -74,8 +74,8 @@ def abilities():
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@ability_routes.route('/:id', methods=['GET', 'PUT', 'DELETE'])
-def specific_abil():
+@ability_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def specific_abil(id):
     """
     Main route for getting, editing, and deleting an Ability.
     """

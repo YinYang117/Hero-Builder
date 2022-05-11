@@ -26,8 +26,8 @@ def validation_errors_to_error_messages(validation_errors):
 #         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# @hero_abil_routes.route('/hero/:id', methods=["GET"])
-# def get_hero_abil():
+# @hero_abil_routes.route('/hero/<int:id>', methods=["GET"])
+# def get_hero_abil(id):
     # data = request.get_json(force=True)
     # tripId = data["tripId"]
     # user = User.query.filter(User.username == data["userName"]).one()

@@ -9,7 +9,7 @@ def resourceNameCheck(form, field):
     # If resource is True, validate resource name
     resource = form.data["resource"]
     if resource is True:
-        name = field.data["resourceName"]
+        name = form.data["resourceName"]
         if len(name) < 2 or len(name) > 20:
             ValidationError('Resource Name must be between 2 and 20 characters long.')
 
@@ -17,7 +17,7 @@ def resourceAmountCheck(form, field):
     # If resource is True, validate resource name
     resource = form.data["resource"]
     if resource is True:
-        amount = field.data["resourceAmount"]
+        amount = form.data["resourceAmount"]
         if amount < 10 or amount > 3000:
             ValidationError('Resource Amount must be between 10 and 3000.')
 
