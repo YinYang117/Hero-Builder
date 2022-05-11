@@ -2,3 +2,27 @@
 body {
     margin: 0px;
 }
+
+.flex {
+    display: flex
+}
+
+.fdrow {
+    display: flex;
+    flex-direction: row;
+}
+
+.fdcol {
+    display: flex;
+    flex-direction: column;
+}
+
+.aicen {
+    display: flex;
+    align-items: center
+}
+
+.accen {
+    display: flex;
+    align-content: center;
+}
