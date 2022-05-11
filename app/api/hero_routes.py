@@ -1,7 +1,6 @@
-from flask import Blueprint, jsonify, session, request
-from app.models import User, Hero, db
-from app.forms import NewHero
-from app.forms import EditHero
+from flask import Blueprint, jsonify, session, request, render_template
+from ..models import User, Hero, db
+from ..forms import NewHero, EditHero
 from datetime import date
 
 hero_routes = Blueprint('heros', __name__)
@@ -54,7 +53,7 @@ def heros():
     """
     if request.method == "GET":
         heros = Hero.query.filter(Hero.owner_id == id).all()
-        all_heros = {}
+        all_heros = {"shouldSeeThisKey": "AndThisValue"}
         for hero in heros:
             all_heros[hero.id] = hero.to_js_obj
         return all_heros
