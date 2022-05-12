@@ -2,8 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import { login } from '../../store/session';
+import Login from "../auth/Login"
 import dwarf from "./dwarf.png"
-import login from "./login.png"
 import signup from "./signup.png"
 import logout from "./logout.png"
 import demo from "./demo.png"
@@ -11,6 +12,7 @@ import './navbar.css'
 
 
 const NavBar = () => {
+  const dispatch = useDispatch()
   const user = useSelector(state => state.session.user);
 
   const loginDemo = () => {
@@ -37,9 +39,9 @@ const NavBar = () => {
             </div>
           </div>
           <div>
-            <NavLink to='/login' exact={true} activeClassName='active' className="p10 jccen accen">
-              <img src={login} alt="login" className="smlogo" />
-            </NavLink>
+            <div className="p10 jccen accen">
+              <Login />
+            </div>
           </div>
           <div>
             <NavLink to='/sign-up' exact={true} activeClassName='active' className="p10 jccen accen">
