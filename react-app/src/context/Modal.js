@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
-
 const ModalContext = React.createContext();
 
 export function ModalProvider({ children }) {

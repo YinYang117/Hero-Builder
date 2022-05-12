@@ -34,8 +34,7 @@ const NavBar = () => {
         <div className="fdrow m10">
           <div>
             <div className="p10">
-              <img src={demo} alt="demo login" className="smlogo jccen accen" />
-              <button className="nav-item" onClick={() => loginDemo()}>Demo User</button>
+              <img src={demo} alt="demo login" className="smlogo jccen accen" onClick={() => loginDemo()} />
             </div>
           </div>
           <div>

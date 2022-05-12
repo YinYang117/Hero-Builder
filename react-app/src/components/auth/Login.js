@@ -25,39 +25,40 @@ const Login = () => {
         <>
             <img src={loginIcon} alt="login"
             className="smlogo"
-            onClick={() => setShowLoginModal(true)} />
+            onClick={() => setShowLoginModal(true)}
+            />
             {showLoginModal && (
                 <Modal onClose={() => setShowLoginModal(false)}>
-                    <div className="formContainer">
-                        <form className="form" onSubmit={login}>
-                            <div>
-                                {errors && errors.map((error, ind) => (
-                                    <div key={ind}>{error}</div>
-                                ))}
-                            </div>
-                            <div>
-                                <label>Username or Email</label>
-                                <input
-                                name='credential'
-                                type='text'
-                                placeholder='Credential'
-                                value={credential}
-                                onChange={e => setCredential(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <label className="label" htmlFor='password'>Password</label>
-                                <input className="input"
-                                    name='password'
-                                    type='password'
-                                    placeholder='Password'
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
-                                />
-                                <button id="loginButton" type='submit'>Login</button>
-                            </div>
-                        </form>
-                    </div>
+                    <form 
+                    className="formContainer form"
+                    onSubmit={e => login(e)}>
+                        <div>
+                            {errors && errors.map((error, ind) => (
+                                <div key={ind}>{error}</div>
+                            ))}
+                        </div>
+                        <div>
+                            <label>Username or Email</label>
+                            <input
+                            name='credential'
+                            type='text'
+                            placeholder='Credential'
+                            value={credential}
+                            onChange={e => setCredential(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label className="label" htmlFor='password'>Password</label>
+                            <input className="input"
+                                name='password'
+                                type='password'
+                                placeholder='Password'
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                            <button id="loginButton" type='submit'>Login</button>
+                        </div>
+                    </form>
                 </Modal>
             )}
         </>
