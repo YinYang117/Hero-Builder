@@ -2,4 +2,25 @@
     min-height: 50px;
     width: 100%;
     justify-content: space-between;
+    background-color: rgb(31, 10, 0);
+    /* background-color: rgb(13, 0, 18); */
+}
+
+.title {
+    color: rgb(130, 0, 251);
+}
+
+.logo {
+    max-height: 60px;
+    max-width: 60px;
+}
+
+.mlogo {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.smlogo {
+    max-height: 45px;
+    max-width: 45px;
 }

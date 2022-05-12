@@ -1,6 +1,7 @@
 /* TODO Add site wide styles */
 body {
     margin: 0px;
+    background-color: rgb(13, 0, 18);
 }
 
 .flex {
@@ -25,4 +26,22 @@ body {
 .accen {
     display: flex;
     align-content: center;
+}
+
+.sb {
+    display: flex;
+    justify-content: space-between;
+}
+
+.jccen {
+    display: flex;
+    justify-content: center;
+}
+
+.m10 {
+    margin: 10px;
+}
+
+.p10 {
+    padding: 10px;
 }
