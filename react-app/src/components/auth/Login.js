@@ -6,7 +6,6 @@ import loginIcon from "./login.png"
 import './auth.css';
 
 
-
 const Login = () => {
     const dispatch = useDispatch();
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -14,31 +13,34 @@ const Login = () => {
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
 
-    const login = async (e) => {
+    const loginFunc = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(credential, password));
-        if (data) setErrors(data);
+        if (data) {
+            console.log("data, comp auth login",data)
+            setErrors(data)
+        };
         // history.push("/home")
       };
 
     return (
         <>
             <img src={loginIcon} alt="login"
-            className="smlogo"
+            className="smlogo hcp"
             onClick={() => setShowLoginModal(true)}
             />
             {showLoginModal && (
                 <Modal onClose={() => setShowLoginModal(false)}>
                     <form 
                     className="formContainer form"
-                    onSubmit={e => login(e)}>
+                    onSubmit={e => loginFunc(e)}>
                         <div>
                             {errors && errors.map((error, ind) => (
                                 <div key={ind}>{error}</div>
                             ))}
                         </div>
                         <div>
-                            <label>Username or Email</label>
+                            <label className="label">Username or Email</label>
                             <input
                             name='credential'
                             type='text'

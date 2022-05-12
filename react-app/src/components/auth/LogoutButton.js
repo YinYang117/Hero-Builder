@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
+import logoutIcon from "./logout.png"
 
 const LogoutButton = () => {
   const dispatch = useDispatch()
@@ -8,7 +9,12 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return (
+            <img src={logoutIcon} alt="login"
+            className="smlogo hcp"
+            onClick={onLogout}
+            />
+  )
 };
 
 export default LogoutButton;

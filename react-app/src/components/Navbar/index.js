@@ -6,7 +6,6 @@ import { login } from '../../store/session';
 import Login from "../auth/Login"
 import dwarf from "./dwarf.png"
 import signup from "./signup.png"
-import logout from "./logout.png"
 import demo from "./demo.png"
 import './navbar.css'
 
