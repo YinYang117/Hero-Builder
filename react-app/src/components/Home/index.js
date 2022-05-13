@@ -6,6 +6,7 @@ import { fetchHeroAbilities } from "../../store/heroAbil"
 import HeroDetailsCard from '../Heros';
 import "./home.css"
 
+
 const Home = () => {
 	const dispatch = useDispatch();
 	const heros = useSelector(state => state.heros)
@@ -63,7 +64,7 @@ const Home = () => {
 					you can change the hero details by clicking a new hero
 					from the list on the left, or clicking all heros again.
 					 */}
-						{heros && showHeros && heros.arr.map(hero => (
+						{heros && showHeros && heros?.arr?.map(hero => (
 							<div key={hero.id} className="could do a component card here">
 								<img src={hero.heroImage} alt={hero.name}>
 									<div className="display like a title, or bottom left">{hero.name}</div>

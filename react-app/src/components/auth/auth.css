@@ -1,31 +1,51 @@
 .hcp:hover {
-    cursor:pointer;
+    cursor: pointer;
+}
+
+.textbubble {
+    position: absolute;
+    left: -10px;
+    top: 55px;
+    width: 60px;
+    height: 25px;
+    text-align: center;
+    background-color: rgba(0, 177, 183, 0.707);
+    border: 1px solid rgb(255, 225, 0);
+    border-radius: 10px;
+    display: none;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.wrapper:hover .textbubble {
+    display: block;
 }
 
 .formContainer {
     height: auto;
     width: 400px;
-    background-color: rgba(255,255,255,0.13);
+    background-color: rgba(72, 255, 255, 0.387);
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    border: 2px solid rgba(255, 174, 0, 0.638);
+    box-shadow: 0 0 40px rgba(88, 0, 188, 0.6);
     padding: 50px 35px;
 }
 
-.formContainer  *{
-    font-family: 'Poppins',sans-serif;
-    color: #ffffff;
+.formContainer * {
+    font-family: 'Poppins', sans-serif;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
 
-.formContainer  h3{
+.formContainer h3 {
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;
@@ -43,7 +63,7 @@
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgba(174, 255, 171, 0.519);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
@@ -57,17 +77,17 @@
 
 #loginButton {
     margin-top: 50px;
-    width: 100%;
-    color: #ffffff;
+    width: 80%;
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+    background-color: #e6ff697e;
 }
 
 #loginButton:hover,
 #loginButton:active {
     color: #080710;
-    background-color: #ffffff;
+    background-color: #2bff00e4;
 }

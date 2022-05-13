@@ -20,9 +20,7 @@ function App() {
     })();
   }, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
+  if (!loaded) return null;
 
   return (
     <BrowserRouter>
@@ -31,11 +29,11 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/' exact={true} >
-          <Splash />
-        </Route>
         <Route path='/home' exact={true} >
           <Home />
+        </Route>
+        <Route path='/' exact={true} >
+          <Splash />
         </Route>
       </Switch>
     </BrowserRouter>

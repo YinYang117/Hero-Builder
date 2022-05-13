@@ -17,39 +17,43 @@ const Login = () => {
         e.preventDefault();
         const data = await dispatch(login(credential, password));
         if (data) {
-            console.log("data, comp auth login",data)
+            console.log("data, comp auth login", data)
             setErrors(data)
         };
         // history.push("/home")
-      };
+    };
 
     return (
         <>
-            <img src={loginIcon} alt="login"
-            className="smlogo hcp"
-            onClick={() => setShowLoginModal(true)}
-            />
+            <div className="smlogo hcp wrapper">
+                <img
+                    src={loginIcon} alt="login"
+                    className="smlogo hcp wrapper"
+                    onClick={() => setShowLoginModal(true)}
+                />
+                <div className="textbubble">Login</div>
+            </div>
             {showLoginModal && (
                 <Modal onClose={() => setShowLoginModal(false)}>
-                    <form 
-                    className="formContainer form"
-                    onSubmit={e => loginFunc(e)}>
+                    <form
+                        className="formContainer form fdcol"
+                        onSubmit={e => loginFunc(e)}>
                         <div>
                             {errors && errors.map((error, ind) => (
                                 <div key={ind}>{error}</div>
                             ))}
                         </div>
-                        <div>
+                        <div className="aicen  fdcol">
                             <label className="label">Username or Email</label>
-                            <input
-                            name='credential'
-                            type='text'
-                            placeholder='Credential'
-                            value={credential}
-                            onChange={e => setCredential(e.target.value)}
+                            <input className="input"
+                                name='credential'
+                                type='text'
+                                placeholder='Credential'
+                                value={credential}
+                                onChange={e => setCredential(e.target.value)}
                             />
                         </div>
-                        <div>
+                        <div className="aicen  fdcol">
                             <label className="label" htmlFor='password'>Password</label>
                             <input className="input"
                                 name='password'
