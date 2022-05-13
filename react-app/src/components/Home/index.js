@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from 'react-router-dom';
 import { fetchUserHeros } from "../../store/heros"
 import { fetchUserAbilities } from "../../store/abilities"
 import { fetchHeroAbilities } from "../../store/heroAbil"
@@ -16,19 +17,23 @@ const Home = () => {
 	const user = useSelector(state => state.user)
 	const [showHeros, setShowHeros] = useState(false);
 	const [showAbils, setShowAbils] = useState(false);
-	const [selectedHero, setSelectedHero] = useState({})
+	const [selectedHero, setSelectedHero] = useState()
 	const [selHeroAbilNum, setSelHeroAbilNum] = useState(0)
 	// const [herosArr, setHerosArr] = useState([])
 
 
 	useEffect(() => {
-		dispatch(fetchUserHeros(user))
-		dispatch(fetchUserAbilities(user))
+		if (user) {
+			dispatch(fetchUserHeros(user))
+			dispatch(fetchUserAbilities(user))
+		} else <Redirect to='/' />
 	}, [user])
 
 	useEffect(() => {
-		setSelHeroAbilNum(selectedHero.numOfAbilities)
-		dispatch(fetchHeroAbilities(selectedHero))
+		if (selectedHero) {
+			setSelHeroAbilNum(selectedHero.numOfAbilities)
+			dispatch(fetchHeroAbilities(selectedHero))
+		}
 	},[selectedHero])
 
 	// useEffect(() => {

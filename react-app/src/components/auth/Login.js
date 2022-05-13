@@ -43,7 +43,7 @@ const Login = () => {
                                 <div key={ind}>{error}</div>
                             ))}
                         </div>
-                        <div className="aicen  fdcol">
+                        <div className="aicen fdcol">
                             <label className="label">Username or Email</label>
                             <input className="input"
                                 name='credential'
@@ -53,7 +53,7 @@ const Login = () => {
                                 onChange={e => setCredential(e.target.value)}
                             />
                         </div>
-                        <div className="aicen  fdcol">
+                        <div className="aicen fdcol">
                             <label className="label" htmlFor='password'>Password</label>
                             <input className="input"
                                 name='password'
