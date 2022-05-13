@@ -84,11 +84,11 @@ def heros(id):
     """
     Main route for getting all a User's Heros.
     """
-    if request.method == "GET":
-        heros = Hero.query.filter(Hero.owner_id == id).all()
-        for hero in heros:
-            all_heros[hero.id] = hero.to_js_obj
-        return all_heros
+    heros = Hero.query.filter(Hero.owner_id == id).all()
+    all_heros = {}
+    for hero in heros:
+        all_heros[hero.id] = hero.to_js_obj
+    return all_heros
 
 
 @hero_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE'])
@@ -131,12 +131,9 @@ def specific_hero(id):
                 return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
         if request.method == "DELETE":
-            data = request.get_json(force=True) # passing userId
-            if hero.owner_id == data["userId"]:
-                db.session.delete(hero)
-                db.session.commit()
-                return {'deletion': 'successful'}
-            else:
-                return {'errors': ['User Id passed did not match Hero owner.']}
+            db.session.delete(hero)
+            db.session.commit()
+            return {'deletion': 'successful'}
+
     else:
-        return {}
+        return {"errors": ['Hero not found']}

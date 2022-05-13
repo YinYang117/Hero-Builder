@@ -48,30 +48,49 @@ def all_heros():
         return {}
 
 
-@ability_routes.route('/', methods=['GET', 'POST'])
+@ability_routes.route('/', methods=['POST'])
 def abilities():
     """
-    Main route for getting all a User's Abilities, and Ability Creation.
+    Main route for Ability Creation.
     """
-    if request.method == 'GET':
-        data = request.get_json(force=True)
-        # passing userId
-        abils = Ability.query.filter(Ability.owner_id == data["userId"]).all()
-        all_abl = {}
-        for abil in abilities:
-            all_abl[abil.id] = abil.to_js_obj
-        return all_abl
+    form = EditAbility()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        abil = Ability(
+            owner_id = form.data["ownerId"],
+            name = form.data["name"],
+            description = form.data["description"],
+            ability_image = form.data["abilityImage"],
+            uses_resource = form.data["usesResource"],
+            resource_name = form.data["resourceName"],
+            resource_cost = form.data["resourceCost"],
+            uses_charges = form.data["usesCharges"],
+            num_charges = form.data["numCharges"],
+            charge_recharge_rate = form.data["chargeRechargeRate"],
+            uses_cooldown = form.data["usesCooldown"],
+            cooldown = form.data["cooldown"],
+            channeled = form.data["channeled"],
+            channel_time = form.data["channelTime"],
+            ultimate = form.data["ultimate"],
+            details = form.data["details"],
+        )
+        db.session.add(abil)
+        db.session.commit()
+        return abil.to_js_obj
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-    if request.method == "POST":
-        form = EditAbility()
-        form['csrf_token'].data = request.cookies['csrf_token']
-        if form.validate_on_submit():
-            abil = form.populate_obj(Ability)
-            db.session.add(abil)
-            db.session.commit()
-            return abil.to_js_obj
-        else:
-            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@ability_routes.route('/user/<int:id>')
+def userAbils(id):
+    """
+    Main route for getting all Abilities for a User.
+    """
+    abils = Ability.query.filter(Ability.owner_id == id).all()
+    all_abl = {}
+    for abil in abilities:
+        all_abl[abil.id] = abil.to_js_obj
+    return all_abl
 
 
 @ability_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE'])
@@ -88,9 +107,26 @@ def specific_abil(id):
             form = EditAbility
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
-                form.populate_obj(abil)
+                form.owner_id = form.data["ownerId"],
+                form.name = form.data["name"],
+                form.description = form.data["description"],
+                form.ability_image = form.data["abilityImage"],
+                form.uses_resource = form.data["usesResource"],
+                form.resource_name = form.data["resourceName"],
+                form.resource_cost = form.data["resourceCost"],
+                form.uses_charges = form.data["usesCharges"],
+                form.num_charges = form.data["numCharges"],
+                form.charge_recharge_rate = form.data["chargeRechargeRate"],
+                form.uses_cooldown = form.data["usesCooldown"],
+                form.cooldown = form.data["cooldown"],
+                form.channeled = form.data["channeled"],
+                form.channel_time = form.data["channelTime"],
+                form.ultimate = form.data["ultimate"],
+                form.details = form.data["details"],
+
                 updt = date.today()
                 abil.updated_at = updt
+
                 db.session.add(abil)
                 db.session.commit()
                 return abil.to_js_obj

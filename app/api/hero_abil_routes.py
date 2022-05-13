@@ -26,16 +26,17 @@ def validation_errors_to_error_messages(validation_errors):
 #         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# @hero_abil_routes.route('/hero/<int:id>', methods=["GET"])
-# def get_hero_abil(id):
-    # data = request.get_json(force=True)
-    # tripId = data["tripId"]
-    # user = User.query.filter(User.username == data["userName"]).one()
-    # if user:
-    #     return {
-    #         "invitedUser": user.to_dict(), "tripId": tripId
-    #     }
-    # else:
-    #     return {
-    #         "errors" : ["This user does not exist. Please type an existing user."]
-    #     }
+# expected route /api/hero_abil/test
+@hero_abil_routes.route('/test', methods=["GET"])
+def test():
+    return {"test": "complete"}
+
+
+@hero_abil_routes.route('/<int:id>', methods=["GET"])
+def get_hero_abil(id):
+    hero = Hero.query.get(id)
+    currAbils = hero.hero_equipped_abilities
+    heroAbils = {}
+    for abil in currAbils:
+        heroAbils[abil.id] = abil.to_js_obj
+    return heroAbils

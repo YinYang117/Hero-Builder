@@ -1,13 +1,13 @@
-const LOAD_USER_HEROS = "heros/loadAllUserHeros"
+const LOAD_HERO_ABILS = "heroAbil/loadHeroAbils"
 
 // CONSTANTS
 /////////////////////////////////////////
 // action creators
 
-const loadUserHeros = (heros) => {
+const loadHeroAbilities = (abils) => {
     return {
-        type: LOAD_USER_HEROS,
-        payload: heros
+        type: LOAD_HERO_ABILS,
+        payload: abils
     }
 }
 
@@ -15,16 +15,16 @@ const loadUserHeros = (heros) => {
 /////////////////////////////////////////
 // thunks
 
-export const fetchUserHeros = (user) => async (disptach) => {
-    const { id } = user.id
-    const res = await fetch(`/api/heros/user/${id}`);
+export const fetchHeroAbilities = (hero) => async (disptach) => {
+    const { id } = hero.id
+    const res = await fetch(`/api/hero_abil/${id}`);
 
     if (res.ok) {
         const data = await res.json();
-        disptach(loadUserHeros(data))
+        disptach(loadHeroAbilities(data))
     } else if (res.status < 500) {
         const data = await res.json();
-        if (data.errors) return data.errors;
+        if (data.errors) return data.errors; // no possible errors returned on this route atm.
     } else return ['An error occurred. Please try again.']
 }
 
@@ -33,10 +33,10 @@ export const fetchUserHeros = (user) => async (disptach) => {
 // reducer
 
 const initialState = {};
-const heroReducer = (state = initialState, action) => {
+const heroAbilReducer = (state = initialState, action) => {
     let newState = Object.assign({}, state)
     switch (action.type) {
-        case LOAD_USER_HEROS:
+        case LOAD_HERO_ABILS:
             newState = action.payload
             newState.arr = Object.values(action.payload)
             return newState
@@ -46,4 +46,4 @@ const heroReducer = (state = initialState, action) => {
 }
 
 
-export default heroReducer;
+export default heroAbilReducer;

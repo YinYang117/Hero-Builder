@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import heroReducer from './heros'
 import abilityReducer from './abilities'
+import heroAbilReducer from './heroAbil'
 
 const rootReducer = combineReducers({
   session,
   heros:heroReducer,
   abilities:abilityReducer,
+  heroAbil:heroAbilReducer,
 });
 
 
