@@ -13,14 +13,13 @@ const Home = () => {
 	const heros = useSelector(state => state.heros)
 	// console.log(heros.arr)
 	const allAbils = useSelector(state => state.abilities)
-	// console.log(allAbils.arr)
 	const user = useSelector(state => state.user)
 	const [showHeros, setShowHeros] = useState(false);
 	const [showAbils, setShowAbils] = useState(false);
 	const [selectedHero, setSelectedHero] = useState()
 	const [selHeroAbilNum, setSelHeroAbilNum] = useState(0)
 	// const [herosArr, setHerosArr] = useState([])
-
+	
 
 	useEffect(() => {
 		if (user) {
@@ -34,7 +33,7 @@ const Home = () => {
 			setSelHeroAbilNum(selectedHero.numOfAbilities)
 			dispatch(fetchHeroAbilities(selectedHero))
 		}
-	},[selectedHero])
+	}, [selectedHero])
 
 	// useEffect(() => {
 	// 	setHerosArr(Object.values(heros))
@@ -45,11 +44,11 @@ const Home = () => {
 			<h1>
 				Welcome Hero Builder!
 			</h1>
-			<div className="divide into 3">
-				<div className="1/3 left column centered">
+			<div className="homeMainContainer">
+				<div className="lgrid">
 					<button type="button"
 						className="Show all heros"
-						onClick={setShowHeros(true)}
+						// onClick={setShowHeros(true)}
 					>
 						Show Heros
 					</button>
@@ -60,8 +59,10 @@ const Home = () => {
 							</div>
 						))}
 					</div>}
+					<div>list of hero nameplates</div>
 				</div>
-				<div className="2/3 middle main area">
+				<div className="cgrid">
+					<div>main hero display</div>
 					<div className="hero display">
 					{/* 
 					Here, when you select a hero, all the other heros displayed
@@ -82,13 +83,16 @@ const Home = () => {
 						}
 					</div>
 					<div className="little space">
+						spacer
 							<div className="container for specific hero's abils">
 								{/* fancy logic for drag drop.
 								and for selectedHero . num abil
 								 */}
+								Current hero abilities
 							</div>
 					</div>
 					<div className="ability display">
+						ability display for all other abils
 						{allAbils && showAbils && allAbils?.arr?.map(abil => (
 							<div key={abil.id} className="could do a component card here">
 								<img src={abil.heroImage} alt={abil.name}>
@@ -99,19 +103,20 @@ const Home = () => {
 						))}
 					</div>
 					<div className="little space">
+					spacer
 								{/* 
 								under here im thinking it will display the details of an
 								ability that you select from the all ability menu
 								 */}
 					</div>
 					<div className="Selected ability details">
-
+						details on a selected ability
 					</div>
 				</div>
-				<div className="3/3 right">
+				<div className="rgrid">
 					<button type="button"
 						className="Show all abilities"
-						onClick={setShowAbils(true)}
+						// onClick={setShowAbils(true)}
 					>
 						Show all Abilities
 					</button>
