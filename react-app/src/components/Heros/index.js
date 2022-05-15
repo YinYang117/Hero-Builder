@@ -10,34 +10,35 @@ const HeroDetailsCard = ({hero, heroAbil}) => {
 	return (
 		<div className="hero details container">
 			<div className="left image container">
+				image
 				<img src={hero.mainImage} alt={hero.name}/>
 			</div>
 			<div className="right hero stats container">
-				<div className="hero name" ></div>
-				<div className="hero intro" ></div>
+				<div className="hero name" >name</div>
+				<div className="hero intro" >intro</div>
 				<div className="form container grid">
 					<div className="grid row" >
-						<div className="hp" ></div>
+						<div className="hp" >hp</div>
 					{hero.resource &&  
 						<div className="resource name and amount" ></div>
 					}
 					{/* change ^ to a func call return based off bool */}
 					</div>
 					<div className="grid row" >
-						<div className="armor" ></div>
-						<div className="magic res" ></div>
+						<div className="armor" >armor</div>
+						<div className="magic res" >mag Res</div>
 					</div>
 					<div className="grid row" >
-						<div className="attack damage" ></div>
-						<div className="attack range" ></div>
+						<div className="attack damage" >atk dam</div>
+						<div className="attack range" >atk rng</div>
 					</div>
 					<div className="grid row" >
-						<div className="attack speed" ></div>
-						<div className="move speed" ></div>
+						<div className="attack speed" >atk spd</div>
+						<div className="move speed" >move spd</div>
 					</div>
 					<div className="grid row" >
-						<div className="num of abilities" ></div>
-						<div className="hero last updated at" ></div>
+						<div className="num of abilities" >num abil</div>
+						<div className="hero last updated at" >last uptd</div>
 					</div>
 					<div className="" ></div>
 				</div>
@@ -51,6 +52,7 @@ const HeroDetailsCard = ({hero, heroAbil}) => {
 					dont display it here, do it in home for easier
 					Drag Drop integration.
 				)) */}
+				
 			</div>
 		</div>
 	)

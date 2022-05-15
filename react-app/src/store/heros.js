@@ -24,7 +24,8 @@ const heroEdits = (hero) => {
 // thunks
 
 export const fetchUserHeros = (user) => async (disptach) => {
-    const { id } = user.id
+    const id = user.id
+    console.log("hero store", id)
     const res = await fetch(`/api/heros/user/${id}`);
 
     if (res.ok) {

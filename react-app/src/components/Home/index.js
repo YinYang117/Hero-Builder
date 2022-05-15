@@ -13,7 +13,7 @@ const Home = () => {
 	const heros = useSelector(state => state.heros)
 	// console.log(heros.arr)
 	const allAbils = useSelector(state => state.abilities)
-	const user = useSelector(state => state.user)
+	const user = useSelector(state => state.session.user)
 	const [showHeros, setShowHeros] = useState(false);
 	const [showAbils, setShowAbils] = useState(false);
 	const [selectedHero, setSelectedHero] = useState()
@@ -22,6 +22,7 @@ const Home = () => {
 	
 
 	useEffect(() => {
+		console.log(user)
 		if (user) {
 			dispatch(fetchUserHeros(user))
 			dispatch(fetchUserAbilities(user))
@@ -35,6 +36,10 @@ const Home = () => {
 		}
 	}, [selectedHero])
 
+	const showAllHeros = () => {
+		setShowHeros(!showHeros)
+	}
+
 	// useEffect(() => {
 	// 	setHerosArr(Object.values(heros))
 	// },[heros]) // rebuilt in store. might be able to keep sorted easier that way??? maybe...
@@ -47,41 +52,43 @@ const Home = () => {
 			<div className="homeMainContainer">
 				<div className="lgrid">
 					<button type="button"
-						className="Show all heros"
-						// onClick={setShowHeros(true)}
+						className="showAllButton"
+						onClick={showAllHeros}
 					>
 						Show Heros
 					</button>
-					{showHeros && <div className="hero list of names container">
-						{heros?.arr?.map(hero => (
-							<div key={hero.name} className="rectangle name bar like categories in HotS">
+					{heros && showHeros && 
+					<div className="hero list of names container">
+						{heros.arr.map(hero => (
+							<div key={hero.name} className="heroNamePlate">
 								{hero.name}
 							</div>
 						))}
 					</div>}
-					<div>list of hero nameplates</div>
+					<div className='heroNamePlate'>list of hero nameplates</div>
 				</div>
 				<div className="cgrid">
 					<div>main hero display</div>
-					<div className="hero display">
+					<div className="heroDisplay">
 					{/* 
 					Here, when you select a hero, all the other heros displayed
 					disappear, and hero details open in this same spot.
 					you can change the hero details by clicking a new hero
 					from the list on the left, or clicking all heros again.
 					 */}
-						{heros && showHeros && heros?.arr?.map(hero => (
-							<div key={hero.id} className="could do a component card here">
-								<img src={hero.heroImage} alt={hero.name}>
+						{showHeros && heros &&
+						heros.arr.map(hero => (
+							<div key={hero.id} className="largerAllHeros">
+								<div className="heroImage">
+									<img src={hero.mainImage} alt="heroImage" />
 									<div className="display like a title, or bottom left">{hero.name}</div>
-								</img>
-								<p className="under image">{hero.intro}</p>
+								</div>
 							</div>
 						))}
-						{selectedHero && 
-						<HeroDetailsCard hero={selectedHero} heroAbil={selHeroAbilNum} />
-						}
 					</div>
+					{selectedHero && 
+						<HeroDetailsCard hero={selectedHero} heroAbil={selHeroAbilNum} />
+					}
 					<div className="little space">
 						spacer
 							<div className="container for specific hero's abils">
@@ -115,7 +122,7 @@ const Home = () => {
 				</div>
 				<div className="rgrid">
 					<button type="button"
-						className="Show all abilities"
+						className="showAllButton"
 						// onClick={setShowAbils(true)}
 					>
 						Show all Abilities

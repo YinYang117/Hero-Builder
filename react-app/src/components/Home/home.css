@@ -23,3 +23,31 @@
 .rgrid {
 	grid-area: 'right';
 }
+
+.showAllButton {
+	border-radius: 5px;
+	margin: 20px;
+}
+
+.heroDisplay{
+	display: flex;
+	flex-flow: row;
+	max-width: 60vw;
+	flex-wrap: wrap;
+	border: 1px solid rgb(255, 208, 0);
+	margin: 10px;
+}
+
+.heroNamePlate{
+	background-color: rgb(0, 242, 255);
+	border: 1px solid rgb(255, 208, 0);
+	margin: 0px 20px;
+}
+
+.largerAllHeros{
+	border: 1px solid rgb(255, 208, 0);
+	background-color: rgb(0, 242, 255);
+	width: 80px;
+	height: 100px;
+	margin: 5px;
+}
