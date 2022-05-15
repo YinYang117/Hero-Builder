@@ -5,6 +5,7 @@ import { fetchUserHeros } from "../../store/heros"
 import { fetchUserAbilities } from "../../store/abilities"
 import { fetchHeroAbilities } from "../../store/heroAbil"
 import HeroDetailsCard from '../Heros';
+import LargerHeroFrame from "./heroFrame"
 import "./home.css"
 
 
@@ -68,7 +69,7 @@ const Home = () => {
 					<div className='heroNamePlate'>list of hero nameplates</div>
 				</div>
 				<div className="cgrid">
-					<div>main hero display</div>
+					<div>Larger hero image carasol</div>
 					<div className="heroDisplay">
 					{/* 
 					Here, when you select a hero, all the other heros displayed
@@ -78,12 +79,7 @@ const Home = () => {
 					 */}
 						{showHeros && heros &&
 						heros.arr.map(hero => (
-							<div key={hero.id} className="largerAllHeros">
-								<div className="heroImage">
-									<img src={hero.mainImage} alt="heroImage" />
-									<div className="display like a title, or bottom left">{hero.name}</div>
-								</div>
-							</div>
+							<HeroFrame hero={hero} />
 						))}
 					</div>
 					{selectedHero && 
