@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-
+import { HeroContext } from '../../context/SelectedHero';
+import './home.css';
 
 const HeroFrame = ({hero, heroAbil}) => {
 	const dispatch = useDispatch();
+	const { currHero, setCurrHero } = useContext(HeroContext);
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
 
+	const selectHero = () => {
+		setCurrHero(hero)
+	}
+	
 	return (
-		<div className="hero details container">
-			<div key={hero.id} className="largerAllHeros">
+		<div className="heroFrame"
+		onClick={selectHero}
+		>
+			<div className="largerAllHeros">
 				<div className="heroImage">
 					<img src={hero.mainImage} alt="heroImage" />
-					<div className="display like a title, or bottom left">{hero.name}</div>
+					<div className="">{hero.name}</div>
 				</div>
 			</div>
 		</div>

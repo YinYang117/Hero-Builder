@@ -51,3 +51,7 @@
 	height: 100px;
 	margin: 5px;
 }
+
+.heroFrame:hover {
+    cursor: pointer;
+}

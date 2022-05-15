@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { fetchUserHeros } from "../../store/heros"
 import { fetchUserAbilities } from "../../store/abilities"
 import { fetchHeroAbilities } from "../../store/heroAbil"
-import HeroDetailsCard from '../Heros';
-import LargerHeroFrame from "./heroFrame"
+import { HeroContext } from '../../context/SelectedHero';
+import HeroDetailsCard from '../Hero';
+import HeroFrame from "./heroFrame"
 import "./home.css"
 
 
@@ -15,12 +16,13 @@ const Home = () => {
 	// console.log(heros.arr)
 	const allAbils = useSelector(state => state.abilities)
 	const user = useSelector(state => state.session.user)
+	const { currHero, setCurrHero } = useContext(HeroContext);
 	const [showHeros, setShowHeros] = useState(false);
 	const [showAbils, setShowAbils] = useState(false);
-	const [selectedHero, setSelectedHero] = useState()
 	const [selHeroAbilNum, setSelHeroAbilNum] = useState(0)
 	// const [herosArr, setHerosArr] = useState([])
 	
+	console.log("current hero", currHero)
 
 	useEffect(() => {
 		console.log(user)
@@ -31,11 +33,11 @@ const Home = () => {
 	}, [user])
 
 	useEffect(() => {
-		if (selectedHero) {
-			setSelHeroAbilNum(selectedHero.numOfAbilities)
-			dispatch(fetchHeroAbilities(selectedHero))
+		if (currHero) {
+			setSelHeroAbilNum(currHero.numOfAbilities)
+			dispatch(fetchHeroAbilities(currHero))
 		}
-	}, [selectedHero])
+	}, [currHero])
 
 	const showAllHeros = () => {
 		setShowHeros(!showHeros)
@@ -58,10 +60,10 @@ const Home = () => {
 					>
 						Show Heros
 					</button>
-					{heros && showHeros && 
+					{heros && showHeros &&
 					<div className="hero list of names container">
 						{heros.arr.map(hero => (
-							<div key={hero.name} className="heroNamePlate">
+							<div key={hero.id} className="heroNamePlate">
 								{hero.name}
 							</div>
 						))}
@@ -69,7 +71,7 @@ const Home = () => {
 					<div className='heroNamePlate'>list of hero nameplates</div>
 				</div>
 				<div className="cgrid">
-					<div>Larger hero image carasol</div>
+					<div>Larger hero image carasole</div>
 					<div className="heroDisplay">
 					{/* 
 					Here, when you select a hero, all the other heros displayed
@@ -77,23 +79,14 @@ const Home = () => {
 					you can change the hero details by clicking a new hero
 					from the list on the left, or clicking all heros again.
 					 */}
-						{showHeros && heros &&
+						{showHeros && heros && !currHero &&
 						heros.arr.map(hero => (
-							<HeroFrame hero={hero} />
+							<HeroFrame  key={hero.id} hero={hero} />
 						))}
 					</div>
-					{selectedHero && 
-						<HeroDetailsCard hero={selectedHero} heroAbil={selHeroAbilNum} />
+					{currHero && 
+						<HeroDetailsCard hero={currHero} heroAbil={selHeroAbilNum} />
 					}
-					<div className="little space">
-						spacer
-							<div className="container for specific hero's abils">
-								{/* fancy logic for drag drop.
-								and for selectedHero . num abil
-								 */}
-								Current hero abilities
-							</div>
-					</div>
 					<div className="ability display">
 						ability display for all other abils
 						{allAbils && showAbils && allAbils?.arr?.map(abil => (

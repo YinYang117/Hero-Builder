@@ -1,0 +1,26 @@
+.heroDetImg {
+	border: 1px gold;
+	width: 400px;
+	height: 600px;
+}
+
+.heroDetName {
+	background-color: aqua;
+	border: 1px gold;
+	width: 200px;
+	height: 50px;
+}
+
+.heroDetInt {
+	background-color: aqua;
+	border: 1px gold;
+	width: 200px;
+	min-height: 50px;
+}
+
+.heroDetSec {
+	background-color: aqua;
+	border: 1px gold;
+	width: 200px;
+	height: 80px;
+}
