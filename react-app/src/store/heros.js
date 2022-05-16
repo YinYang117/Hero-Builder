@@ -39,7 +39,8 @@ export const fetchUserHeros = (user) => async (disptach) => {
 
 
 export const editHero = (hero) => async (disptach) => {
-    const { id } = hero.id
+    const id = hero.id
+    console.log("made it to edit hero store", hero)
     const res = await fetch(`/api/heros/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -52,7 +53,13 @@ export const editHero = (hero) => async (disptach) => {
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) return data.errors;
-    } else return ['An error occurred. Please try again.']
+    } else {
+        const data = await res.json();
+        console.log("store 500 error data edit hero", data)
+        data.errors.push(['A server error occurred.'])
+        console.log("store 500 error data edit hero", data.errors)
+        return data.errors;
+    }
 }
 
 // end of thunks

@@ -143,3 +143,8 @@ def specific_abil(id):
                 return {"errors": ["User Id passed did not match Ability's owner."]}
     else:
         return {}
+
+
+@ability_routes.errorhandler(500)
+def internal_server_error(e):
+    return {'errors': ["Internal Server Error"]}, 500

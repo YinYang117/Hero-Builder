@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, render_template
-from ..models import User, Hero, db
+from ..models import User, Hero, db, hero_abilities, Ability
 from ..forms import NewHero, EditHero
 from datetime import date
 
@@ -102,7 +102,11 @@ def specific_hero(id):
             return hero.to_js_obj
         
         if request.method == "PUT":
-            form = EditHero
+            form = EditHero()
+            print('------######----- 1 hero route api', form.data['resource'])
+            print('------######----- 2 hero route api', form.data['resource'] is True)
+            print('------######----- 3 hero route api', form.data['resource'] == True)
+
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
                 hero.name = form.data["name"],
@@ -137,3 +141,8 @@ def specific_hero(id):
 
     else:
         return {"errors": ['Hero not found']}
+
+
+@hero_routes.errorhandler(500)
+def internal_server_error(e):
+    return {'errors': ["Internal Server Error"]}, 500

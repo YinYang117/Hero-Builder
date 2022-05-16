@@ -40,3 +40,9 @@ def get_hero_abil(id):
     for abil in currAbils:
         heroAbils[abil.id] = abil.to_js_obj
     return heroAbils
+
+
+@hero_abil_routes.errorhandler(500)
+def internal_server_error(e):
+    return {'errors': ["Internal Server Error"]}, 500
+# can also create one for 405 or any other.

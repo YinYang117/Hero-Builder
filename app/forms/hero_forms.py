@@ -49,7 +49,7 @@ class EditHero(FlaskForm):
     intro = StringField("Hero intro", validators=[DataRequired(), Length(min=2, max=500)])
     heroImage = StringField("Hero Image", validators=[DataRequired()])
     hp = IntegerField("HitPoints", validators=[DataRequired(), NumberRange(min=100, max=10000)])
-    resource = BooleanField("Resource", validators=[DataRequired()])
+    resource = BooleanField("Resource", false_values=(False, 'false', '', 'False', 0), validators=[InputRequired()])
     resourceName = StringField("Resource Name", validators=[resourceNameCheck])
     resourceAmount = IntegerField("Resource Amount", validators=[resourceAmountCheck])
     physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=0, max=500)])

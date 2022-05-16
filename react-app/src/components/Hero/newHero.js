@@ -8,8 +8,9 @@ const NewHeroForm = ({ editingHero, setEditingHero }) => {
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
 
-	const fullDate = hero.updatedAt
-	const shrtDate = fullDate.split('').splice(0,16).join('')
+	// const fullDate = hero.updatedAt
+	// const shrtDate = fullDate.split('').splice(0, 16).join('')
+	let shrtDate = "debugging"
 	
 	const [heroName, setHeroName] = useState(hero.name)
 	const [intro, setIntro] = useState(hero.intro)

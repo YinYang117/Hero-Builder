@@ -9,8 +9,9 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	// might not need ^ depending on where I display these
 
 
-	const fullDate = hero.updatedAt
-	const shrtDate = fullDate.split('').splice(0,16).join('')
+	// const fullDate = hero.updatedAt
+	// const shrtDate = fullDate.split('').splice(0, 16).join('')
+	let shrtDate = "debugging"
 
 	const editHero = (e) => {
 		e.preventDefault();
