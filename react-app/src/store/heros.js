@@ -12,7 +12,7 @@ const loadUserHeros = (heros) => {
     }
 }
 
-const heroEdits = (hero) => {
+const loadHero = (hero) => {
     return {
         type: LOAD_SINGLE_HERO,
         payload: hero
@@ -38,13 +38,17 @@ export const fetchUserHeros = (user) => async (disptach) => {
 }
 
 
-export const fetchHeroEdit = (user) => async (disptach) => {
-    const { id } = user.id
-    const res = await fetch(`/api/heros/user/${id}`);
+export const editHero = (hero) => async (disptach) => {
+    const { id } = hero.id
+    const res = await fetch(`/api/heros/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(hero)
+        });
 
     if (res.ok) {
         const data = await res.json();
-        disptach(loadUserHeros(data))
+        disptach(loadHero(data))
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) return data.errors;

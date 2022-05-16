@@ -56,6 +56,10 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 						</div>
 					</div>
 				</div>
+				{hero.details && 
+				<div>
+					{hero.details}
+				</div>}
 				<div className="ability display icons under hero + form">
 					{/* abils && abilNum.map(abil => (
 					{abil holder comp}
