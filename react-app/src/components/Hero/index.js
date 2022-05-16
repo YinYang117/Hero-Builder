@@ -7,8 +7,15 @@ const HeroDetailsCard = ({ hero, heroAbil }) => {
 	const dispatch = useDispatch();
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
+
+	const [editingHero, setEditingHero] = useState(false)
 	const fullDate = hero.updatedAt
 	const shrtDate = fullDate.split('').splice(0,16).join('')
+
+	const editHero = (e) => {
+		e.preventDefault();
+		setEditingHero(!editingHero)
+	}
 	
 	return (
 		<>
@@ -18,8 +25,11 @@ const HeroDetailsCard = ({ hero, heroAbil }) => {
 					<img src={hero.mainImage} alt={hero.name} />
 				</div>
 				<div className="right hero stats container">
-					<div className="heroDetName" >name</div>
-					<div className="heroDetInt" >intro</div>
+					<div>
+						<div className="heroDetName" >name</div>
+						<button onClick={e => editHero(e)} >Edit</button>
+					</div>
+						<div className="heroDetInt" >intro</div>
 					<div className="">
 						<div className="fdrow heroDetSec" >
 							<div className="hp" >hp: {hero.hp}</div>

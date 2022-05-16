@@ -1,13 +1,13 @@
 from app.models import db, Hero
-from '../react-app/public/static/' import 1125486710_4e2c6b05ab_b.jpg
-from '../react-app/public/static/' import fantasy-g8ad69c2ca_1920.png
+# from '../react-app/public/static/' import 1125486710_4e2c6b05ab_b.jpg
+# from '../react-app/public/static/' import fantasy-g8ad69c2ca_1920.png
 
 def seed_heros():
     hero1 = Hero(
         owner_id=2,
         name="Test Hero",
         intro="Hero Intro",
-        hero_image="1125486710_4e2c6b05ab_b.jpg",
+        hero_image="",
         hp=2000,
         resource=True,
         resource_name="Energy",
@@ -25,7 +25,7 @@ def seed_heros():
         owner_id=2,
         name="Ranged DPS",
         intro="This is a great model for a balanced ranged damage dealer.",
-        hero_image="fantasy-g8ad69c2ca_1920.png",
+        hero_image="",
         hp=1500,
         resource=False,
         physical_armor=25,
