@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./hero.css"
 
 
-const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
+const NewHeroForm = ({ editingHero, setEditingHero }) => {
 	const dispatch = useDispatch();
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
@@ -139,5 +139,4 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	)
 }
 
-export default EditHeroForm;
-
+export default NewHeroForm;
