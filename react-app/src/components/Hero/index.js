@@ -3,18 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import "./hero.css"
 
 
-const HeroDetailsCard = ({ hero, heroAbil }) => {
+const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	const dispatch = useDispatch();
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
 
-	const [editingHero, setEditingHero] = useState(false)
+
 	const fullDate = hero.updatedAt
 	const shrtDate = fullDate.split('').splice(0,16).join('')
 
 	const editHero = (e) => {
 		e.preventDefault();
-		setEditingHero(!editingHero)
+		setEditingHero(true)
 	}
 	
 	return (

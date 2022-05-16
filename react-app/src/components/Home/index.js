@@ -6,6 +6,7 @@ import { fetchUserAbilities } from "../../store/abilities"
 import { fetchHeroAbilities } from "../../store/heroAbil"
 import { HeroContext } from '../../context/SelectedHero';
 import HeroDetailsCard from '../Hero';
+import EditHeroForm from '../Hero/editingHero.js'
 import HeroFrame from "./heroFrame"
 import "./home.css"
 
@@ -20,6 +21,7 @@ const Home = () => {
 	const [showHeros, setShowHeros] = useState(false);
 	const [showAbils, setShowAbils] = useState(false);
 	const [selHeroAbilNum, setSelHeroAbilNum] = useState(0)
+	const [editingHero, setEditingHero] = useState(false)
 	// const [herosArr, setHerosArr] = useState([])
 	
 	console.log("current hero", currHero)
@@ -84,9 +86,20 @@ const Home = () => {
 							<HeroFrame  key={hero.id} hero={hero} />
 						))}
 					</div>
-					{currHero && 
-						<HeroDetailsCard hero={currHero} heroAbil={selHeroAbilNum} />
-					}
+					{currHero && !editingHero &&
+						<HeroDetailsCard
+						hero={currHero}
+						heroAbil={selHeroAbilNum}
+						editingHero={editingHero}
+						setEditingHero={setEditingHero}
+					/>}
+					{editingHero && currHero &&
+						<EditHeroForm
+						hero={currHero}
+						heroAbil={selHeroAbilNum}
+						editingHero={editingHero}
+						setEditingHero={setEditingHero}
+					/>}
 					<div className="ability display">
 						ability display for all other abils
 						{allAbils && showAbils && allAbils?.arr?.map(abil => (
