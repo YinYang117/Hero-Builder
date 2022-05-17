@@ -10,7 +10,6 @@ import './auth.css'
 const Signup = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector(state => state.session.user);
 
   const [errors, setErrors]     = useState([]);
   const [email, setEmail]       = useState('');
@@ -27,7 +26,6 @@ const Signup = () => {
       else setErrors(data)
     }
   };
-  // if (user) history.push('/home')
 
   return (
     <>
@@ -39,8 +37,8 @@ const Signup = () => {
           />
           <div className="textbubble">Signup</div>
         </div>
-      {showLoginModal && (
-      <Modal onClose={() => setShowLoginModal(false)}>  
+      {showSignupModal && (
+      <Modal onClose={() => setShowSignupModal(false)}>  
         <form onSubmit={onSignUp}>
           <div>
             {errors.map((error, ind) => (
@@ -52,7 +50,7 @@ const Signup = () => {
             <input
               type='text'
               name='username'
-              onChange={updateUsername}
+              onChange={e => setUsername(e.target.value)}
               value={username}
             ></input>
           </div>
@@ -61,7 +59,7 @@ const Signup = () => {
             <input
               type='text'
               name='email'
-              onChange={updateEmail}
+              onChange={e => setEmail(e.target.value)}
               value={email}
             ></input>
           </div>
@@ -70,7 +68,7 @@ const Signup = () => {
             <input
               type='password'
               name='password'
-              onChange={updatePassword}
+              onChange={e => setPassword(e.target.value)}
               value={password}
             ></input>
           </div>
@@ -79,7 +77,7 @@ const Signup = () => {
             <input
               type='password'
               name='repeat_password'
-              onChange={updateRepeatPassword}
+              onChange={e => setRepeatPassword(e.target.value)}
               value={repeatPassword}
               required={true}
             ></input>
