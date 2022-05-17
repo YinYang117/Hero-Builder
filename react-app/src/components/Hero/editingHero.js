@@ -44,15 +44,19 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 		else hero.heroImage = heroImage
 
 		hero.hp = hp
-		hero.resource = resource
+		// if (resource) setResource(1)
+		// else setResource(0)
+		// hero.resource = resource
+		hero.resource = resource ? 1 : 0
+
 		console.log("editing hero resource check", resource)
-		if (resource === true) {
-			hero.resourceName = resourceName
-			hero.resourceAmount = resourceAmount
-		} else {
-			delete hero.resourceName
-			delete hero.resourceAmount
-		}
+		// if (resource) {
+		// 	hero.resourceName = resourceName
+		// 	hero.resourceAmount = resourceAmount
+		// } else {
+		// 	delete hero.resourceName
+		// 	delete hero.resourceAmount
+		// }
 
 		hero.physicalArmor = physicalArmor
 		hero.magicResist = magicResist

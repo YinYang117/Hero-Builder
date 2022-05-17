@@ -8,7 +8,7 @@ from app.models import Hero
 def resourceNameCheck(form, field):
     # If resource is True, validate resource name
     resource = form.data["resource"]
-    if resource is True:
+    if resource is 1:
         name = form.data["resourceName"]
         if len(name) < 2 or len(name) > 20:
             ValidationError('Resource Name must be between 2 and 20 characters long.')
@@ -17,7 +17,7 @@ def resourceNameCheck(form, field):
 def resourceAmountCheck(form, field):
     # If resource is True, validate resource amount
     resource = form.data["resource"]
-    if resource is True:
+    if resource is 1:
         amount = form.data["resourceAmount"]
         if amount < 10 or amount > 3000:
             ValidationError('Resource Amount must be between 10 and 3000.')
@@ -29,7 +29,7 @@ class NewHero(FlaskForm):
     intro = StringField("Hero intro", validators=[DataRequired(), Length(min=2, max=500)])
     heroImage = StringField("Hero Image", validators=[DataRequired()])
     hp = IntegerField("HitPoints", validators=[DataRequired(), NumberRange(min=100, max=10000)])
-    resource = BooleanField("Resource", false_values=(False, 'false', '', 'False', 0), validators=[InputRequired()])
+    resource = IntegerField("Resource", validators=[DataRequired()])
     resourceName = StringField("Resource Name", validators=[resourceNameCheck])
     resourceAmount = IntegerField("Resource Amount", validators=[resourceAmountCheck])
     physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=0, max=500)])
@@ -49,7 +49,7 @@ class EditHero(FlaskForm):
     intro = StringField("Hero intro", validators=[DataRequired(), Length(min=2, max=500)])
     heroImage = StringField("Hero Image", validators=[DataRequired()])
     hp = IntegerField("HitPoints", validators=[DataRequired(), NumberRange(min=100, max=10000)])
-    resource = BooleanField("Resource", false_values=(False, 'false', '', 'False', 0), validators=[InputRequired()])
+    resource = IntegerField("Resource", validators=[DataRequired()])
     resourceName = StringField("Resource Name", validators=[resourceNameCheck])
     resourceAmount = IntegerField("Resource Amount", validators=[resourceAmountCheck])
     physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=0, max=500)])

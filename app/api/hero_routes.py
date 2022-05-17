@@ -106,6 +106,7 @@ def specific_hero(id):
             print('------######----- 1 hero route api', form.data['resource'])
             print('------######----- 2 hero route api', form.data['resource'] is True)
             print('------######----- 3 hero route api', form.data['resource'] == True)
+            print('------######----- 4 hero route api', type( form.data['resource']))
 
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():

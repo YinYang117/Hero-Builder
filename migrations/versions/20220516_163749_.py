@@ -1,8 +1,8 @@
-"""updates to models
+"""empty message
 
-Revision ID: 2ef331c3c68a
+Revision ID: 1254bc44e68b
 Revises: 
-Create Date: 2022-05-11 16:49:43.824388
+Create Date: 2022-05-16 16:37:49.747924
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2ef331c3c68a'
+revision = '1254bc44e68b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -57,7 +57,7 @@ def upgrade():
     sa.Column('intro', sa.String(length=500), nullable=False),
     sa.Column('hero_image', sa.String(), nullable=False),
     sa.Column('hp', sa.Integer(), nullable=False),
-    sa.Column('resource', sa.Boolean(), nullable=False),
+    sa.Column('resource', sa.Integer(), nullable=False),
     sa.Column('resource_name', sa.String(length=20), nullable=True),
     sa.Column('resource_amount', sa.Integer(), nullable=True),
     sa.Column('physical_armor', sa.Integer(), nullable=False),

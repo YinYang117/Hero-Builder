@@ -54,6 +54,7 @@ export const editHero = (hero) => async (disptach) => {
         const data = await res.json();
         if (data.errors) return data.errors;
     } else {
+        console.log("store 500 error above")
         const data = await res.json();
         console.log("store 500 error data edit hero", data)
         data.errors.push(['A server error occurred.'])
