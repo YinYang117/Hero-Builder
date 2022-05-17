@@ -41,7 +41,7 @@ const NewHeroForm = ({ editingHero, setEditingHero }) => {
 		<>
 			<div className="fdrow">
 				<div className="heroDetImg">
-					<img src={hero.mainImage} alt={hero.name} />
+					<img src={hero.heroImage} alt={hero.name} />
 					<label className='label'>
 					Hero Image
 					</label>

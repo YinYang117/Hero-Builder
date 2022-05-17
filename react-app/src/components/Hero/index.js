@@ -23,7 +23,7 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 			<div className="fdrow">
 				<div className="heroDetImg">
 					image
-					<img src={hero.mainImage} alt={hero.name} />
+					<img src={hero.heroImage} alt={hero.name} />
 				</div>
 				<div className="right hero stats container">
 					<div>

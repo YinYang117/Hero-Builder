@@ -100,7 +100,7 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 							{errors.map((error, idx) => <li key={idx}>{error}</li>)}
 						</ul>}
 					<div className="heroDetImg">
-						<img src={hero.mainImage} alt={hero.name} />
+						<img src={hero.heroImage} alt={hero.name} />
 						<label className='label'>
 							Hero Image
 						</label>

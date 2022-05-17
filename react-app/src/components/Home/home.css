@@ -1,7 +1,10 @@
 .homebody {
-	background-image: linear-gradient(to top, #80007f, #720080, #640081, #530081, #3f0082, #330784, #240e86, #0a1387, #031d8a, #00258c, #002c8e, #003390);
-	height: 100vh;
-	width: 100vw;
+	background: rgb(118,141,255);
+	background: linear-gradient(167deg, rgb(118, 253, 255) 0%, rgb(74, 164, 255) 50%, rgb(233, 90, 255) 100%);	height: 100vh;
+	width: auto;
+	min-width: 100vw;
+	height: auto;
+	min-height: 100vh
 }
 
 .homeMainContainer {
@@ -39,9 +42,11 @@
 }
 
 .heroNamePlate{
-	background-color: rgb(0, 242, 255);
-	border: 1px solid rgb(255, 208, 0);
-	margin: 0px 20px;
+	background: rgb(97, 242, 255);
+	border: 1px solid rgb(116, 0, 110);
+	margin: 0px 10px 10px 5px;
+	padding: 10px;
+	box-shadow: 0px 10px 13px -7px #34005a, 5px 5px 15px 5px rgba(159,0,173,0);
 }
 
 .largerAllHeros{

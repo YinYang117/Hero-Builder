@@ -19,7 +19,7 @@ const HeroFrame = ({hero, heroAbil}) => {
 		>
 			<div className="largerAllHeros">
 				<div className="heroImage">
-					<img src={hero.mainImage} alt="heroImage" />
+					<img src={hero.heroImage} alt="heroImage" />
 					<div className="">{hero.name}</div>
 				</div>
 			</div>

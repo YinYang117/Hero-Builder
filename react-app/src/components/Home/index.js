@@ -45,6 +45,8 @@ const Home = () => {
 		setShowHeros(!showHeros)
 	}
 
+
+
 	// useEffect(() => {
 	// 	setHerosArr(Object.values(heros))
 	// },[heros]) // rebuilt in store. might be able to keep sorted easier that way??? maybe...
@@ -60,17 +62,16 @@ const Home = () => {
 						className="showAllButton"
 						onClick={showAllHeros}
 					>
-						Show Heros
+						All Heros
 					</button>
-					{heros && showHeros &&
-					<div className="hero list of names container">
-						{heros.arr.map(hero => (
-							<div key={hero.id} className="heroNamePlate">
+					{heros &&
+					<div>
+						{heros?.arr?.map(hero => (
+							<div key={hero.id} className="heroNamePlate hcp" onClick={e => setCurrHero(hero)}>
 								{hero.name}
 							</div>
 						))}
 					</div>}
-					<div className='heroNamePlate'>list of hero nameplates</div>
 				</div>
 				<div className="cgrid">
 					<div>Larger hero image carasole</div>
