@@ -6,9 +6,9 @@
 
 .heroDetName {
 	background-color: aqua;
-	border: 1px gold;
+	border: 2px gold;
 	width: 200px;
-	height: 50px;
+	height: 30px;
 }
 
 .heroDetInt {

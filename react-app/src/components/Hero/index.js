@@ -5,13 +5,14 @@ import "./hero.css"
 
 const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	const dispatch = useDispatch();
+
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
+
 	const [shrtDate, setShrtDate] = useState('')
 
 	useEffect(() => {
 		let fullDate = hero?.updatedAt
-		let shrtDate;
 		if (fullDate) setShrtDate(fullDate.split('').splice(8, 8).join(''))
 		// let shrtDate = "debugging"
 	},[hero])
@@ -28,13 +29,15 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 					<img src={hero.heroImage} alt={hero.name} className="heroDetImg" />
 				</div>
 				<div className="right hero stats container">
-					<div>
-						<div className="heroDetName" >name</div>
-						<button onClick={e => editHero(e)} >Edit</button>
+					<button onClick={e => editHero(e)} >Edit</button>
+					<div className="heroDetName" >
+						{hero.name}
 					</div>
-						<div className="heroDetInt" >intro</div>
+					<div className="heroDetInt" >
+						intro
+					</div>
 					<div className="">
-						<div className="fdrow heroDetSec" >
+						<div className="fdrow heroDetSec">
 							<div className="hp" >hp: {hero.hp}</div>
 							{hero.resource &&
 								<div className="resource name and amount" >{hero.resourceName}: {hero.resourceAmount}</div>

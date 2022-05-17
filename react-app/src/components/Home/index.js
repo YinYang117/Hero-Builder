@@ -43,6 +43,10 @@ const Home = () => {
 		setCurrHero()
 	}
 
+	const buildNewHero = () => {
+		// TODO
+	}
+
 	// useEffect(() => {
 	// 	setHerosArr(Object.values(heros))
 	// },[heros]) // rebuilt in store. might be able to keep sorted easier that way??? maybe...
@@ -56,6 +60,12 @@ const Home = () => {
 			</div>
 			<div className="homeMainContainer">
 				<div className="lgrid">
+					<button type="button"
+						className="hcp"
+						onClick={buildNewHero}
+					>
+						Build Hero
+					</button>
 					<button type="button"
 						className="showAllButton hcp"
 						onClick={showAllHeros}
