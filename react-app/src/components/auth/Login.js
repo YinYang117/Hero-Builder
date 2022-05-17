@@ -10,10 +10,11 @@ import './auth.css';
 const Login = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [showLoginModal, setShowLoginModal] = useState(false);
-    const [errors, setErrors] = useState([]);
-    const [credential, setCredential] = useState('');
-    const [password, setPassword] = useState('');
+
+    const [errors, setErrors]                   = useState([]);
+    const [password, setPassword]               = useState('');
+    const [credential, setCredential]           = useState('');
+    const [showLoginModal, setShowLoginModal]   = useState(false);
 
     const loginFunc = async (e) => {
         e.preventDefault();

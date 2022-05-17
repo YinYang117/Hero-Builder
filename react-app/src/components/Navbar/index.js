@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { login } from '../../store/session';
 import Login from "../auth/Login"
+import Signup from "../auth/Signup"
 import dwarf from "./dwarf.png"
-import signup from "./signup.png"
 import demo from "./demo.png"
 import './navbar.css'
 
@@ -42,9 +42,7 @@ const NavBar = () => {
             </div>
           </div>
           <div>
-            <NavLink to='/sign-up' exact={true} activeClassName='active' className="p10 jccen accen">
-              <img src={signup} alt="signup" className="mlogo" />
-            </NavLink>
+            <Signup />
           </div>
         </div>
         }

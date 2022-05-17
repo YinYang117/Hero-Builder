@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
+import { Modal } from "../../context/Modal";
 import { signUp } from '../../store/session';
+import signupIcon from './signup.png'
+import './auth.css'
 
-const SignUpForm = () => {
-  const history = useHistory();
-  const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+
+const Signup = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector(state => state.session.user);
+
+  const [errors, setErrors]     = useState([]);
+  const [email, setEmail]       = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword]     = useState('');
+  const [showSignupModal, setShowSignupModal]   = useState(false);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -21,73 +27,68 @@ const SignUpForm = () => {
       else setErrors(data)
     }
   };
-
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
-
-  if (user) history.push('/home')
-
+  // if (user) history.push('/home')
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    <>
+        <div className="smlogo hcp wrapper">
+          <img
+              src={signupIcon} alt="signup"
+              className="smlogo hcp wrapper"
+              onClick={() => setShowSignupModal(true)}
+          />
+          <div className="textbubble">Signup</div>
+        </div>
+      {showLoginModal && (
+      <Modal onClose={() => setShowLoginModal(false)}>  
+        <form onSubmit={onSignUp}>
+          <div>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <div>
+            <label>User Name</label>
+            <input
+              type='text'
+              name='username'
+              onChange={updateUsername}
+              value={username}
+            ></input>
+          </div>
+          <div>
+            <label>Email</label>
+            <input
+              type='text'
+              name='email'
+              onChange={updateEmail}
+              value={email}
+            ></input>
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type='password'
+              name='password'
+              onChange={updatePassword}
+              value={password}
+            ></input>
+          </div>
+          <div>
+            <label>Repeat Password</label>
+            <input
+              type='password'
+              name='repeat_password'
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+            ></input>
+          </div>
+          <button type='submit'>Sign Up</button>
+        </form>
+      </Modal>)}
+    </>
   );
 };
 
-export default SignUpForm;
+export default Signup;
