@@ -15,7 +15,7 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user);
 
   const loginDemo = () => {
-    dispatch(login({credential: "Demo", password: "password"}))
+    dispatch(login("Demo", "password"))
   }
 
   return (
