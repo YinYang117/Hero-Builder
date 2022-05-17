@@ -127,11 +127,11 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 								<label className='label'>
 									Use Resources?
 								</label>
-								<input type="radio" checked={resource === 1} value={1} onChange={e => setResource(e.target.value)} />
-								<label htmlFor="true">Yes</label>
-								<input type="radio" checked={resource === 0} value={0} onChange={e => setResource(e.target.value)} />
-								<label htmlFor="false">No</label>
-								{hero.resource &&
+								<input type="radio" name="resource" checked={resource === 1} value={1} onChange={e => setResource(e.target.value)} />
+								<label htmlFor="yes">Yes</label>
+								<input type="radio" name="resource" checked={resource === 0} value={0} onChange={e => setResource(e.target.value)} />
+								<label htmlFor="no">No</label>
+								{(hero.resource === 1) &&
 									<>
 										<label className='label'>
 											Resource Name
