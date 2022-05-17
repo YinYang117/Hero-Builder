@@ -82,6 +82,7 @@ const Home = () => {
 					</div>}
 				</div>
 				<div className="cgrid">
+				{/* small hero images carousel / container */}
 					<div className="heroDisplay">
 						{heros && !currHero &&
 						heros?.arr?.map(hero => (
