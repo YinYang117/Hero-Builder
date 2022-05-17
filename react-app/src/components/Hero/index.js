@@ -7,11 +7,14 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	const dispatch = useDispatch();
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
+	const [shrtDate, setShrtDate] = useState('')
 
-
-	// const fullDate = hero.updatedAt
-	// const shrtDate = fullDate.split('').splice(0, 16).join('')
-	let shrtDate = "debugging"
+	useEffect(() => {
+		let fullDate = hero?.updatedAt
+		let shrtDate;
+		if (fullDate) setShrtDate(fullDate.split('').splice(8, 8).join(''))
+		// let shrtDate = "debugging"
+	},[hero])
 
 	const editHero = (e) => {
 		e.preventDefault();
