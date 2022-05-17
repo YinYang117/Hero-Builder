@@ -18,7 +18,6 @@ const Home = () => {
 	const allAbils = useSelector(state => state.abilities)
 	const user = useSelector(state => state.session.user)
 	const { currHero, setCurrHero } = useContext(HeroContext);
-	const [showHeros, setShowHeros] = useState(false);
 	const [showAbils, setShowAbils] = useState(false);
 	const [selHeroAbilNum, setSelHeroAbilNum] = useState(0)
 	const [editingHero, setEditingHero] = useState(false)
@@ -27,7 +26,6 @@ const Home = () => {
 	console.log("current hero", currHero)
 
 	useEffect(() => {
-		console.log(user)
 		if (user) {
 			dispatch(fetchUserHeros(user))
 			dispatch(fetchUserAbilities(user))
@@ -42,10 +40,8 @@ const Home = () => {
 	}, [currHero])
 
 	const showAllHeros = () => {
-		setShowHeros(!showHeros)
+		setCurrHero()
 	}
-
-
 
 	// useEffect(() => {
 	// 	setHerosArr(Object.values(heros))
@@ -61,7 +57,7 @@ const Home = () => {
 			<div className="homeMainContainer">
 				<div className="lgrid">
 					<button type="button"
-						className="showAllButton"
+						className="showAllButton hcp"
 						onClick={showAllHeros}
 					>
 						All Heros
@@ -77,14 +73,8 @@ const Home = () => {
 				</div>
 				<div className="cgrid">
 					<div className="heroDisplay">
-					{/* 
-					Here, when you select a hero, all the other heros displayed
-					disappear, and hero details open in this same spot.
-					you can change the hero details by clicking a new hero
-					from the list on the left, or clicking all heros again.
-					 */}
-						{showHeros && heros && !currHero &&
-						heros.arr.map(hero => (
+						{heros && !currHero &&
+						heros?.arr?.map(hero => (
 							<HeroFrame  key={hero.id} hero={hero} />
 						))}
 					</div>

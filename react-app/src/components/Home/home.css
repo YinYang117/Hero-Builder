@@ -49,14 +49,18 @@
 	box-shadow: 0px 10px 13px -7px #34005a, 5px 5px 15px 5px rgba(159,0,173,0);
 }
 
-.largerAllHeros{
+.heroFrame{
 	border: 1px solid rgb(255, 208, 0);
 	background-color: rgb(0, 242, 255);
-	width: 80px;
-	height: 100px;
-	margin: 5px;
+	width: auto;
+	min-width: 120px;
+	height: auto;
+	min-height: 160px;
+	margin: 5px 0px 5px 5px;
+	box-shadow: 0px 10px 15px -5px #34005a, 5px 5px 15px 5px rgba(159,0,173,0);
 }
 
-.heroFrame:hover {
-    cursor: pointer;
+.heroFrameImg{
+	max-width: 110px;
+	max-height: 140px;
 }

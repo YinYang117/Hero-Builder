@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import React, { useContext } from 'react';
 import { HeroContext } from '../../context/SelectedHero';
 import './home.css';
 
 const HeroFrame = ({hero, heroAbil}) => {
-	const dispatch = useDispatch();
-	const { currHero, setCurrHero } = useContext(HeroContext);
+	const { setCurrHero } = useContext(HeroContext);
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
 
@@ -14,15 +12,11 @@ const HeroFrame = ({hero, heroAbil}) => {
 	}
 	
 	return (
-		<div className="heroFrame"
+		<div className="hcp heroFrame fdcol"
 		onClick={selectHero}
 		>
-			<div className="largerAllHeros">
-				<div className="heroImage">
-					<img src={hero.heroImage} alt="heroImage" />
-					<div className="">{hero.name}</div>
-				</div>
-			</div>
+			<img src={hero.heroImage} alt="heroFrame" className="heroFrameImg" />
+			<div className="">{hero.name}</div>
 		</div>
 	)
 }
