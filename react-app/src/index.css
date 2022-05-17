@@ -49,3 +49,7 @@ body {
 .p10 {
     padding: 10px;
 }
+
+.w100 {
+    width: 100vw
+}

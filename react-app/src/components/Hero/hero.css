@@ -1,7 +1,7 @@
 .heroDetImg {
 	border: 1px gold;
-	width: 400px;
-	height: 600px;
+	max-width: 400px;
+	max-height: 600px;
 }
 
 .heroDetName {

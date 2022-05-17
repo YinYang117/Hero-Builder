@@ -21,9 +21,8 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	return (
 		<>
 			<div className="fdrow">
-				<div className="heroDetImg">
-					image
-					<img src={hero.heroImage} alt={hero.name} />
+				<div >
+					<img src={hero.heroImage} alt={hero.name} className="heroDetImg" />
 				</div>
 				<div className="right hero stats container">
 					<div>

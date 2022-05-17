@@ -53,9 +53,11 @@ const Home = () => {
 
 	return (
 		<div className="homebody">
-			<h1>
-				Welcome Hero Builder!
-			</h1>
+			<div className="jccen w100">
+				{ user && <h1>
+					Welcome Hero Builder {user.username}!
+				</h1>}
+			</div>
 			<div className="homeMainContainer">
 				<div className="lgrid">
 					<button type="button"
@@ -74,7 +76,6 @@ const Home = () => {
 					</div>}
 				</div>
 				<div className="cgrid">
-					<div>Larger hero image carasole</div>
 					<div className="heroDisplay">
 					{/* 
 					Here, when you select a hero, all the other heros displayed
