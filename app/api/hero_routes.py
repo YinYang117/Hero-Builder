@@ -110,21 +110,21 @@ def specific_hero(id):
 
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
-                hero.name = form.data["name"],
-                hero.intro = form.data["intro"],
-                hero.hero_image = form.data["heroImage"],
-                hero.hp = form.data["hp"],
-                hero.resource = form.data["resource"],
-                hero.resource_name = form.data["resourceName"],
-                hero.resource_amount = form.data["resourceAmount"],
-                hero.physical_armor = form.data["physicalArmor"],
-                hero.magic_resist = form.data["magicResist"],
-                hero.attack_damage = form.data["attackDamage"],
-                hero.attack_range = form.data["attackRange"],
-                hero.attack_speed = form.data["attackSpeed"],
-                hero.move_speed = form.data["moveSpeed"],
-                hero.num_of_abilities = form.data["numOfAbilities"],
-                hero.details = form.data["details"],
+                hero.name = form.data["name"]
+                hero.intro = form.data["intro"]
+                hero.hero_image = form.data["heroImage"]
+                hero.hp = form.data["hp"]
+                hero.resource = form.data["resource"]
+                hero.resource_name = form.data["resourceName"]
+                hero.resource_amount = form.data["resourceAmount"]
+                hero.physical_armor = form.data["physicalArmor"]
+                hero.magic_resist = form.data["magicResist"]
+                hero.attack_damage = form.data["attackDamage"]
+                hero.attack_range = form.data["attackRange"]
+                hero.attack_speed = form.data["attackSpeed"]
+                hero.move_speed = form.data["moveSpeed"]
+                hero.num_of_abilities = form.data["numOfAbilities"]
+                hero.details = form.data["details"]
 
                 updt = date.today()
                 hero.updated_at = updt

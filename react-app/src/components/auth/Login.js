@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import { Modal } from "../../context/Modal";
 import { login } from '../../store/session';
@@ -8,6 +9,7 @@ import './auth.css';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [errors, setErrors] = useState([]);
     const [credential, setCredential] = useState('');
@@ -16,11 +18,9 @@ const Login = () => {
     const loginFunc = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(credential, password));
-        if (data) {
-            console.log("data, comp auth login", data)
-            setErrors(data)
-        };
-        // history.push("/home")
+        if (!data) history.push("/home")
+        else setErrors(data)
+        // console.log("data, comp auth login", data)
     };
 
     return (
