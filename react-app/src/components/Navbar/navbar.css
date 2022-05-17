@@ -24,3 +24,29 @@
     max-height: 45px;
     max-width: 45px;
 }
+
+/* same as auth here. refactor later to dry */
+.hcp:hover {
+    cursor: pointer;
+}
+
+.textbubble {
+    position: absolute;
+    left: -10px;
+    top: 55px;
+    width: 60px;
+    height: 25px;
+    text-align: center;
+    background-color: rgba(0, 177, 183, 0.707);
+    border: 1px solid rgb(255, 225, 0);
+    border-radius: 10px;
+    display: none;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.wrapper:hover .textbubble {
+    display: block;
+}

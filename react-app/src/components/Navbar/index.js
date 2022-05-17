@@ -31,17 +31,14 @@ const NavBar = () => {
       <div>
         {!user && 
         <div className="fdrow m10">
-          <div>
-            <div className="p10">
+          <div className="p10 hcp wrapper">
               <img src={demo} alt="demo login" className="smlogo jccen accen" onClick={() => loginDemo()} />
-            </div>
+              <div className="textbubble">Demo</div>
           </div>
-          <div>
-            <div className="p10 jccen accen">
-              <Login />
-            </div>
+          <div className="p10 jccen accen">
+            <Login />
           </div>
-          <div>
+          <div className="p10 jccen accen">
             <Signup />
           </div>
         </div>
