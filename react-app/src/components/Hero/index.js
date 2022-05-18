@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import * as heroActions from "../../store/heros"
 import "./hero.css"
 
 
-const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
+const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrHero }) => {
 	const dispatch = useDispatch();
+
+	const [errors, setErrors] = useState([])
 
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
@@ -21,72 +24,98 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 		e.preventDefault();
 		setEditingHero(true)
 	}
+
+	const deleteHero = () => {
+		dispatch(heroActions.deleteHero(hero.id))
+		.then(() => {
+			// setEditingHero(false)
+			setCurrHero()
+		})
+		.catch(async (res) => {
+			const data = await res.json()
+			if (data && data.errors) setErrors(data.errors)
+		})
+	}
 	
+	const usesReso = () => {
+		if (hero.resource === 1) return (<div>Yes</div>)
+		else if (hero.resource === 0) return (<div>No</div>)
+		else return (<div>BUG w/ Int</div>)
+	}
+
 	return (
 		<>
-			<div className="fdrow">
-				<div >
-					<img src={hero.heroImage} alt={hero.name} className="heroDetImg" />
-				</div>
-				<div className="heroDetName" >
-						{hero.name}
-					</div>
-				<div className="right hero stats container">
-					<div className="dataStripe1 fdrow" >
-						<button onClick={e => editHero(e)} >Edit</button>
-						<button onClick={'TODO'} >Delete</button>
-					</div>
-					<div className="">
-						<div className="fdrow heroDetSec">
-							<div className="hp" >hp: {hero.hp}</div>
-							{hero.resource &&
-								<div className="resource name and amount" >{hero.resourceName}: {hero.resourceAmount}</div>
-							}
-							{/* change ^ to a func call return based off bool */}
-						</div>
-						<div className="fdrow heroDetSec" >
-							<div className="armor" >armor: {hero.physicalArmor}</div>
-							<div className="magic res" >mag Res: {hero.magicResist}</div>
-						</div>
-						<div className="fdrow heroDetSec" >
-							<div className="attack damage" >atk dam: {hero.attackDamage}</div>
-							<div className="attack range" >atk rng: {hero.attackRange}</div>
-						</div>
-						<div className="fdrow heroDetSec" >
-							<div className="attack speed" >atk spd: {hero.attackSpeed}</div>
-							<div className="move speed" >move spd: {hero.moveSpeed}</div>
-						</div>
-						<div className="fdrow heroDetSec" >
-							<div className="num of abilities" >num abil: {hero.numOfAbilities}</div>
-							<div className="hero last updated at" >last uptd: {shrtDate}</div>
-						</div>
-					</div>
-				</div>	
-				<div className="heroDetInt" >
-						intro TODO
-					</div>
-				{hero.details && 
-				<div>
-					{hero.details}
+			{errors &&
+				<div className="TODO errors">
+					{errors.map((error) => <div key={error}>{error}</div>)}
 				</div>}
-				<div className="ability display icons under hero + form">
-					{/* TODO
-					abils && abilNum.map(abil => (
-					{abil holder comp}
-					pass hero abils into each somehow
-					OR
-					OR
-					dont display it here, do it in home for easier
-					Drag Drop integration.
-				)) */}
-
+			{/* split img / main data */}
+			<div className="fdrow sa">
+				{/* left, image + name */}
+				<div className="fdcol hfmn" >
+						<div className="fdrow sb" >
+							<div className="mlr10 w100p aicen heroDetName" >Name: {hero.name}</div>
+						</div>
+						<img src={hero.heroImage} alt={hero.name} className="heroDetImg" />
 				</div>
-			</div>
-			<div className="little space">
-				spacer
-				<div className="container for specific hero's abils">
-					{/* drag drop. */}
-					Current TODO abilities
+				{/* right, main data */}
+				<div className="fdcol hfmn" >
+					<div className="dataStripe1 fdrow sa aicen" >
+						<button onClick={e => editHero(e)}
+						className="w40p h80p confirmShadow"
+						>
+							Edit</button>
+						<button onClick={deleteHero}
+						className="w40p h80p cancelShadow"
+						>
+							Delete</button>
+					</div>
+					<div className="dataStripe2 fdrow sa aicen" >
+						<div className="mlr10">HP: {hero.hp}</div>
+						<div className="mlr10 fdcol aicen">
+							<div>Use Resources?</div>
+							<div>{usesReso()}</div>
+						</div>
+					</div>
+					{(hero.resource === 1) &&
+					<div className="dataStripe3 fdrow sa aicen" >
+							<div className="mlr10 fdcoln">{hero.resourceName}: </div>
+							<div className="mlr10 fdcol">{hero.resourceAmount}</div>
+					</div>}
+					<div className="dataStripe1 fdrow sa aicen" >
+						<div className="mlr10 fdrow aicen">
+							<div>Physical Armor: </div>
+							<div>{hero.physicalArmor}</div>
+						</div>
+						<div className="mlr10 fdrow aicen">
+							<div>Magic Resist: </div>
+							<div>{hero.magicResist}</div>
+						</div>
+					</div>
+					<div className="dataStripe2 fdrow sa aicen" >
+						<div className="mlr10 fdrow aicen">
+							<div>Attack Damage: </div>
+							<div>{hero.attackDamage}</div>
+						</div>
+						<div className="mlr10 fdrow aicen">
+							<div>Attack Range: </div>
+							<div>{hero.attackRange}</div>
+						</div>
+					</div>
+					<div className="dataStripe1 fdrow sa aicen" >
+						<div className="fdrow sa aicen">
+							<div>Attack Speed: </div>
+							<div className="mlr10">{hero.attackSpeed}</div>
+						</div>
+						<div className="fdrow aicen">
+							<div>Move Speed: </div>
+							<div className="mlr10">{hero.moveSpeed}</div>
+						</div>
+					</div>
+					<div className="dataStripe1 fdrow sb aicen" >
+						<div className="m" >Abilities: {hero.numOfAbilities}</div>
+						<div className="hero last updated at" >Updated: {shrtDate}</div>
+					</div>
 				</div>
 			</div>
 		</>

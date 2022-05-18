@@ -8,6 +8,7 @@ import { HeroContext } from '../../context/SelectedHero';
 import HeroDetailsCard from '../Hero';
 import EditHeroForm from '../Hero/editingHero.js'
 import HeroFrame from "./heroFrame"
+import NewHeroFrame from "./newHeroFrame"
 import "./home.css"
 
 
@@ -84,14 +85,16 @@ const Home = () => {
 				<div className="cgrid">
 				{/* small hero images carousel / container */}
 					<div className="heroDisplay">
+						<NewHeroFrame />
 						{heros && !currHero &&
 						heros?.arr?.map(hero => (
-							<HeroFrame  key={hero.id} hero={hero} />
+							<HeroFrame key={hero.id} hero={hero} />
 						))}
 					</div>
 					{currHero && !editingHero &&
 						<HeroDetailsCard
 						hero={currHero}
+						setCurrHero={setCurrHero}
 						heroAbil={selHeroAbilNum}
 						editingHero={editingHero}
 						setEditingHero={setEditingHero}
