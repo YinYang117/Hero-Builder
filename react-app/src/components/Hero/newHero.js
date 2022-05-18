@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { buildHero } from "../../store/heros"
 import "./hero.css"
 
 
 const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch(); 
+
+	const user = useSelector(state => state.session.user)
+
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
 
@@ -13,21 +16,21 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
 	// const shrtDate = fullDate.split('').splice(0, 16).join('')
 	// let shrtDate = "debugging"
 
-	const [heroName, setHeroName] = useState()
-	const [intro, setIntro] = useState()
-	const [heroImage, setHeroImage] = useState()
-	const [hp, setHp] = useState()
-	const [resource, setResource] = useState()
-	const [resourceName, setResourceName] = useState()
+	const [heroName, setHeroName] = useState("")
+	const [intro, setIntro] = useState("")
+	const [heroImage, setHeroImage] = useState("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652802933/fantasy-g8ad69c2ca_1920_fo8cmj.png")
+	const [hp, setHp] = useState(100)
+	const [resource, setResource] = useState(0)
+	const [resourceName, setResourceName] = useState("")
 	const [resourceAmount, setResourceAmount] = useState()
-	const [physicalArmor, setPhysicalArmor] = useState()
-	const [magicResist, setMagicResist] = useState()
-	const [attackDamage, setAttackDamage] = useState()
-	const [attackRange, setAttackRange] = useState()
-	const [attackSpeed, setAttackSpeed] = useState()
-	const [moveSpeed, setMoveSpeed] = useState()
-	const [numOfAbilities, setNumOfAbilities] = useState()
-	const [details, setDetails] = useState()
+	const [physicalArmor, setPhysicalArmor] = useState(0)
+	const [magicResist, setMagicResist] = useState(0)
+	const [attackDamage, setAttackDamage] = useState(10)
+	const [attackRange, setAttackRange] = useState(1)
+	const [attackSpeed, setAttackSpeed] = useState(0.1)
+	const [moveSpeed, setMoveSpeed] = useState(1.0)
+	const [numOfAbilities, setNumOfAbilities] = useState() // TODO
+	const [details, setDetails] = useState("")
 	const [errors, setErrors] = useState([])
 
 	// Notes: might be a cool way to style buttons on number inputs
@@ -124,7 +127,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
 								className="h80p"
 								type="number"
 								min='100' max='10000' step='10'
-								placeholder='HitPoints 100-10000'
+								placeholder='100-10000'
 								required="required"
 								value={hp} />
 							</div>

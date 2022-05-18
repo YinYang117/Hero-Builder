@@ -126,7 +126,7 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 								className="h80p"
 								type="number"
 								min='100' max='10000' step='10'
-								placeholder='HitPoints 100-10000'
+								placeholder='100-10000'
 								required="required"
 								value={hp} />
 							</div>
