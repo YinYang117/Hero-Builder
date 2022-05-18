@@ -102,10 +102,9 @@ def specific_abil(id):
             return abil.to_js_obj
         
         if request.method == "PUT":
-            form = EditAbility
+            form = EditAbility()
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
-                form.owner_id = form.data["ownerId"]
                 form.name = form.data["name"]
                 form.description = form.data["description"]
                 form.ability_image = form.data["abilityImage"]

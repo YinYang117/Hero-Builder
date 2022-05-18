@@ -94,7 +94,7 @@ class NewAbility(FlaskForm):
 
 
 class EditAbility(FlaskForm):
-    name = StringField("Hero Name", validators=[DataRequired(), Length(min=2, max=50)])
+    name = StringField("Hero Name", validators=[DataRequired(), Length(min=2, max=30)])
     description = StringField("Description", validators=[DataRequired(), Length(min=2, max=500)])
     abilityImage = StringField("Hero Image", validators=[DataRequired()])
     usesResource = IntegerField("Uses Resource", validators=[resourceCheck])
