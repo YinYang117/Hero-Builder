@@ -8,7 +8,7 @@ class Hero(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(30), nullable=False)
     intro = db.Column(db.String(500), nullable=False)
     hero_image = db.Column(db.String(), nullable=False)
     hp = db.Column(db.Integer, nullable=False)
@@ -23,8 +23,8 @@ class Hero(db.Model):
     move_speed = db.Column(db.Float(precision=1), nullable=False)
     # num_of_abilities = db.Column(db.Integer, nullable=False)
     details = db.Column(db.String(), nullable=True)
-    created_at = db.Column(db.Date, nullable=False, default=date.today)
-    updated_at = db.Column(db.Date, nullable=False, default=date.today)
+    # created_at = db.Column(db.Date, nullable=False, default=date.today)
+    # updated_at = db.Column(db.Date, nullable=False, default=date.today)
 
     owner = db.relationship("User", back_populates="heros")
     hero_equipped_abilities = db.relationship("Ability", secondary=hero_abilities, back_populates="used_by_hero")
@@ -49,6 +49,6 @@ class Hero(db.Model):
             "moveSpeed": self.move_speed,
             # "numOfAbilities": self.num_of_abilities,
             "details": self.details,
-            "createdAt": self.created_at,
-            "updatedAt": self.updated_at,
+            # "createdAt": self.created_at,
+            # "updatedAt": self.updated_at,
         }

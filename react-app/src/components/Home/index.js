@@ -116,7 +116,6 @@ const Home = () => {
 						buildNewHero={buildNewHero}
 						setBuildNewHero={setBuildNewHero}
 						newHeroImage={newHeroImage}
-						
 					/>}
 					<div className="ability display">
 						ability display for all other abils

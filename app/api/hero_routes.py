@@ -103,7 +103,6 @@ def specific_hero(id):
         
         if request.method == "PUT":
             form = EditHero()
-
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
                 hero.name = form.data["name"]
@@ -122,8 +121,8 @@ def specific_hero(id):
                 # hero.num_of_abilities = form.data["numOfAbilities"]
                 hero.details = form.data["details"]
 
-                updt = date.today()
-                hero.updated_at = updt
+                # updt = date.today()
+                # hero.updated_at = updt
 
                 db.session.add(hero)
                 db.session.commit()

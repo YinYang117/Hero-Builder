@@ -7,7 +7,7 @@ class Ability(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     ability_image = db.Column(db.String, nullable=False)
     uses_resource = db.Column(db.Integer, nullable=False)
@@ -22,8 +22,8 @@ class Ability(db.Model):
     channel_time = db.Column(db.Float(precision=1), nullable=True)
     ultimate = db.Column(db.Integer, nullable=False)
     details = db.Column(db.String, nullable=True)
-    created_at = db.Column(db.Date, nullable=False, default=date.today)
-    updated_at = db.Column(db.Date, nullable=False, default=date.today)
+    # created_at = db.Column(db.Date, nullable=False, default=date.today)
+    # updated_at = db.Column(db.Date, nullable=False, default=date.today)
 
     owner = db.relationship("User", back_populates="abilities")
     used_by_hero = db.relationship("Hero", secondary=hero_abilities, back_populates="hero_equipped_abilities")
@@ -48,8 +48,8 @@ class Ability(db.Model):
             "channelTime": self.channel_time,
             "ultimate": self.ultimate,
             "details": self.details,
-            "createdAt": self.created_at,
-            "updatedAt": self.updated_at,
+            # "createdAt": self.created_at,
+            # "updatedAt": self.updated_at,
         }
     
     

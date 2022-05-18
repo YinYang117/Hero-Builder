@@ -9,9 +9,9 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
 
-	let fullDate = hero?.updatedAt
-	let shrtDate
-	if (fullDate) shrtDate = (fullDate.split('').splice(8, 8).join(''))
+	// let fullDate = hero?.updatedAt
+	// let shrtDate
+	// if (fullDate) shrtDate = (fullDate.split('').splice(8, 8).join(''))
 
 	const [heroName, setHeroName] = useState(hero.name)
 	const [intro, setIntro] = useState(hero.intro)
@@ -249,7 +249,6 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 					value={details} />
 				</div>
 			</form>
-			<div >Hero last updated at: {shrtDate}</div>
 			<div >Current hero abilities TODO</div>
 		</div>
 	)

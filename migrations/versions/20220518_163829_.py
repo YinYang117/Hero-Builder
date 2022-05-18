@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a64ff92b17fa
+Revision ID: 55b16913c534
 Revises: 
-Create Date: 2022-05-18 13:26:08.623364
+Create Date: 2022-05-18 16:38:29.839205
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a64ff92b17fa'
+revision = '55b16913c534'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,7 +30,7 @@ def upgrade():
     op.create_table('abilities',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('name', sa.String(length=30), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=False),
     sa.Column('ability_image', sa.String(), nullable=False),
     sa.Column('uses_resource', sa.Integer(), nullable=False),
@@ -45,15 +45,13 @@ def upgrade():
     sa.Column('channel_time', sa.Float(precision=1), nullable=True),
     sa.Column('ultimate', sa.Integer(), nullable=False),
     sa.Column('details', sa.String(), nullable=True),
-    sa.Column('created_at', sa.Date(), nullable=False),
-    sa.Column('updated_at', sa.Date(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('heros',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('name', sa.String(length=30), nullable=False),
     sa.Column('intro', sa.String(length=500), nullable=False),
     sa.Column('hero_image', sa.String(), nullable=False),
     sa.Column('hp', sa.Integer(), nullable=False),
@@ -67,8 +65,6 @@ def upgrade():
     sa.Column('attack_speed', sa.Float(precision=1), nullable=False),
     sa.Column('move_speed', sa.Float(precision=1), nullable=False),
     sa.Column('details', sa.String(), nullable=True),
-    sa.Column('created_at', sa.Date(), nullable=False),
-    sa.Column('updated_at', sa.Date(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

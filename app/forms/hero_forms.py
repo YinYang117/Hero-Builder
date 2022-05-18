@@ -5,7 +5,7 @@ from app.models import Hero
 
 def resourceCheck(form, field):
     resource = form.data["resource"]
-    if resource != 1 or resource != 0:
+    if resource != 1 and resource != 0:
         ValidationError('Resource must be 1 or 0.')
 
 
@@ -30,7 +30,7 @@ def resourceAmountCheck(form, field):
 
 class NewHero(FlaskForm):
     ownerId = IntegerField("Owner", validators=[DataRequired()])
-    name = StringField("Hero Name", validators=[DataRequired(), Length(min=2, max=50)])
+    name = StringField("Hero Name", validators=[DataRequired(), Length(min=2, max=30)])
     intro = StringField("Hero intro", validators=[DataRequired(), Length(min=2, max=500)])
     heroImage = StringField("Hero Image", validators=[DataRequired()])
     hp = IntegerField("HitPoints", validators=[DataRequired(), NumberRange(min=100, max=10000)])

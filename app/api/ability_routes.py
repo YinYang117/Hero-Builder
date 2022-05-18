@@ -18,9 +18,7 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-# # form.errors come from using a Form() to validate or run custom functions
-# # can catch errors on the front end
-# # example:
+# # examples:
 #     if current_user.is_authenticated:
 #         return current_user.to_dict()
 #     return {'errors': ['Unauthorized']}
@@ -53,7 +51,7 @@ def abilities():
     """
     Main route for Ability Creation.
     """
-    form = EditAbility()
+    form = NewAbility()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         abil = Ability(
@@ -81,7 +79,7 @@ def abilities():
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@ability_routes.route('/user/<int:id>')
+@ability_routes.route('/user/<int:id>', methods=['GET'])
 def userAbils(id):
     """
     Main route for getting all Abilities for a User.
@@ -107,25 +105,25 @@ def specific_abil(id):
             form = EditAbility
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
-                form.owner_id = form.data["ownerId"],
-                form.name = form.data["name"],
-                form.description = form.data["description"],
-                form.ability_image = form.data["abilityImage"],
-                form.uses_resource = form.data["usesResource"],
-                form.resource_name = form.data["resourceName"],
-                form.resource_cost = form.data["resourceCost"],
-                form.uses_charges = form.data["usesCharges"],
-                form.num_charges = form.data["numCharges"],
-                form.charge_recharge_rate = form.data["chargeRechargeRate"],
-                form.uses_cooldown = form.data["usesCooldown"],
-                form.cooldown = form.data["cooldown"],
-                form.channeled = form.data["channeled"],
-                form.channel_time = form.data["channelTime"],
-                form.ultimate = form.data["ultimate"],
-                form.details = form.data["details"],
+                form.owner_id = form.data["ownerId"]
+                form.name = form.data["name"]
+                form.description = form.data["description"]
+                form.ability_image = form.data["abilityImage"]
+                form.uses_resource = form.data["usesResource"]
+                form.resource_name = form.data["resourceName"]
+                form.resource_cost = form.data["resourceCost"]
+                form.uses_charges = form.data["usesCharges"]
+                form.num_charges = form.data["numCharges"]
+                form.charge_recharge_rate = form.data["chargeRechargeRate"]
+                form.uses_cooldown = form.data["usesCooldown"]
+                form.cooldown = form.data["cooldown"]
+                form.channeled = form.data["channeled"]
+                form.channel_time = form.data["channelTime"]
+                form.ultimate = form.data["ultimate"]
+                form.details = form.data["details"]
 
-                updt = date.today()
-                abil.updated_at = updt
+                # updt = date.today()
+                # abil.updated_at = updt
 
                 db.session.add(abil)
                 db.session.commit()
@@ -134,15 +132,15 @@ def specific_abil(id):
                 return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
         if request.method == "DELETE":
-            data = request.get_json(force=True) # passing userId
-            if abil.owner_id == data["userId"]:
-                db.session.delete(abil)
-                db.session.commit()
-                return {'deletion': 'successful'}
-            else:
-                return {"errors": ["User Id passed did not match Ability's owner."]}
+            # data = request.get_json(force=True) # passing userId
+            # if abil.owner_id == data["userId"]:
+            db.session.delete(abil)
+            db.session.commit()
+            return {'deletion': 'successful'}
+            # else:
+            #     return {"errors": ["User Id passed did not match Ability's owner."]}
     else:
-        return {}
+        return {'errors': ["Ability not found"]}
 
 
 @ability_routes.errorhandler(500)

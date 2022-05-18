@@ -14,11 +14,11 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrH
 
 	const [shrtDate, setShrtDate] = useState('')
 
-	useEffect(() => {
-		let fullDate = hero?.updatedAt
-		if (fullDate) setShrtDate(fullDate.split('').splice(8, 8).join(''))
-		// let shrtDate = "debugging"
-	},[hero])
+	// useEffect(() => {
+	// 	let fullDate = hero?.updatedAt
+	// 	if (fullDate) setShrtDate(fullDate.split('').splice(8, 8).join(''))
+	// 	// let shrtDate = "debugging"
+	// },[hero])
 
 	const editHero = (e) => {
 		e.preventDefault();
@@ -114,7 +114,6 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrH
 					</div>
 					<div className="dataStripe1 fdrow sb aicen" >
 						<div className="" >Abilities: {hero.numOfAbilities}</div>
-						<div className="hero last updated at" >Updated: {shrtDate}</div>
 					</div>
 				</div>
 			</div>
