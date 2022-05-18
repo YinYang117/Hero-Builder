@@ -12,7 +12,11 @@ const NewHeroFrame = () => {
 		onClick={newHero}
 		>
 			<div className="heroFrameImg"></div>
-			<h2 className="TODO">New Hero?</h2>
+			<div className="fdcol">
+				<div className="TODO">Build</div>
+				<div className="TODO">New</div>
+				<div className="TODO">Hero?</div>
+			</div>
 		</div>
 	)
 }

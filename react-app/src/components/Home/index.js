@@ -5,7 +5,8 @@ import { fetchUserHeros } from "../../store/heros"
 import { fetchUserAbilities } from "../../store/abilities"
 import { fetchHeroAbilities } from "../../store/heroAbil"
 import { HeroContext } from '../../context/SelectedHero';
-import HeroDetailsCard from '../Hero';
+import HeroDetailsCard from '../Hero'; 
+import NewHeroForm from '../Hero/newHero.js'
 import EditHeroForm from '../Hero/editingHero.js'
 import HeroFrame from "./heroFrame"
 import NewHeroFrame from "./newHeroFrame"
@@ -13,18 +14,18 @@ import "./home.css"
 
 
 const Home = () => {
-	const dispatch = useDispatch();
-	const heros = useSelector(state => state.heros)
-	// console.log(heros.arr)
-	const allAbils = useSelector(state => state.abilities)
-	const user = useSelector(state => state.session.user)
-	const { currHero, setCurrHero } = useContext(HeroContext);
-	const [showAbils, setShowAbils] = useState(false);
+	const dispatch 	= useDispatch();
+
+	const user 		= useSelector(state => state.session.user)
+	const heros 	= useSelector(state => state.heros)
+	const allAbils	= useSelector(state => state.abilities)
+
+	const { currHero, setCurrHero } 		= useContext(HeroContext);
+
+	const [showAbils, setShowAbils] 		= useState(false);
+	const [editingHero, setEditingHero] 	= useState(false)
+	const [buildNewHero, setBuildNewHero] = useState(false)
 	const [selHeroAbilNum, setSelHeroAbilNum] = useState(0)
-	const [editingHero, setEditingHero] = useState(false)
-	// const [herosArr, setHerosArr] = useState([])
-	
-	console.log("current hero", currHero)
 
 	useEffect(() => {
 		if (user) {
@@ -42,10 +43,13 @@ const Home = () => {
 
 	const showAllHeros = () => {
 		setCurrHero()
+		setBuildNewHero(false)
 	}
 
-	const buildNewHero = () => {
-		// TODO
+	const startNewHero = () => {
+		setEditingHero(false)
+		setCurrHero()
+		setBuildNewHero(!buildNewHero)
 	}
 
 	// useEffect(() => {
@@ -55,7 +59,7 @@ const Home = () => {
 	return (
 		<div className="homebody">
 			<div className="jccen w100">
-				{ user && <h1>
+				{user && <h1>
 					Welcome Hero Builder {user.username}!
 				</h1>}
 			</div>
@@ -63,7 +67,7 @@ const Home = () => {
 				<div className="lgrid">
 					<button type="button"
 						className="hcp"
-						onClick={buildNewHero}
+						onClick={startNewHero}
 					>
 						Build Hero
 					</button>
@@ -91,7 +95,7 @@ const Home = () => {
 							<HeroFrame key={hero.id} hero={hero} />
 						))}
 					</div>
-					{currHero && !editingHero &&
+					{currHero && !editingHero && !buildNewHero &&
 						<HeroDetailsCard
 						hero={currHero}
 						setCurrHero={setCurrHero}
@@ -99,12 +103,17 @@ const Home = () => {
 						editingHero={editingHero}
 						setEditingHero={setEditingHero}
 					/>}
-					{editingHero && currHero &&
+					{editingHero && currHero && !buildNewHero &&
 						<EditHeroForm
 						hero={currHero}
 						heroAbil={selHeroAbilNum}
 						editingHero={editingHero}
 						setEditingHero={setEditingHero}
+					/>}
+					{buildNewHero && !editingHero && !currHero &&
+						<NewHeroForm
+						buildNewHero={buildNewHero}
+						setBuildNewHero={setBuildNewHero}
 					/>}
 					<div className="ability display">
 						ability display for all other abils

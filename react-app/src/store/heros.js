@@ -31,7 +31,7 @@ const removeHero = (id) => {
 /////////////////////////////////////////
 // thunks
 
-export const newHero = (hero) => async (disptach) => {
+export const buildHero = (hero) => async (disptach) => {
     const res = await fetch('/api/heros/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -42,7 +42,9 @@ export const newHero = (hero) => async (disptach) => {
         const data = await res.json();
         disptach(loadHero(data))
     } else if (res.status < 500) {
-        const data = await res.json();
+        const data = await res.json(); 
+        console.log("data from store build new 1", data)
+        console.log("data from store build new 2", data.errors)
         if (data.errors) return data.errors;
     } else {
         console.log("store 500 error above")
@@ -118,14 +120,16 @@ const heroReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_USER_HEROS:
             newState = action.payload
+            delete newState.arr
             newState.arr = Object.values(action.payload)
             return newState
         case LOAD_SINGLE_HERO:
             newState[action.payload.id] = action.payload
-            newState.arr = Object.values(newState)
+            newState.arr.push(action.payload)
             return newState
         case REMOVE_HERO:
             delete newState[action.payload]
+            delete newState.arr
             newState.arr = Object.values(newState)
             return newState
         default:

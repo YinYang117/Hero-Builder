@@ -113,7 +113,7 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrH
 						</div>
 					</div>
 					<div className="dataStripe1 fdrow sb aicen" >
-						<div className="m" >Abilities: {hero.numOfAbilities}</div>
+						<div className="" >Abilities: {hero.numOfAbilities}</div>
 						<div className="hero last updated at" >Updated: {shrtDate}</div>
 					</div>
 				</div>

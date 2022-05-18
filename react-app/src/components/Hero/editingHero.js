@@ -9,9 +9,9 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
 
-	// const fullDate = hero.updatedAt
-	// const shrtDate = fullDate.split('').splice(0, 16).join('')
-	let shrtDate = "debugging"
+	let fullDate = hero?.updatedAt
+	let shrtDate
+	if (fullDate) shrtDate = (fullDate.split('').splice(8, 8).join(''))
 
 	const [heroName, setHeroName] = useState(hero.name)
 	const [intro, setIntro] = useState(hero.intro)
@@ -28,7 +28,7 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	const [moveSpeed, setMoveSpeed] = useState(hero.moveSpeed)
 	const [numOfAbilities, setNumOfAbilities] = useState(hero.numOfAbilities)
 	const [details, setDetails] = useState(hero?.details)
-	const [updatedAt, setUpdatedAt] = useState(hero.updatedAt)
+	// const [updatedAt, setUpdatedAt] = useState(hero.updatedAt)
 	const [errors, setErrors] = useState([])
 
 	// Notes: might be a cool way to style buttons on number inputs
@@ -226,7 +226,7 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 							</div>
 						</div>
 						<div className="dataStripe2 hauto fdcol sa aicen" >
-							<label for="editIntro">Hero Intro</label>
+							<label>Hero Intro</label>
 							<textarea onChange={e => setIntro(e.target.value)}
 							className="hauto editIntro"
 							// type="textarea"
