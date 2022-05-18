@@ -9,7 +9,7 @@
 
 .homeMainContainer {
 	display: grid;
-	grid-template-columns: 1fr 60vw 1fr;
+	grid-template-columns: 1fr 70vw 1fr;
 	grid-template-rows: auto;
 	grid-template-areas: 'left' 'center' 'right';
 
@@ -35,7 +35,7 @@
 .heroDisplay{
 	display: flex;
 	flex-flow: row;
-	max-width: 60vw;
+	max-width: 70vw;
 	flex-wrap: wrap;
 	border: 1px solid rgb(255, 208, 0);
 	margin: 10px;

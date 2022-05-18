@@ -28,13 +28,13 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 				<div >
 					<img src={hero.heroImage} alt={hero.name} className="heroDetImg" />
 				</div>
-				<div className="right hero stats container">
-					<button onClick={e => editHero(e)} >Edit</button>
-					<div className="heroDetName" >
+				<div className="heroDetName" >
 						{hero.name}
 					</div>
-					<div className="heroDetInt" >
-						intro
+				<div className="right hero stats container">
+					<div className="dataStripe1 fdrow" >
+						<button onClick={e => editHero(e)} >Edit</button>
+						<button onClick={'TODO'} >Delete</button>
 					</div>
 					<div className="">
 						<div className="fdrow heroDetSec">
@@ -61,13 +61,17 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 							<div className="hero last updated at" >last uptd: {shrtDate}</div>
 						</div>
 					</div>
-				</div>
+				</div>	
+				<div className="heroDetInt" >
+						intro TODO
+					</div>
 				{hero.details && 
 				<div>
 					{hero.details}
 				</div>}
 				<div className="ability display icons under hero + form">
-					{/* abils && abilNum.map(abil => (
+					{/* TODO
+					abils && abilNum.map(abil => (
 					{abil holder comp}
 					pass hero abils into each somehow
 					OR
@@ -82,7 +86,7 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 				spacer
 				<div className="container for specific hero's abils">
 					{/* drag drop. */}
-					Current hero abilities
+					Current TODO abilities
 				</div>
 			</div>
 		</>

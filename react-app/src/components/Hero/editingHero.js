@@ -33,6 +33,12 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 
 	// Notes: might be a cool way to style buttons on number inputs
 
+	const handelCheck = (e) => {
+		let str = e.target.value
+		let int = parseInt(str, 10)
+		setResource(int)
+	}
+
 	const submitEditHero = (e) => {
 		// const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 		setErrors([])
@@ -63,15 +69,14 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 			dispatch(editHero(newHero))
 				.then(() => setEditingHero(false))
 				.catch(async (res) => {
-					console.log("res in edits1", res)
+					console.log("res in hero editing hero .catch", res)
 					const data = await res.json()
 					if (data && data.errors) setErrors(data.errors)
 				})
 		}
-
 	}
 
-	const handelCancel = () => {
+	const handleCancel = () => {
 		// clear Edits
 		setEditingHero(false)
 	}
@@ -79,116 +84,182 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	return (
 		<div className="fdcol">
 			{errors &&
-			<div className="new-trip-errors">
-				{errors.map((error, idx) => <p key={idx}>{error}</p>)}
-			</div>}
+				<div className="TODO errors">
+					{errors.map((error, idx) => <p key={idx}>{error}</p>)}
+				</div>}
 			<form onSubmit={e => {
 				e.preventDefault()
 				submitEditHero()
 			}}>
-
-				<div className="fdrow">
-					<div className="heroDetImg">
+				{/* split img / main data */}
+				<div className="fdrow sa">
+					{/* left, image + name */}
+					<div className="fdcol hfmn" >
+						<div className="fdrow sb" >
+							<label className="mlr10" >Name:</label>
+							<input onChange={e => setHeroName(e.target.value)}
+							className="w100p"
+							type="text"
+							placeholder='Hero Name'
+							required="required"
+							value={heroName} />
+						</div>
 						<img src={hero.heroImage} alt={hero.name} className="heroDetImg" />
-						<label className='label'>
-							Hero Image
-						</label>
-						<div>TODO have a small carousel for the images you can choose from</div>
+						<div>TODO carousel for images you can choose</div>
 					</div>
-					<div className="right hero stats container">
-						<div>
-							<label className='label'>
-								Name
-							</label>
-							<input onChange={e => setHeroName(e.target.value)} type="text" className="" placeholder='Hero Name' required="required" value={heroName} />
+					{/* right, main data */}
+					<div className="fdcol hfmn">
+						<div className="dataStripe1 fdrow sa aicen" >
+							<button type="submit"
+							className="w40p h80p confirmShadow"
+							>
+								Submit Changes</button>
+							<button onClick={handleCancel}
+							className="w40p h80p cancelShadow"
+							>
+								Cancel</button>
 						</div>
-						<label className='label'>
-							Hero Intro
-						</label>
-						<input onChange={e => setIntro(e.target.value)} type="textarea" rows="5" className="" placeholder='Introduction for your Hero' required="required" value={intro} />
-						<div className="">
-							<div className="fdrow heroDetSec" >
-								<label className='label'>
-									HP
-								</label>
-								<input onChange={e => setHp(e.target.value)} type="number" min='100' max='10000' step='10' className="" placeholder='HitPoints 100-10000' required="required" value={hp} />
-								<label className='label'>
-									Use Resources?
-								</label>
-								<input type="radio" name="resource" checked={resource === 1} value={1} onChange={e => setResource(e.target.value)} />
-								<label htmlFor="true">Yes</label>
-								<input type="radio" name="resource" checked={resource === 0} value={0} onChange={e => setResource(e.target.value)} />
-								<label htmlFor="false">No</label>
-								{(hero.resource === 1) &&
-									<>
-										<label className='label'>
-											Resource Name
-										</label>
-										<input onChange={e => setResourceName(e.target.value)} type="text" className="" placeholder='Mana / Energy / Etc' value={resourceName} />
-										<label className='label'>
-											Resource Amount
-										</label>
-										<input onChange={e => setResourceAmount(e.target.value)} type="number" min='10' max='3000' step='1' className="" placeholder='10-3000' value={resourceAmount} />
-									</>
-								}
+						<div className="dataStripe2 fdrow sa aicen" >
+							<div className="mlr10" >
+								<label>HP: </label>
+								<input onChange={e => setHp(e.target.value)}
+								className="h80p"
+								type="number"
+								min='100' max='10000' step='10'
+								placeholder='HitPoints 100-10000'
+								required="required"
+								value={hp} />
 							</div>
-							<div className="fdrow heroDetSec" >
-								<label className='label'>
-									Physical Armor
-								</label>
-								<input onChange={e => setPhysicalArmor(e.target.value)} type="number" min='0' max='500' step='1' className="" placeholder='0-500' required="required" value={physicalArmor} />
-								<label className='label'>
-									Magic Resist
-								</label>
-								<input onChange={e => setMagicResist(e.target.value)} type="number" min='0' max='500' step='1' className="" placeholder='0-500' required="required" value={magicResist} />
+							<div className="mlr10" >
+								<label  >Use Resources?</label>
+								<div className="sb aicen">
+									<input type="checkbox" name="resource" checked={resource === 1} value={1} onClick={e => handelCheck(e)} />
+									<label>Yes</label>
+									<input type="checkbox" name="resource" checked={resource === 0} value={0} onClick={e => handelCheck(e)} />
+									<label>No</label>
+								</div>
 							</div>
-							<div className="fdrow heroDetSec" >
-								<label className='label'>
-									Attack Damage
-								</label>
-								<input onChange={e => setAttackDamage(e.target.value)} type="number" min='10' max='2000' step='1' className="" placeholder='10-2000' required="required" value={attackDamage} />
-								<label className='label'>
-									Attack Range
-								</label>
-								<input onChange={e => setAttackRange(e.target.value)} type="number" min='1' max='500' step='1' className="" placeholder='1-500' required="required" value={attackRange} />
+						</div>
+						{(resource === 1) &&
+						<div className="dataStripe3 fdrow sa aicen" >
+							<div className="mlr10 fdcoln" >
+								<label  >Resource Name</label>
+								<input onChange={e => setResourceName(e.target.value)}
+								className=""
+								type="text"
+								placeholder='Mana / Energy / Etc'
+								value={resourceName} />
 							</div>
-							<div className="fdrow heroDetSec" >
-								<label className='label'>
-									Attack Speed
-								</label>
-								<input onChange={e => setAttackSpeed(e.target.value)} type="number" min='0.1' max='10.0' step='0.1' className="" placeholder='0.1 - 10.0' required="required" value={attackSpeed} />
-								<label className='label'>
-									Move Speed
-								</label>
-								<input onChange={e => setMoveSpeed(e.target.value)} type="number" min='1.0' max='20.0' step='0.1' className="" placeholder='1.0 - 20.0' required="required" value={moveSpeed} />
+							<div className="mlr10 fdcol" >
+								<label className=''>Amount</label>
+								<input onChange={e => setResourceAmount(e.target.value)}
+								className=""
+								type="number"
+								min='10' max='3000' step='1'
+								placeholder='10-3000'
+								value={resourceAmount} />
 							</div>
-							<div className="fdrow heroDetSec" >
-								<label className='label'>
-									Number of Abilities
-								</label>
-								<input onChange={e => setNumOfAbilities(e.target.value)} type="number" min='0' max='10' step='1' className="" placeholder='0 - 10' required="required" value={numOfAbilities} />
+						</div>}
+						<div className="dataStripe1 fdrow sa aicen" >
+							<div className="mlr10 fdrow sa aicen" >
+								<label>Physical Armor</label>
+								<input onChange={e => setPhysicalArmor(e.target.value)}
+								className=""
+								type="number"
+								min='0' max='500' step='1'
+								placeholder='0-500'
+								required="required"
+								value={physicalArmor} />
 							</div>
+							<div className="mlr10 fdrow sa aicen" >
+								<label>Magic Resist</label>
+								<input onChange={e => setMagicResist(e.target.value)}
+								className=""
+								type="number"
+								min='0' max='500' step='1'
+								placeholder='0-500'
+								required="required"
+								value={magicResist} />
+							</div>
+						</div>
+						<div className="dataStripe2 fdrow sa aicen" >
+							<div className="mlr10 fdrow sa aicen" >
+								<label>Attack Damage</label>
+								<input onChange={e => setAttackDamage(e.target.value)}
+								type="number"
+								min='10' max='2000' step='1'
+								className=""
+								placeholder='10-2000'
+								required="required"
+								value={attackDamage} />
+							</div>
+							<div className="mlr10 fdrow sa aicen" >
+								<label>Attack Range</label>
+								<input onChange={e => setAttackRange(e.target.value)}
+								type="number"
+								min='1' max='500' step='1'
+								className=""
+								placeholder='1-500'
+								required="required"
+								value={attackRange} />
+							</div>
+						</div>
+						<div className="dataStripe1 fdrow sa aicen" >
+							<div className="mlr10 fdrow sa aicen" >
+								<label>Attack Speed</label>
+								<input onChange={e => setAttackSpeed(e.target.value)}
+								type="number" min='0.1' max='10.0' step='0.1'
+								className=""
+								placeholder='0.1 - 10.0'
+								required="required"
+								value={attackSpeed} />
+							</div>
+							<div className="mlr10 fdrow sa aicen" >
+								<label>Move Speed</label>
+								<input onChange={e => setMoveSpeed(e.target.value)}
+								type="number"
+								min='1.0' max='20.0' step='0.1'
+								className=""
+								placeholder='1.0 - 20.0'
+								required="required"
+								value={moveSpeed} />
+							</div>
+						</div>
+						<div className="dataStripe2 hauto fdcol sa aicen" >
+							<label for="editIntro">Hero Intro</label>
+							<textarea onChange={e => setIntro(e.target.value)}
+							className="hauto editIntro"
+							// type="textarea"
+							id="editIntro"
+							rows="6" cols="35"
+							placeholder='Introduction for your Hero'
+							required="required"
+							value={intro} />
 						</div>
 					</div>
 				</div>
-				<label className='label'>
-					Hero Intro
-				</label>
-				<input onChange={e => setDetails(e.target.value)} type="textarea" rows="5" className="" placeholder='Additional Hero Details' value={details} />
-				<button type="submit" >Submit Edits</button>
-				<button type="" onClick={handelCancel} >Cancel</button>
+				{/* resume column ordering */}
+				<div className="bottomSpan">
+					<label >Technical Details</label>
+					<input onChange={e => setDetails(e.target.value)}
+					className=""
+					type="textarea"
+					rows="5"
+					placeholder='Additional Hero Details'
+					value={details} />
+				</div>
 			</form>
-			<div className="hero last updated at" >last uptd: {shrtDate}</div>
-			<div className="little space">
-				spacer
-				<div className="container for specific hero's abils">
-					{/* drag drop. */}
-					Current hero abilities
-				</div>
-			</div>
+			<div >Hero last updated at: {shrtDate}</div>
+			<div >Current hero abilities TODO</div>
 		</div>
 	)
 }
 
 export default EditHeroForm;
+	// <div className="fdrow heroDetSec" >
+		// 	<label  >
+		// 		Number of Abilities
+		// 	</label>
+		// 	<input onChange={e => setNumOfAbilities(e.target.value)} type="number" min='0' max='10' step='1' className="" placeholder='0 - 10' required="required" value={numOfAbilities} />
+		// </div>
 

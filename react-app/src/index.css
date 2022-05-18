@@ -37,6 +37,23 @@ body {
     justify-content: space-between;
 }
 
+.sa {
+    display: flex;
+    justify-content: space-around;
+}
+
+.wauto {
+    width: auto;
+}
+
+.hauto {
+    height: auto;
+}
+
+.w100p {
+    width: 100%;
+}
+
 .jccen {
     display: flex;
     justify-content: center;
@@ -46,8 +63,18 @@ body {
     margin: 10px;
 }
 
+.mlr10 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .p10 {
     padding: 10px;
+}
+
+.plr10 {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .w100 {

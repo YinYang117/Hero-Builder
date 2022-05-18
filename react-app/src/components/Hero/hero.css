@@ -24,3 +24,59 @@
 	width: 200px;
 	height: 80px;
 }
+
+.dataStripe1{
+	background-color: aqua;
+	border: 2px solid rgb(255, 198, 106);
+	width: 33vw;
+	/* 1/2ish of 70vw main body */
+	height: 50px;
+}
+
+.dataStripe2{
+	background-color: rgb(0, 207, 207);
+	border: 2px solid rgb(255, 207, 33);
+	width: 33vw;
+	/* 1/2ish of 70vw main body */
+	height: 50px;
+}
+
+.dataStripe3{
+	background-color: rgb(129, 226, 255);
+	border: 2px dashed gold;
+	width: 33vw;
+	/* 1/2ish of 70vw main body */
+	height: 60px;
+}
+
+.hfmn{
+	/* stands for half main, which references homeMainContainer */
+	width: 33vw;
+}
+
+.w40p {
+	width: 40%;
+}
+
+.h80p {
+	height: 80%;
+}
+
+.bottomSpan {
+	background-color: aqua;
+	border: 2px solid gold;
+	width: 90%;
+	height: auto;
+}
+
+.confirmShadow {
+	box-shadow: 0px 5px 10px 0px rgba(0, 94, 0, 0.913);
+}
+
+.cancelShadow {
+	box-shadow: 0px 5px 10px 0px rgba(94, 0, 0, 0.913);
+}
+
+.editIntro {
+	height: auto;
+}

@@ -45,7 +45,7 @@ const Login = () => {
                             ))}
                         </div>
                         <div className="aicen fdcol">
-                            <label className="label">Username or Email</label>
+                            <label className="">Username or Email</label>
                             <input className="input"
                                 name='credential'
                                 type='text'
@@ -55,7 +55,7 @@ const Login = () => {
                             />
                         </div>
                         <div className="aicen fdcol">
-                            <label className="label" htmlFor='password'>Password</label>
+                            <label className="" htmlFor='password'>Password</label>
                             <input className="input"
                                 name='password'
                                 type='password'
