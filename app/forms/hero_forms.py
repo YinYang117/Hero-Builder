@@ -3,6 +3,11 @@ from wtforms import StringField, IntegerField, SubmitField, SelectField, Boolean
 from wtforms.validators import DataRequired, Length, NumberRange, ValidationError, InputRequired
 from app.models import Hero
 
+def resourceCheck(form, field):
+    resource = form.data["resource"]
+    if resource != 1 or resource != 0:
+        ValidationError('Resource must be 1 or 0.')
+
 
 # Vars set to camelcase
 def resourceNameCheck(form, field):
@@ -29,16 +34,16 @@ class NewHero(FlaskForm):
     intro = StringField("Hero intro", validators=[DataRequired(), Length(min=2, max=500)])
     heroImage = StringField("Hero Image", validators=[DataRequired()])
     hp = IntegerField("HitPoints", validators=[DataRequired(), NumberRange(min=100, max=10000)])
-    resource = IntegerField("Resource", validators=[DataRequired()])
+    resource = IntegerField("Resource", validators=[resourceCheck])
     resourceName = StringField("Resource Name", validators=[resourceNameCheck])
     resourceAmount = IntegerField("Resource Amount", validators=[resourceAmountCheck])
-    physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=0, max=500)])
-    magicResist = IntegerField("Magic Resist", validators=[DataRequired(), NumberRange(min=0, max=500)])
+    physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=1, max=500)])
+    magicResist = IntegerField("Magic Resist", validators=[DataRequired(), NumberRange(min=1, max=500)])
     attackDamage = IntegerField("Attack Damage", validators=[DataRequired(), NumberRange(min=10, max=2000)])
     attackRange = IntegerField("Attack Range", validators=[DataRequired(), NumberRange(min=1, max=500)])
     attackSpeed = FloatField("Attack Speed", validators=[DataRequired(), NumberRange(min=0.1, max=10.0)])
     moveSpeed = FloatField("Move Speed", validators=[DataRequired(), NumberRange(min=1.0, max=20.0)])
-    numOfAbilities = IntegerField("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
+    # numOfAbilities = IntegerField("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
     details = StringField("Hero Details")
     submit = SubmitField("Submit")
     # created_at and updated_at on API
@@ -52,12 +57,12 @@ class EditHero(FlaskForm):
     resource = IntegerField("Resource", validators=[DataRequired()])
     resourceName = StringField("Resource Name", validators=[resourceNameCheck])
     resourceAmount = IntegerField("Resource Amount", validators=[resourceAmountCheck])
-    physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=0, max=500)])
-    magicResist = IntegerField("Magic Resist", validators=[DataRequired(), NumberRange(min=0, max=500)])
+    physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=1, max=500)])
+    magicResist = IntegerField("Magic Resist", validators=[DataRequired(), NumberRange(min=1, max=500)])
     attackDamage = IntegerField("Attack Damage", validators=[DataRequired(), NumberRange(min=10, max=2000)])
     attackRange = IntegerField("Attack Range", validators=[DataRequired(), NumberRange(min=1, max=500)])
     attackSpeed = FloatField("Attack Speed", validators=[DataRequired(), NumberRange(min=0.1, max=10.0)])
     moveSpeed = FloatField("Move Speed", validators=[DataRequired(), NumberRange(min=1.0, max=20.0)])
-    numOfAbilities = IntegerField("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
+    # numOfAbilities = IntegerField("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
     details = StringField("Hero Details")
     submit = SubmitField("Submit")

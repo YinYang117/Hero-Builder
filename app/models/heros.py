@@ -21,7 +21,7 @@ class Hero(db.Model):
     attack_range = db.Column(db.Integer, nullable=False)
     attack_speed = db.Column(db.Float(precision=1), nullable=False)
     move_speed = db.Column(db.Float(precision=1), nullable=False)
-    num_of_abilities = db.Column(db.Integer, nullable=False)
+    # num_of_abilities = db.Column(db.Integer, nullable=False)
     details = db.Column(db.String(), nullable=True)
     created_at = db.Column(db.Date, nullable=False, default=date.today)
     updated_at = db.Column(db.Date, nullable=False, default=date.today)
@@ -47,7 +47,7 @@ class Hero(db.Model):
             "attackRange": self.attack_range,
             "attackSpeed": self.attack_speed,
             "moveSpeed": self.move_speed,
-            "numOfAbilities": self.num_of_abilities,
+            # "numOfAbilities": self.num_of_abilities,
             "details": self.details,
             "createdAt": self.created_at,
             "updatedAt": self.updated_at,

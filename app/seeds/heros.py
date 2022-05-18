@@ -18,7 +18,7 @@ def seed_heros():
         attack_range=10,
         attack_speed=3,
         move_speed=6,
-        num_of_abilities=5,
+        # num_of_abilities=5,
         details="Lots of effort here",
         )
     hero2 = Hero(
@@ -34,7 +34,7 @@ def seed_heros():
         attack_range=400,
         attack_speed=6,
         move_speed=8,
-        num_of_abilities=6,
+        # num_of_abilities=6,
         details="This is a fast moving high damage hero that can kite and kill slower heros with ease.",
         )
 

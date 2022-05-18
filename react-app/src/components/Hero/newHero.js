@@ -23,8 +23,8 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
 	const [resource, setResource] = useState(0)
 	const [resourceName, setResourceName] = useState("")
 	const [resourceAmount, setResourceAmount] = useState()
-	const [physicalArmor, setPhysicalArmor] = useState(0)
-	const [magicResist, setMagicResist] = useState(0)
+	const [physicalArmor, setPhysicalArmor] = useState(1)
+	const [magicResist, setMagicResist] = useState(1)
 	const [attackDamage, setAttackDamage] = useState(10)
 	const [attackRange, setAttackRange] = useState(1)
 	const [attackSpeed, setAttackSpeed] = useState(0.1)
@@ -45,11 +45,13 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
 		// const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 		setErrors([])
 		const newHero = {}
+		newHero.ownerId = user.id
 		newHero.name = heroName
 		newHero.intro = intro
 		newHero.heroImage = heroImage
 		newHero.hp = hp
 		newHero.resource = resource
+		console.log("new hero resource ", resource)
 		if (resource === 1) {
 			newHero.resourceName = resourceName
 			newHero.resourceAmount = resourceAmount
