@@ -134,4 +134,5 @@ each of the following variables:
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
 | `heroku run -a hero-builder-app` | Run a command from within the deployed container on Heroku |
 
+heroku run -a hero-builder-app
 heroku run -a hero-builder-app flask seed all

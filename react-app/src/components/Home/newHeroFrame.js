@@ -8,11 +8,11 @@ const NewHeroFrame = () => {
 	}
 
 	return (
-		<div className="hcp heroFrame fdcol"
+		<div className="hcp heroFrame fdcol aicen jccen"
 		onClick={newHero}
 		>
 			<div className="heroFrameImg"></div>
-			<div className="TODO">New Hero?</div>
+			<h2 className="TODO">New Hero?</h2>
 		</div>
 	)
 }
