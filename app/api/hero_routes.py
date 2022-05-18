@@ -69,7 +69,7 @@ def hero_creation():
             attack_range = form.data["attackRange"],
             attack_speed = form.data["attackSpeed"],
             move_speed = form.data["moveSpeed"],
-            num_of_abilities = form.data["numOfAbilities"],
+            # num_of_abilities = form.data["numOfAbilities"],
             details = form.data["details"],
         )
         db.session.add(hero)
@@ -119,7 +119,7 @@ def specific_hero(id):
                 hero.attack_range = form.data["attackRange"]
                 hero.attack_speed = form.data["attackSpeed"]
                 hero.move_speed = form.data["moveSpeed"]
-                hero.num_of_abilities = form.data["numOfAbilities"]
+                # hero.num_of_abilities = form.data["numOfAbilities"]
                 hero.details = form.data["details"]
 
                 updt = date.today()

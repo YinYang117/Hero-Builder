@@ -4,17 +4,10 @@ import { buildHero } from "../../store/heros"
 import "./hero.css"
 
 
-const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
+const NewHeroForm = ({ buildNewHero, setBuildNewHero, newHeroImage }) => {
 	const dispatch = useDispatch(); 
 
 	const user = useSelector(state => state.session.user)
-
-	// const currHeroAbils = useSelector(state => state.heroAbils)
-	// might not need ^ depending on where I display these
-
-	// const fullDate = hero.updatedAt
-	// const shrtDate = fullDate.split('').splice(0, 16).join('')
-	// let shrtDate = "debugging"
 
 	const [heroName, setHeroName] = useState("")
 	const [intro, setIntro] = useState("")
@@ -29,11 +22,16 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
 	const [attackRange, setAttackRange] = useState(1)
 	const [attackSpeed, setAttackSpeed] = useState(0.1)
 	const [moveSpeed, setMoveSpeed] = useState(1.0)
-	const [numOfAbilities, setNumOfAbilities] = useState() // TODO
+	// const [numOfAbilities, setNumOfAbilities] = useState() // TODO
 	const [details, setDetails] = useState("")
 	const [errors, setErrors] = useState([])
 
-	// Notes: might be a cool way to style buttons on number inputs
+	// const fullDate = hero.updatedAt
+	// const shrtDate = fullDate.split('').splice(0, 16).join('')
+
+	useEffect(() => {
+		setHeroImage(newHeroImage)
+	},[newHeroImage])
 
 	const handelCheck = (e) => {
 		let str = e.target.value
@@ -51,7 +49,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
 		newHero.heroImage = heroImage
 		newHero.hp = hp
 		newHero.resource = resource
-		console.log("new hero resource ", resource)
+		// console.log("new hero resource ", resource)
 		if (resource === 1) {
 			newHero.resourceName = resourceName
 			newHero.resourceAmount = resourceAmount
@@ -65,7 +63,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
 		newHero.attackRange = attackRange
 		newHero.attackSpeed = attackSpeed
 		newHero.moveSpeed = moveSpeed
-		newHero.numOfAbilities = numOfAbilities
+		// newHero.numOfAbilities = numOfAbilities
 		// TODO add an extra notification or something if
 		// hero has more abilities allocated then the new num of abils
 		newHero.details = details
@@ -73,9 +71,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
 		const data = await dispatch(buildHero(newHero))
 		if (!data) setBuildNewHero(false)
 		else {
-			console.log("errors after dispatch 1", data)
-			setErrors(data)
-			console.log("errors after dispatch 2", errors)
+			setErrors(data) // should be an array
 		}
 	}
 
@@ -107,8 +103,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero }) => {
 							required="required"
 							value={heroName} />
 						</div>
-						<img src={'TODO'} alt={'TODO'} className="heroDetImg" />
-						<div>TODO carousel for images you can choose</div>
+						<img src={newHeroImage} alt="new hero portraite" className="heroDetImg" />
 					</div>
 					{/* right, main data */}
 					<div className="fdcol hfmn">

@@ -4,12 +4,12 @@ import { Redirect } from 'react-router-dom';
 import { fetchUserHeros } from "../../store/heros"
 import { fetchUserAbilities } from "../../store/abilities"
 import { fetchHeroAbilities } from "../../store/heroAbil"
-import { HeroContext } from '../../context/SelectedHero';
+import { HeroContext } from '../../context/HeroContextCont';
 import HeroDetailsCard from '../Hero'; 
 import NewHeroForm from '../Hero/newHero.js'
 import EditHeroForm from '../Hero/editingHero.js'
 import HeroFrame from "./heroFrame"
-import NewHeroFrame from "./newHeroFrame"
+import NewHeroImages from "./newHeroImages"
 import "./home.css"
 
 
@@ -20,11 +20,12 @@ const Home = () => {
 	const heros 	= useSelector(state => state.heros)
 	const allAbils	= useSelector(state => state.abilities)
 
-	const { currHero, setCurrHero } 		= useContext(HeroContext);
+	const { currHero, setCurrHero, images } = useContext(HeroContext);
 
 	const [showAbils, setShowAbils] 		= useState(false);
 	const [editingHero, setEditingHero] 	= useState(false)
-	const [buildNewHero, setBuildNewHero] = useState(false)
+	const [buildNewHero, setBuildNewHero] 	= useState(false)
+	const [newHeroImage, setNewHeroImage] 	= useState()
 	const [selHeroAbilNum, setSelHeroAbilNum] = useState(0)
 
 	useEffect(() => {
@@ -51,10 +52,6 @@ const Home = () => {
 		setCurrHero()
 		setBuildNewHero(!buildNewHero)
 	}
-
-	// useEffect(() => {
-	// 	setHerosArr(Object.values(heros))
-	// },[heros]) // rebuilt in store. might be able to keep sorted easier that way??? maybe...
 
 	return (
 		<div className="homebody">
@@ -87,12 +84,16 @@ const Home = () => {
 					</div>}
 				</div>
 				<div className="cgrid">
-				{/* small hero images carousel / container */}
+					{/* small hero images container */}
 					<div className="heroDisplay">
-						<NewHeroFrame />
-						{heros && !currHero &&
+						{heros && !currHero && !buildNewHero &&
 						heros?.arr?.map(hero => (
 							<HeroFrame key={hero.id} hero={hero} />
+						))}
+						{/* same area displays hero image choices */}
+						{buildNewHero && images && !currHero && 
+						images?.map((img, i) => (
+							<NewHeroImages key={i} img={img} i={i} setNewHeroImage={setNewHeroImage} />
 						))}
 					</div>
 					{currHero && !editingHero && !buildNewHero &&
@@ -114,6 +115,8 @@ const Home = () => {
 						<NewHeroForm
 						buildNewHero={buildNewHero}
 						setBuildNewHero={setBuildNewHero}
+						newHeroImage={newHeroImage}
+						
 					/>}
 					<div className="ability display">
 						ability display for all other abils
