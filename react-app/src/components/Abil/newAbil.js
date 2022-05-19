@@ -126,7 +126,7 @@ const NewAbilCard = (         ) => {
 			}}>
 				<div className="fdrow">
 					<div className="left side fdcol">
-						<img src={abilityImage} alt="new ability portraite" className="heroDetImg" /> {/* TODO classname */}
+						<img src={abilityImage} alt="new ability portraite" className="abilImg" /> {/* TODO classname */}
 						<div className="conditionGroup fdcol">
 							<div>Uses Resources?</div>
 							<div className="checkboxContainer fdrow">
