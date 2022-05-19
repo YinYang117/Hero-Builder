@@ -51,6 +51,7 @@
 
 .hfmn{
 	/* stands for half main, which references homeMainContainer */
+	/* TODO, change to 45% of container instead...?? */
 	width: 33vw;
 }
 

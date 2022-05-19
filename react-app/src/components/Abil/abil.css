@@ -3,3 +3,8 @@
 	max-width: 200px;
 	max-height: 200px;
 }
+
+.hfmn{
+	/* stands for half main, which references homeMainContainer */
+	width: 33vw;
+}

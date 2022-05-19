@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { buildAbil } from "../../store/abilities"
 import './abil.css'
 
 
-const NewAbilCard = (         ) => {
+const NewAbilCard = ({newAbilityImage, setBuildNewAbil}) => {
 	const dispatch = useDispatch();
 
 	const user = useSelector(state => state.session.user)
@@ -13,7 +13,7 @@ const NewAbilCard = (         ) => {
 	const [ownerId, setOwnerId] = useState(user.id)
 	const [name,setName] = useState("")
 	const [description, setDescription] = useState("")
-	const [abilityImage, setAbilityImage] = useState("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png")
+	const [abilityImage, setAbilityImage] = useState(newAbilityImage)
 	const [usesResource, setUsesResource] = useState(0)
 	const [resourceName, setResourceName] = useState("")
 	const [resourceCost, setResourceCost] = useState(0)
@@ -27,11 +27,9 @@ const NewAbilCard = (         ) => {
 	const [ultimate, setUltimate] = useState(0)
 	const [details, setDetails] = useState("")
 
-	// const handelCheck = (e) => {
-	// 	let str = e.target.value
-	// 	let int = parseInt(str, 10)
-	// 	set()
-	// }
+	useEffect(() => {
+		setAbilityImage(newAbilityImage)
+	},[newAbilityImage])
 
 	const submitNewAbil = async () => {
 		setErrors([])
@@ -72,14 +70,14 @@ const NewAbilCard = (         ) => {
 		newAbil.details = details
 
 		const data = await dispatch(buildAbil(newAbil))
-		if (!data) return // TODO toggle build state
+		if (!data) setBuildNewAbil(false) // TODO toggle build state
 		else setErrors(data) // should be an array
 	}
 
-	// const handleCancel = () => {
-	// 	// TODO clear fields?
-	// 	setBuildNewAbil(false)
-	// }
+	const handleCancel = () => {
+		// TODO clear fields?
+		setBuildNewAbil(false)
+	}
 
 	// TODO setAbilityImage() based off click
 
@@ -125,7 +123,7 @@ const NewAbilCard = (         ) => {
 				submitNewAbil()
 			}}>
 				<div className="fdrow">
-					<div className="left side fdcol">
+					<div className="left side fdcol hfmn">
 						<img src={abilityImage} alt="new ability portraite" className="abilImg" /> {/* TODO classname */}
 						<div className="conditionGroup fdcol">
 							<div>Uses Resources?</div>
@@ -173,7 +171,17 @@ const NewAbilCard = (         ) => {
 							</div>
 						</div>
 					</div>
-					<div className="right side fdcol">
+					<div className="right side fdcol hfmn">
+						<div className="dataStripe1 fdrow sa aicen" >
+							<button type="submit"
+							className="w40p h80p confirmShadow"
+							>
+								Build Ability!</button>
+							<button onClick={handleCancel}
+							className="w40p h80p cancelShadow"
+							>
+								Cancel</button>
+						</div>
 						<>
 							<label className="mlr10" >Name:</label>
 							<input onChange={e => setName(e.target.value)}
@@ -193,6 +201,7 @@ const NewAbilCard = (         ) => {
 								required="required"
 								value={description} />
 						</>
+						{(usesResource === 1) && 
 						<div className="conditionDetails1 fdrow sb">
 							<div className="fdcol">
 								<label>Resource Name</label>
@@ -211,7 +220,8 @@ const NewAbilCard = (         ) => {
 									placeholder='1 - 1000'
 									value={resourceCost} />
 							</div>
-						</div>
+						</div>}
+						{(usesCharges === 1) &&
 						<div className="conditionDetails2 fdrow sb">
 							<div className="fdcol">
 								<label>Number of Charges</label>
@@ -231,7 +241,8 @@ const NewAbilCard = (         ) => {
 									placeholder='1 - 120'
 									value={chargeRechargeRate} />
 							</div>
-						</div>
+						</div>}
+						{(usesCooldown === 1 ) &&
 						<div className="conditionDetails1 fdrow sa">
 							<label>Cooldown Time</label>
 							<input onChange={e => setCooldown(e.target.value)}
@@ -240,7 +251,8 @@ const NewAbilCard = (         ) => {
 								min='2' max='120' step='1'
 								placeholder='1 - 120'
 								value={cooldown} />
-						</div>
+						</div>}
+						{(channeled === 1) &&
 						<div className="conditionDetails2 fdrow sa">
 							<label>Channel Duration</label>
 							<input onChange={e => setChannelTime(e.target.value)}
@@ -249,7 +261,7 @@ const NewAbilCard = (         ) => {
 								min='1.5' max='20' step='0.5'
 								placeholder='1.5 - 20.0'
 								value={channelTime} />
-						</div>
+						</div>}
 					</div>
 				</div>
 				<div className="details container">

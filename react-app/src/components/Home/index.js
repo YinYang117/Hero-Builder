@@ -10,6 +10,7 @@ import NewHeroForm from '../Hero/newHero.js'
 import EditHeroForm from '../Hero/editingHero.js'
 import HeroFrame from "./heroFrame"
 import NewHeroImages from "./newHeroImages"
+import NewAbilityImages from "./newAbilityImages"
 import NewAbilCard from "../Abil/newAbil.js"
 import "./home.css"
 
@@ -21,6 +22,7 @@ const Home = () => {
 	const allAbils	= useSelector(state => state.abilities)
 
 	const { currHero, setCurrHero, images } = useContext(HeroContext);
+
 	const abilStockImages = [
 		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png",
 		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916069/heart_c6dviy.png",
@@ -41,7 +43,8 @@ const Home = () => {
 	const [buildNewHero, setBuildNewHero] 	= useState(false)
 	const [buildNewAbil, setBuildNewAbil] 	= useState(false)
 	const [newHeroImage, setNewHeroImage] 	= useState()
-	const [selHeroAbilNum, setSelHeroAbilNum] = useState(0)
+	const [selHeroAbilNum, setSelHeroAbilNum] 	= useState(0)
+	const [newAbilityImage, setNewAbilityImage] = useState("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png")
 
 	useEffect(() => {
 		if (user) {
@@ -115,14 +118,19 @@ const Home = () => {
 				<div className="cgrid">
 					{/* small hero images container */}
 					<div className="heroDisplay">
-						{heros && !currHero && !buildNewHero &&
+						{heros && !currHero && !buildNewHero && !buildNewAbil &&
 						heros?.arr?.map(hero => (
 							<HeroFrame key={hero.id} hero={hero} />
 						))}
 						{/* same area displays hero image choices */}
-						{buildNewHero && images && !currHero && 
+						{buildNewHero && images && !currHero && !buildNewAbil &&
 						images?.map((img, i) => (
 							<NewHeroImages key={i} img={img} i={i} setNewHeroImage={setNewHeroImage} />
+						))}
+						{/* same area displays new ability image choices */}
+						{buildNewAbil && !currHero && !buildNewHero &&
+						abilStockImages?.map((img, i) => (
+							<NewAbilityImages key={i} img={img} i={i} setNewAbilityImage={setNewAbilityImage} />
 						))}
 					</div>
 					{currHero && !editingHero && !buildNewHero &&
@@ -147,7 +155,7 @@ const Home = () => {
 						newHeroImage={newHeroImage}
 					/>}
 					<div className="Selected ability details">
-						details on a selected ability
+						{/* TODO */}
 					</div>
 					<div className="heroDisplay">
 						{allAbils && showAbils && allAbils?.arr?.map(abil => (
@@ -164,7 +172,8 @@ const Home = () => {
 					<div className="heroDisplay">
 						{currSelAbil.name}
 					</div>}
-					<NewAbilCard />
+					{buildNewAbil && 
+						<NewAbilCard newAbilityImage={newAbilityImage} setBuildNewAbil={setBuildNewAbil} />}
 				</div>
 				<div className="rgrid">
 					<button type="button"
