@@ -6,17 +6,23 @@ from app.models import Hero
 def resourceCheck(form, field):
     resource = form.data["resource"]
     if resource != 1 and resource != 0:
-        ValidationError('Resource must be 1 or 0.')
+        ValidationError('Resource usage must be Yes or No.')
 
 
 # Vars set to camelcase
 def resourceNameCheck(form, field):
     # If resource is True, validate resource name
     resource = form.data["resource"]
+    print("deep form dive 1", resource)
     if resource == 1:
         name = form.data["resourceName"]
-        if len(name) < 2 or len(name) > 20:
-            ValidationError('Resource Name must be between 2 and 20 characters long.')
+        print("deep form dive 2", name)
+        print("deep form dive 3", isinstance(name, str))
+        if isinstance(name, str):
+            if len(name) < 2 or len(name) > 20:
+                ValidationError('Resource Name must be between 2 and 20 characters long.')
+        else:
+            ValidationError('Resource Name must be a String between 2 and 20 characters long.')
 
 
 def resourceAmountCheck(form, field):
@@ -24,8 +30,13 @@ def resourceAmountCheck(form, field):
     resource = form.data["resource"]
     if resource == 1:
         amount = form.data["resourceAmount"]
-        if amount < 10 or amount > 3000:
-            ValidationError('Resource Amount must be between 10 and 3000.')
+        print("deep form dive 4", amount)
+        print("deep form dive 5", isinstance(amount, int))
+        if isinstance(amount, int):
+            if amount < 10 or amount > 3000:
+                ValidationError('Resource Amount must be between 10 and 3000.')
+        else:
+            ValidationError('Resource Amount must be an Integer between 10 and 3000.')
 
 
 class NewHero(FlaskForm):
@@ -50,11 +61,11 @@ class NewHero(FlaskForm):
 
 
 class EditHero(FlaskForm):
-    name = StringField("Hero Name", validators=[DataRequired(), Length(min=2, max=50)])
+    name = StringField("Hero Name", validators=[DataRequired(), Length(min=2, max=30)])
     intro = StringField("Hero intro", validators=[DataRequired(), Length(min=2, max=500)])
     heroImage = StringField("Hero Image", validators=[DataRequired()])
     hp = IntegerField("HitPoints", validators=[DataRequired(), NumberRange(min=100, max=10000)])
-    resource = IntegerField("Resource", validators=[DataRequired()])
+    resource = IntegerField("Resource", validators=[resourceCheck])
     resourceName = StringField("Resource Name", validators=[resourceNameCheck])
     resourceAmount = IntegerField("Resource Amount", validators=[resourceAmountCheck])
     physicalArmor = IntegerField("Physical Armor", validators=[DataRequired(), NumberRange(min=1, max=500)])

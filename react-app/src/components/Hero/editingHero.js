@@ -65,15 +65,13 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 		// TODO add an extra notification or something if
 		// hero has more abilities allocated then the new num of abils
 		newHero.details = details
-		if (!(errors.length > 1)) {
-			await dispatch(editHero(newHero))
-				.then(() => setEditingHero(false))
-				.catch(async (res) => {
-					console.log("res in hero editing hero .catch", res)
-					const data = await res.json()
-					if (data && data.errors) setErrors(data.errors)
-				})
-		}
+		
+		console.log("befor put hero dispatch", newHero)
+		const data = await dispatch(editHero(newHero))
+		console.log("after put hero dispatch", data)
+		if (data && data.errors) setErrors(data.errors)
+		else setEditingHero(false)
+
 	}
 
 	const handleCancel = () => {

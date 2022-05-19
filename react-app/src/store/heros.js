@@ -77,10 +77,14 @@ export const editHero = (hero) => async (dispatch) => {
         const data = await res.json();
         dispatch(loadHero(data))
     } else if (res.status < 500) {
+        console.log("edit hero store 1", res)
         const data = await res.json();
+        console.log("edit hero store 2", data)
         if (data.errors) return data.errors;
     } else {
+        console.log("edit hero store 3", res)
         const data = await res.json();
+        console.log("edit hero store 4", data)
         data.errors.push(['A server error occurred.'])
         return data.errors;
     }
@@ -117,7 +121,12 @@ const heroReducer = (state = initialState, action) => {
             return newState
         case LOAD_SINGLE_HERO:
             newState[action.payload.id] = action.payload
-            newState.arr.push(action.payload)
+            newState.arr.forEach(hero => {
+                if (hero.id === action.payload.id) {
+                    hero = action.payload
+                    return
+                }
+            })
             return newState
         case REMOVE_HERO:
             delete newState[action.payload]
