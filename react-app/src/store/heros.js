@@ -112,16 +112,12 @@ const heroReducer = (state = initialState, action) => {
         case LOAD_USER_HEROS:
             newState = action.payload
             delete newState.arr
-            newState.arr = Object.values(action.payload)
+            newState.arr = Object.values(newState)
             return newState
         case LOAD_SINGLE_HERO:
             newState[action.payload.id] = action.payload
-            newState.arr.forEach(hero => {
-                if (hero.id === action.payload.id) {
-                    hero = action.payload
-                    return
-                }
-            })
+            delete newState.arr
+            newState.arr = Object.values(newState)
             return newState
         case REMOVE_HERO:
             delete newState[action.payload]

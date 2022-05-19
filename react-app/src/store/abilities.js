@@ -112,11 +112,12 @@ const abilityReducer = (state = initialState, action) => {
         case LOAD_USER_ABILITIES:
             newState = action.payload
             delete newState.arr
-            newState.arr = Object.values(action.payload)
+            newState.arr = Object.values(newState)
             return newState
         case LOAD_SINGLE_ABIL:
             newState[action.payload.id] = action.payload
-            newState.arr.push(action.payload)
+            delete newState.arr
+            newState.arr = Object.values(newState)
             return newState
         case REMOVE_ABIL:
             delete newState[action.payload]
