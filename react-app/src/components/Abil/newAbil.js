@@ -16,14 +16,14 @@ const NewAbilCard = ({newAbilityImage, setBuildNewAbil}) => {
 	const [abilityImage, setAbilityImage] = useState(newAbilityImage)
 	const [usesResource, setUsesResource] = useState(0)
 	const [resourceName, setResourceName] = useState("")
-	const [resourceCost, setResourceCost] = useState(0)
+	const [resourceCost, setResourceCost] = useState(1)
 	const [usesCharges, setUsesCharges] = useState(0)
-	const [numCharges, setNumCharges] = useState(0)
-	const [chargeRechargeRate, setChargeRechargeRate] = useState(0)
+	const [numCharges, setNumCharges] = useState(1)
+	const [chargeRechargeRate, setChargeRechargeRate] = useState(1)
 	const [usesCooldown, setUsesCooldown] = useState(0)
-	const [cooldown, setCooldown] = useState(0)
+	const [cooldown, setCooldown] = useState(2)
 	const [channeled, setChanneled] = useState(0)
-	const [channelTime, setChannelTime] = useState(0)
+	const [channelTime, setChannelTime] = useState(1.5)
 	const [ultimate, setUltimate] = useState(0)
 	const [details, setDetails] = useState("")
 
@@ -257,7 +257,7 @@ const NewAbilCard = ({newAbilityImage, setBuildNewAbil}) => {
 							<label>Channel Duration</label>
 							<input onChange={e => setChannelTime(e.target.value)}
 								className=""
-								type="float"
+								type="number"
 								min='1.5' max='20' step='0.5'
 								placeholder='1.5 - 20.0'
 								value={channelTime} />

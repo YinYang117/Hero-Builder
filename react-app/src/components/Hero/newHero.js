@@ -15,7 +15,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero, newHeroImage }) => {
 	const [hp, setHp] = useState(100)
 	const [resource, setResource] = useState(0)
 	const [resourceName, setResourceName] = useState("")
-	const [resourceAmount, setResourceAmount] = useState()
+	const [resourceAmount, setResourceAmount] = useState(10)
 	const [physicalArmor, setPhysicalArmor] = useState(1)
 	const [magicResist, setMagicResist] = useState(1)
 	const [attackDamage, setAttackDamage] = useState(10)

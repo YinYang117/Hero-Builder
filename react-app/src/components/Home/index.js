@@ -74,6 +74,7 @@ const Home = () => {
 	const startNewAbil = () => {
 		setEditingHero(false)
 		setCurrHero()
+		setBuildNewHero(false)
 		setBuildNewAbil(!buildNewAbil)
 	}
 
