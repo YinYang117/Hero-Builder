@@ -46,17 +46,16 @@ const Home = () => {
 	useEffect(() => {
 		if (user) {
 			dispatch(fetchUserHeros(user))
-			console.log("just about to fetch abilities")
 			dispatch(fetchUserAbilities(user))
 		} else <Redirect to='/' />
 	}, [user])
 
-	useEffect(() => {
-		if (currHero) {
-			setSelHeroAbilNum(currHero.numOfAbilities)
-			dispatch(fetchHeroAbilities(currHero))
-		}
-	}, [currHero])
+	// useEffect(() => {
+	// 	if (currHero) {
+	// 		// setSelHeroAbilNum(currHero.numOfAbilities)
+	// 		dispatch(fetchHeroAbilities(currHero)) // TODO
+	// 	}
+	// }, [currHero])
 
 	const showAllHeros = () => {
 		setCurrHero()

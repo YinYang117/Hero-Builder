@@ -6,23 +6,20 @@ from app.models import Hero
 def resourceCheck(form, field):
     resource = form.data["resource"]
     if resource != 1 and resource != 0:
-        ValidationError('Resource usage must be Yes or No.')
+        raise ValidationError('Resource usage must be Yes or No.')
 
 
 # Vars set to camelcase
 def resourceNameCheck(form, field):
     # If resource is True, validate resource name
     resource = form.data["resource"]
-    print("deep form dive 1", resource)
     if resource == 1:
         name = form.data["resourceName"]
-        print("deep form dive 2", name)
-        print("deep form dive 3", isinstance(name, str))
         if isinstance(name, str):
             if len(name) < 2 or len(name) > 20:
-                ValidationError('Resource Name must be between 2 and 20 characters long.')
+                raise ValidationError('Resource Name must be between 2 and 20 characters long.')
         else:
-            ValidationError('Resource Name must be a String between 2 and 20 characters long.')
+            raise ValidationError('Resource Name must be a String between 2 and 20 characters long.')
 
 
 def resourceAmountCheck(form, field):
@@ -30,13 +27,11 @@ def resourceAmountCheck(form, field):
     resource = form.data["resource"]
     if resource == 1:
         amount = form.data["resourceAmount"]
-        print("deep form dive 4", amount)
-        print("deep form dive 5", isinstance(amount, int))
         if isinstance(amount, int):
             if amount < 10 or amount > 3000:
-                ValidationError('Resource Amount must be between 10 and 3000.')
+                raise ValidationError('Resource Amount must be between 10 and 3000.')
         else:
-            ValidationError('Resource Amount must be an Integer between 10 and 3000.')
+            raise ValidationError('Resource Amount must be an Integer between 10 and 3000.')
 
 
 class NewHero(FlaskForm):

@@ -57,7 +57,6 @@ export const fetchUserAbilities = (user) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json();
-        console.log("in abil store data", data)
         dispatch(loadUserAbilities(data))
     } else if (res.status < 500) {
         const data = await res.json();

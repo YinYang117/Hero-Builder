@@ -21,7 +21,6 @@ const Login = () => {
         const data = await dispatch(login(credential, password));
         if (!data) history.push("/home")
         else setErrors(data)
-        // console.log("data, comp auth login", data)
     };
 
     return (

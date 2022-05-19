@@ -112,9 +112,9 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrH
 							<div className="mlr10">{hero.moveSpeed}</div>
 						</div>
 					</div>
-					<div className="dataStripe1 fdrow sb aicen" >
+					{/* <div className="dataStripe1 fdrow sb aicen" >
 						<div className="" >Abilities: {hero.numOfAbilities}</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</>

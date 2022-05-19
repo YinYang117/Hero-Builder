@@ -66,7 +66,6 @@ export const fetchUserHeros = (user) => async (dispatch) => {
 
 export const editHero = (hero) => async (dispatch) => {
     const id = hero.id
-    console.log("made it to edit hero store", hero)
     const res = await fetch(`/api/heros/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -77,14 +76,10 @@ export const editHero = (hero) => async (dispatch) => {
         const data = await res.json();
         dispatch(loadHero(data))
     } else if (res.status < 500) {
-        console.log("edit hero store 1", res)
         const data = await res.json();
-        console.log("edit hero store 2", data)
         if (data.errors) return data.errors;
     } else {
-        console.log("edit hero store 3", res)
         const data = await res.json();
-        console.log("edit hero store 4", data)
         data.errors.push(['A server error occurred.'])
         return data.errors;
     }

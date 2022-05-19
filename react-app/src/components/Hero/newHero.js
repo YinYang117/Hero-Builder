@@ -49,7 +49,6 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero, newHeroImage }) => {
 		newHero.heroImage = heroImage
 		newHero.hp = hp
 		newHero.resource = resource
-		// console.log("new hero resource ", resource)
 		if (resource === 1) {
 			newHero.resourceName = resourceName
 			newHero.resourceAmount = resourceAmount

@@ -18,26 +18,30 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	const [heroImage, setHeroImage] = useState(hero.heroImage)
 	const [hp, setHp] = useState(hero.hp)
 	const [resource, setResource] = useState(hero.resource)
-	const [resourceName, setResourceName] = useState(hero?.resourceName)
-	const [resourceAmount, setResourceAmount] = useState(hero?.resourceAmount)
+	const [resourceName, setResourceName] = useState(" ")
+	const [resourceAmount, setResourceAmount] = useState(0)
 	const [physicalArmor, setPhysicalArmor] = useState(hero.physicalArmor)
 	const [magicResist, setMagicResist] = useState(hero.magicResist)
 	const [attackDamage, setAttackDamage] = useState(hero.attackDamage)
 	const [attackRange, setAttackRange] = useState(hero.attackRange)
 	const [attackSpeed, setAttackSpeed] = useState(hero.attackSpeed)
 	const [moveSpeed, setMoveSpeed] = useState(hero.moveSpeed)
-	const [numOfAbilities, setNumOfAbilities] = useState(hero.numOfAbilities)
+	// const [numOfAbilities, setNumOfAbilities] = useState(hero.numOfAbilities)
 	const [details, setDetails] = useState(hero?.details)
 	// const [updatedAt, setUpdatedAt] = useState(hero.updatedAt)
 	const [errors, setErrors] = useState([])
 
-	// Notes: might be a cool way to style buttons on number inputs
 
 	const handelCheck = (e) => {
 		let str = e.target.value
 		let int = parseInt(str, 10)
 		setResource(int)
 	}
+
+	useEffect(() => {
+		if (hero.resourceName) setResourceName(hero.resourceName)
+		if (hero.resourceAmount) setResourceAmount(hero.resourceAmount)
+	},[])
 
 	const submitEditHero = async (e) => {
 		// const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
@@ -61,21 +65,18 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 		newHero.attackRange = attackRange
 		newHero.attackSpeed = attackSpeed
 		newHero.moveSpeed = moveSpeed
-		newHero.numOfAbilities = numOfAbilities
+		// newHero.numOfAbilities = numOfAbilities
 		// TODO add an extra notification or something if
 		// hero has more abilities allocated then the new num of abils
 		newHero.details = details
 		
-		console.log("befor put hero dispatch", newHero)
 		const data = await dispatch(editHero(newHero))
-		console.log("after put hero dispatch", data)
-		if (data && data.errors) setErrors(data.errors)
+		if (data) setErrors(data) // Should only be the data.errors from store return
 		else setEditingHero(false)
-
 	}
 
 	const handleCancel = () => {
-		// clear Edits
+		// TODO clear Edits
 		setEditingHero(false)
 	}
 
