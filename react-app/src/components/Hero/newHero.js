@@ -226,7 +226,6 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero, newHeroImage }) => {
 							<label>Hero Intro</label>
 							<textarea onChange={e => setIntro(e.target.value)}
 							className="hauto editIntro"
-							// type="textarea"
 							id="editIntro"
 							rows="6" cols="35"
 							placeholder='Introduction for your Hero'
