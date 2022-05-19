@@ -15,13 +15,13 @@ const loadHeroAbilities = (abils) => {
 /////////////////////////////////////////
 // thunks
 
-export const fetchHeroAbilities = (hero) => async (disptach) => {
+export const fetchHeroAbilities = (hero) => async (dispatch) => {
     const { id } = hero.id
     const res = await fetch(`/api/hero_abil/${id}`);
 
     if (res.ok) {
         const data = await res.json();
-        disptach(loadHeroAbilities(data))
+        dispatch(loadHeroAbilities(data))
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) return data.errors; // no possible errors returned on this route atm.

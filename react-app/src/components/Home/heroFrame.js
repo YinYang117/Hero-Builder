@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { HeroContext } from '../../context/HeroContextCont';
+import { HeroContext } from '../../context/HeroContext';
 import './home.css';
 
 const HeroFrame = ({hero, heroAbil}) => {

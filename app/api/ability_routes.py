@@ -86,7 +86,7 @@ def userAbils(id):
     """
     abils = Ability.query.filter(Ability.owner_id == id).all()
     all_abl = {}
-    for abil in abilities:
+    for abil in abils:
         all_abl[abil.id] = abil.to_js_obj
     return all_abl
 

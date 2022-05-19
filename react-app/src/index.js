@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ModalProvider } from './context/Modal';
-import { HeroProvider } from './context/HeroContextCont'
+import { HeroProvider } from './context/HeroContext'
 import configureStore from './store';
 import App from './App';
 import './index.css';

@@ -31,7 +31,7 @@ const removeHero = (id) => {
 /////////////////////////////////////////
 // thunks
 
-export const buildHero = (hero) => async (disptach) => {
+export const buildHero = (hero) => async (dispatch) => {
     const res = await fetch('/api/heros/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -40,36 +40,31 @@ export const buildHero = (hero) => async (disptach) => {
 
     if (res.ok) {
         const data = await res.json();
-        disptach(loadHero(data))
+        dispatch(loadHero(data))
     } else if (res.status < 500) {
         const data = await res.json(); 
-        console.log("data from store build new 1", data)
-        console.log("data from store build new 2", data.errors)
         if (data.errors) return data.errors;
     } else {
-        console.log("store 500 error above")
         const data = await res.json();
-        console.log("store 500 error data edit hero", data)
         data.errors.push(['A server error occurred.'])
-        console.log("store 500 error data edit hero", data.errors)
         return data.errors;
     }
 }
 
-export const fetchUserHeros = (user) => async (disptach) => {
+export const fetchUserHeros = (user) => async (dispatch) => {
     const id = user.id
     const res = await fetch(`/api/heros/user/${id}`);
 
     if (res.ok) {
         const data = await res.json();
-        disptach(loadUserHeros(data))
+        dispatch(loadUserHeros(data))
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) return data.errors;
     } else return ['An error occurred. Please try again.']
 }
 
-export const editHero = (hero) => async (disptach) => {
+export const editHero = (hero) => async (dispatch) => {
     const id = hero.id
     console.log("made it to edit hero store", hero)
     const res = await fetch(`/api/heros/${id}`, {
@@ -80,26 +75,23 @@ export const editHero = (hero) => async (disptach) => {
 
     if (res.ok) {
         const data = await res.json();
-        disptach(loadHero(data))
+        dispatch(loadHero(data))
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) return data.errors;
     } else {
-        console.log("store 500 error above")
         const data = await res.json();
-        console.log("store 500 error data edit hero", data)
         data.errors.push(['A server error occurred.'])
-        console.log("store 500 error data edit hero", data.errors)
         return data.errors;
     }
 }
 
-export const deleteHero = (id) => async (disptach) => {
+export const deleteHero = (id) => async (dispatch) => {
     const res = await fetch(`/api/heros/${id}`, {
         method: "DELETE"
     })
 
-    if (res.ok) disptach(removeHero(id))
+    if (res.ok) dispatch(removeHero(id))
     else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) return data.errors;

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { fetchUserHeros } from "../../store/heros"
 import { fetchUserAbilities } from "../../store/abilities"
 import { fetchHeroAbilities } from "../../store/heroAbil"
-import { HeroContext } from '../../context/HeroContextCont';
+import { HeroContext } from '../../context/HeroContext';
 import HeroDetailsCard from '../Hero'; 
 import NewHeroForm from '../Hero/newHero.js'
 import EditHeroForm from '../Hero/editingHero.js'
@@ -21,16 +21,32 @@ const Home = () => {
 	const allAbils	= useSelector(state => state.abilities)
 
 	const { currHero, setCurrHero, images } = useContext(HeroContext);
+	const abilStockImages = [
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916069/heart_c6dviy.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916050/skeleton_r4ltjc.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916038/eagle_cmscmd.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916024/mind-control_sktr3s.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916009/fire_byq2jw.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652915993/spell-book_1_oanfuh.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652915948/smoke_gagzui.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652913887/magic_gnchct.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652913875/spell-book_n27jh7.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652913823/fireball_vrtuhf.png",
+	]
 
 	const [showAbils, setShowAbils] 		= useState(false);
 	const [editingHero, setEditingHero] 	= useState(false)
+	const [currSelAbil, setCurrSelAbil] 	= useState()
 	const [buildNewHero, setBuildNewHero] 	= useState(false)
+	const [buildNewAbil, setBuildNewAbil] 	= useState(false)
 	const [newHeroImage, setNewHeroImage] 	= useState()
 	const [selHeroAbilNum, setSelHeroAbilNum] = useState(0)
 
 	useEffect(() => {
 		if (user) {
 			dispatch(fetchUserHeros(user))
+			console.log("just about to fetch abilities")
 			dispatch(fetchUserAbilities(user))
 		} else <Redirect to='/' />
 	}, [user])
@@ -53,6 +69,20 @@ const Home = () => {
 		setBuildNewHero(!buildNewHero)
 	}
 
+	const startNewAbil = () => {
+		setEditingHero(false)
+		setCurrHero()
+		setBuildNewAbil(!buildNewAbil)
+	}
+
+	const showAllAbilButton = () => {
+		setShowAbils(!showAbils)
+	}
+
+	const setCurrSelAbilFunc = (abil) => {
+		setCurrSelAbil(abil)
+	}
+
 	return (
 		<div className="homebody">
 			<div className="jccen w100">
@@ -63,7 +93,7 @@ const Home = () => {
 			<div className="homeMainContainer">
 				<div className="lgrid">
 					<button type="button"
-						className="hcp"
+						className="hcp showAllButton" // TODO Bad classname
 						onClick={startNewHero}
 					>
 						Build Hero
@@ -117,32 +147,37 @@ const Home = () => {
 						setBuildNewHero={setBuildNewHero}
 						newHeroImage={newHeroImage}
 					/>}
-					<div className="ability display">
-						ability display for all other abils
-						{allAbils && showAbils && allAbils?.arr?.map(abil => (
-							<div key={abil.id} className="could do a component card here">
-								<img src={abil.heroImage} alt={abil.name}>
-									<div className="display like a title, or bottom left">{abil.name}</div>
-								</img>
-								<p className="under image">{abil.intro}</p>
-							</div>
-						))}
-					</div>
-					<div className="little space">
-					spacer
-								{/* 
-								under here im thinking it will display the details of an
-								ability that you select from the all ability menu
-								 */}
-					</div>
 					<div className="Selected ability details">
 						details on a selected ability
 					</div>
+					<div className="heroDisplay">
+						{allAbils && showAbils && allAbils?.arr?.map(abil => (
+							<div key={abil.id} className="could do a component card here">
+								<img src={abil.abilityImage} alt={abil.name}
+									className="abilImgCarousel hcp"
+									
+								/>
+								<div>{abil.name}</div>
+							</div>
+						))}
+					</div>
+					{currSelAbil && 
+					<div className="heroDisplay">
+						{currSelAbil.name}
+					</div>}
 				</div>
 				<div className="rgrid">
 					<button type="button"
 						className="showAllButton"
-						// onClick={setShowAbils(true)}
+						// TODO this className is very basic
+						onClick={startNewAbil}
+					>
+						Build new Ability
+					</button>
+					<button type="button"
+						className="showAllButton"
+						// TODO this className is very basic
+						onClick={showAllAbilButton}
 					>
 						Show all Abilities
 					</button>
