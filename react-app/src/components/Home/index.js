@@ -10,8 +10,8 @@ import NewHeroForm from '../Hero/newHero.js'
 import EditHeroForm from '../Hero/editingHero.js'
 import HeroFrame from "./heroFrame"
 import NewHeroImages from "./newHeroImages"
+import NewAbilCard from "../Abil/newAbil.js"
 import "./home.css"
-
 
 const Home = () => {
 	const dispatch 	= useDispatch();
@@ -165,6 +165,7 @@ const Home = () => {
 					<div className="heroDisplay">
 						{currSelAbil.name}
 					</div>}
+					<NewAbilCard />
 				</div>
 				<div className="rgrid">
 					<button type="button"

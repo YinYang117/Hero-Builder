@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { login } from '../../store/session';
 import Login from "../auth/Login"
@@ -12,10 +12,12 @@ import './navbar.css'
 
 const NavBar = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const user = useSelector(state => state.session.user);
 
-  const loginDemo = () => {
-    dispatch(login("Demo", "password"))
+  const loginDemo = async () => {
+    await dispatch(login("Demo", "password"))
+    .then(() => history.push('/home'))
   }
 
   return (

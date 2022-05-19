@@ -39,7 +39,7 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 		setResource(int)
 	}
 
-	const submitEditHero = (e) => {
+	const submitEditHero = async (e) => {
 		// const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 		setErrors([])
 		const newHero = hero
@@ -66,7 +66,7 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 		// hero has more abilities allocated then the new num of abils
 		newHero.details = details
 		if (!(errors.length > 1)) {
-			dispatch(editHero(newHero))
+			await dispatch(editHero(newHero))
 				.then(() => setEditingHero(false))
 				.catch(async (res) => {
 					console.log("res in hero editing hero .catch", res)

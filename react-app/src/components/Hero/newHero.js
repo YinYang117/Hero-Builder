@@ -53,7 +53,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero, newHeroImage }) => {
 		if (resource === 1) {
 			newHero.resourceName = resourceName
 			newHero.resourceAmount = resourceAmount
-		} else {
+		} else { // === 0
 			delete newHero.resourceName
 			delete newHero.resourceAmount
 		}
@@ -76,7 +76,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero, newHeroImage }) => {
 	}
 
 	const handleCancel = () => {
-		// clear Edits
+		// TODO clear fields?
 		setBuildNewHero(false)
 	}
 
