@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { HeroContext } from '../../context/HeroContext';
+import React, { useState } from 'react';
+
 // import { useSelector } from "react-redux";
 import AllHeroPortraits from "./allHeroPortraits";
 import ChooseHeroImage from "./chooseHeroImage";
@@ -8,9 +8,8 @@ import HeroEdit from "./heroEdit";
 import HeroBuild from "./heroBuild";
 import "./hero.css";
 
+
 const Heros = ({showHeroPortraits, buildingNewHero, setBuildingNewHero}) => {
-	// const heros = useSelector(state => state.abilities);
-	const { currHero, setCurrHero, heroStockImages } = useContext(HeroContext);
 
 	const [editingHero, setEditingHero] = useState(false);
 	const [heroImage, setHeroImage] = useState();
@@ -21,16 +20,21 @@ const Heros = ({showHeroPortraits, buildingNewHero, setBuildingNewHero}) => {
 			<AllHeroPortraits />
 			}
 			{(editingHero || buildingNewHero) &&
-			<ChooseHeroImage heroImage={heroImage} setHeroImage={setHeroImage} />
+			<ChooseHeroImage heroImage={heroImage}
+				setHeroImage={setHeroImage} />
 			}
 			{!editingHero &&
 			<HeroDetails setEditingHero={setEditingHero} />
 			}
 			{editingHero && !buildingNewHero &&
-			<HeroEdit heroImage={heroImage} setHeroImage={setHeroImage} />
+			<HeroEdit heroImage={heroImage}
+				setHeroImage={setHeroImage}
+				editingHero={editingHero}
+				setEditingHero={setEditingHero} />
 			}
 			{buildingNewHero &&
-			<HeroBuild heroImage={heroImage} setHeroImage={setHeroImage} />
+			<HeroBuild heroImage={heroImage}
+				setHeroImage={setHeroImage} />
 			}
 		</>
 	)

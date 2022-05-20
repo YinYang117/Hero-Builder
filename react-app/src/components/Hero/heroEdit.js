@@ -5,14 +5,13 @@ import { editHero } from "../../store/heros"
 import "./hero.css"
 
 
-const HeroEdit = ({heroImage, setHeroImage}) => {
+const HeroEdit = ({heroImage, setHeroImage, editingHero, setEditingHero}) => {
 	const dispatch = useDispatch();
 
-	const { currHero, setCurrHero } = useContext(HeroContext);
+	const { currHero } = useContext(HeroContext);
 
 	const [heroName, setHeroName] = useState(currHero.name)
 	const [intro, setIntro] = useState(currHero.intro)
-	const [heroImage, setHeroImage] = useState(currHero.heroImage)
 	const [hp, setHp] = useState(currHero.hp)
 	const [resource, setResource] = useState(currHero.resource)
 	const [resourceName, setResourceName] = useState(" ")
@@ -27,8 +26,12 @@ const HeroEdit = ({heroImage, setHeroImage}) => {
 	const [errors, setErrors] = useState([])
 
 	useEffect(() => {
-		setHeroImage(newHeroImage)
-	},[newHeroImage])
+		setHeroImage(currHero.heroImage)
+	},[currHero, setHeroImage])
+
+	useEffect(() => {
+		setHeroImage(heroImage)
+	},[heroImage, setHeroImage])
 
 	const handelCheck = (e) => {
 		let str = e.target.value
@@ -71,7 +74,6 @@ const HeroEdit = ({heroImage, setHeroImage}) => {
 	}
 
 	const handleCancel = () => {
-		// TODO clear Edits
 		setEditingHero(false)
 	}
 
