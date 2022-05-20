@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useDispatch } from "react-redux";
+import { HeroContext } from '../../context/HeroContext';
 import { editHero } from "../../store/heros"
 import "./hero.css"
 
-const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero, newHeroImage }) => {
-	const dispatch = useDispatch();
-	// const currHeroAbils = useSelector(state => state.heroAbils)
-	// might not need ^ depending on where I display these
 
-	const [heroName, setHeroName] = useState(hero.name)
-	const [intro, setIntro] = useState(hero.intro)
-	const [heroImage, setHeroImage] = useState(hero.heroImage)
-	const [hp, setHp] = useState(hero.hp)
-	const [resource, setResource] = useState(hero.resource)
+const HeroEdit = ({heroImage, setHeroImage}) => {
+	const dispatch = useDispatch();
+
+	const { currHero, setCurrHero } = useContext(HeroContext);
+
+	const [heroName, setHeroName] = useState(currHero.name)
+	const [intro, setIntro] = useState(currHero.intro)
+	const [heroImage, setHeroImage] = useState(currHero.heroImage)
+	const [hp, setHp] = useState(currHero.hp)
+	const [resource, setResource] = useState(currHero.resource)
 	const [resourceName, setResourceName] = useState(" ")
 	const [resourceAmount, setResourceAmount] = useState(0)
-	const [physicalArmor, setPhysicalArmor] = useState(hero.physicalArmor)
-	const [magicResist, setMagicResist] = useState(hero.magicResist)
-	const [attackDamage, setAttackDamage] = useState(hero.attackDamage)
-	const [attackRange, setAttackRange] = useState(hero.attackRange)
-	const [attackSpeed, setAttackSpeed] = useState(hero.attackSpeed)
-	const [moveSpeed, setMoveSpeed] = useState(hero.moveSpeed)
-	// const [numOfAbilities, setNumOfAbilities] = useState(hero.numOfAbilities)
-	const [details, setDetails] = useState(hero?.details)
-	// const [updatedAt, setUpdatedAt] = useState(hero.updatedAt)
+	const [physicalArmor, setPhysicalArmor] = useState(currHero.physicalArmor)
+	const [magicResist, setMagicResist] = useState(currHero.magicResist)
+	const [attackDamage, setAttackDamage] = useState(currHero.attackDamage)
+	const [attackRange, setAttackRange] = useState(currHero.attackRange)
+	const [attackSpeed, setAttackSpeed] = useState(currHero.attackSpeed)
+	const [moveSpeed, setMoveSpeed] = useState(currHero.moveSpeed)
+	const [details, setDetails] = useState(currHero?.details)
 	const [errors, setErrors] = useState([])
 
 	useEffect(() => {
@@ -37,14 +37,14 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero, newHeroImag
 	}
 
 	useEffect(() => {
-		if (hero.resourceName) setResourceName(hero.resourceName)
-		if (hero.resourceAmount) setResourceAmount(hero.resourceAmount)
+		if (currHero.resourceName) setResourceName(currHero.resourceName)
+		if (currHero.resourceAmount) setResourceAmount(currHero.resourceAmount)
 	},[])
 
 	const submitEditHero = async (e) => {
 		// const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 		setErrors([])
-		const newHero = hero
+		const newHero = currHero
 		newHero.name = heroName
 		newHero.intro = intro
 		newHero.heroImage = heroImage
@@ -63,9 +63,6 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero, newHeroImag
 		newHero.attackRange = attackRange
 		newHero.attackSpeed = attackSpeed
 		newHero.moveSpeed = moveSpeed
-		// newHero.numOfAbilities = numOfAbilities
-		// TODO add an extra notification or something if
-		// hero has more abilities allocated then the new num of abils
 		newHero.details = details
 		
 		const data = await dispatch(editHero(newHero))
@@ -101,7 +98,7 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero, newHeroImag
 							required="required"
 							value={heroName} />
 						</div>
-						<img src={heroImage} alt={hero.name} className="heroDetImg" />
+						<img src={heroImage} alt={currHero.name} className="heroDetImg" />
 					</div>
 					{/* right, main data */}
 					<div className="fdcol hfmn">
@@ -245,15 +242,8 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero, newHeroImag
 					value={details} />
 				</div>
 			</form>
-			{/* <div >Current hero abilities TODO</div> */}
 		</div>
 	)
 }
 
-export default EditHeroForm;
-	// <div className="fdrow heroDetSec" >
-		// 	<label  >
-		// 		Number of Abilities
-		// 	</label>
-		// 	<input onChange={e => setNumOfAbilities(e.target.value)} type="number" min='0' max='10' step='1' className="" placeholder='0 - 10' required="required" value={numOfAbilities} />
-		// </div>
+export default HeroEdit;

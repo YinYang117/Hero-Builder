@@ -5,7 +5,7 @@ export const HeroContext = createContext();
 export const HeroProvider = props => {
     const [currHero, setCurrHero] = useState();
 
-    const images = [
+    const heroStockImages = [
         "https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804394/clipart-royalty-free-download-render-by-yugiohdragon-yugioh-dark-magician-11562867276kbcoi3kkiw_es0eo6.png",
         "https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804287/Archer-Transparent-Background-2_u09kgp.png",    
         "https://res.cloudinary.com/dzrimpg5t/image/upload/v1652802957/woman-1959982_1920_snreod.png",    
@@ -20,7 +20,7 @@ export const HeroProvider = props => {
 
     return (
         <HeroContext.Provider
-            value={{ currHero, setCurrHero, images }}
+            value={{ currHero, setCurrHero, heroStockImages }}
         >
             {props.children}
         </HeroContext.Provider>

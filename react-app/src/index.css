@@ -2,6 +2,9 @@
 body {
     margin: 0px;
     background-color: rgb(34, 8, 0);
+}
+
+* {
     font-family: Cambria;
 }
 
@@ -33,6 +36,11 @@ body {
     align-content: center;
 }
 
+.jccen {
+    display: flex;
+    justify-content: center;
+}
+
 .sb {
     display: flex;
     justify-content: space-between;
@@ -55,11 +63,6 @@ body {
     width: 100%;
 }
 
-.jccen {
-    display: flex;
-    justify-content: center;
-}
-
 .m10 {
     margin: 10px;
 }
@@ -78,6 +81,13 @@ body {
     padding-right: 10px;
 }
 
-.w100 {
-    width: 100vw
+.p5 {
+	padding: 5px;
+}
+
+
+.hfmn{
+	/* stands for half main, which references homeMainContainer */
+	/* TODO, change to 45% of container instead...?? */
+	width: 33vw;
 }

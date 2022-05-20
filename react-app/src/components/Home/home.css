@@ -1,47 +1,38 @@
-.homebody {
+/* 
+	/////////////////////
+	Specifically used in index
+*/
+
+.homeContainer {
+	/* keeps background color across whole page
+	(atm no footer) */
 	background: rgb(118,141,255);
 	background: linear-gradient(167deg, rgb(118, 253, 255) 0%, rgb(74, 164, 255) 50%, rgb(233, 90, 255) 100%);	height: 100vh;
 	width: auto;
 	min-width: 100vw;
 	height: auto;
-	min-height: 100vh
-}
+	min-height: 100vh;
 
-.homeMainContainer {
 	display: grid;
 	grid-template-columns: 1fr 70vw 1fr;
 	grid-template-rows: auto;
 	grid-template-areas: 'left' 'center' 'right';
-
 }
 
-.lgrid {
-	grid-area: 'left';
-}
+.lgrid {grid-area: 'left';}
+.cgrid {grid-area: 'center';}
+.rgrid {grid-area: 'right';}
 
-.cgrid {
-	grid-area: 'center';
-}
-
-.rgrid {
-	grid-area: 'right';
-}
-
-.showAllButton {
+/* 
+	/////////////////////
+	Specifically used in left / right
+*/
+.sideButton {
 	border-radius: 5px;
 	margin: 20px;
 }
 
-.heroDisplay{
-	display: flex;
-	flex-flow: row;
-	max-width: 70vw;
-	flex-wrap: wrap;
-	border: 1px solid rgb(255, 208, 0);
-	margin: 10px;
-}
-
-.heroNamePlate{
+.namePlate{
 	background: rgb(97, 242, 255);
 	border: 1px solid rgb(116, 0, 110);
 	margin: 0px 10px 10px 5px;
@@ -49,25 +40,7 @@
 	box-shadow: 0px 10px 13px -7px #34005a, 5px 5px 15px 5px rgba(159,0,173,0);
 }
 
-.heroFrame{
-	border: 1px solid rgb(255, 208, 0);
-	background-color: rgb(0, 242, 255);
-	width: auto;
-	min-width: 120px;
-	height: auto;
-	min-height: 160px;
-	margin: 5px 0px 5px 5px;
-	box-shadow: 0px 10px 15px -5px #34005a, 5px 5px 15px 5px rgba(159,0,173,0);
-}
-
-.heroFrameImg{
-	max-width: 110px;
-	max-height: 140px;
-}
-
-.abilImgCarousel{
-	width: auto;
-	max-width: 60px;
-	height: auto;
-	max-height: 60px;
-}
+/* 
+	/////////////////////
+	Specifically used in center
+*/
