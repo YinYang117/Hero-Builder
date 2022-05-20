@@ -40,6 +40,7 @@ const Home = () => {
 	const [showAbils, setShowAbils] 		= useState(false);
 	const [showallHeros, setShowallHeros] 	= useState(false);
 	const [editingHero, setEditingHero] 	= useState(false)
+	const [editingAbil, setEditingAbil] 	= useState(false)
 	const [currSelAbil, setCurrSelAbil] 	= useState()
 	const [buildNewHero, setBuildNewHero] 	= useState(false)
 	const [buildNewAbil, setBuildNewAbil] 	= useState(false)
@@ -132,6 +133,11 @@ const Home = () => {
 						images?.map((img, i) => (
 							<NewHeroImages key={i} img={img} i={i} setNewHeroImage={setNewHeroImage} />
 						))}
+						{/* same area displays hero image choices */}
+						{editingHero && currHero && !buildNewAbil && !buildNewHero &&
+						images?.map((img, i) => (
+							<NewHeroImages key={i} img={img} i={i} setNewHeroImage={setNewHeroImage} />
+						))}
 						{/* same area displays new ability image choices */}
 						{buildNewAbil && !currHero && !buildNewHero &&
 						abilStockImages?.map((img, i) => (
@@ -151,7 +157,7 @@ const Home = () => {
 						hero={currHero}
 						heroAbil={selHeroAbilNum}
 						editingHero={editingHero}
-						setEditingHero={setEditingHero}
+						setEditingHero={setEditingHero} newHeroImage={newHeroImage}
 					/>}
 					{buildNewHero && !editingHero && !currHero &&
 						<NewHeroForm

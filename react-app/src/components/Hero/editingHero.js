@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { editHero } from "../../store/heros"
 import "./hero.css"
 
-
-const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
+const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero, newHeroImage }) => {
 	const dispatch = useDispatch();
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
-
-	// let fullDate = hero?.updatedAt
-	// let shrtDate
-	// if (fullDate) shrtDate = (fullDate.split('').splice(8, 8).join(''))
 
 	const [heroName, setHeroName] = useState(hero.name)
 	const [intro, setIntro] = useState(hero.intro)
@@ -31,6 +26,9 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 	// const [updatedAt, setUpdatedAt] = useState(hero.updatedAt)
 	const [errors, setErrors] = useState([])
 
+	useEffect(() => {
+		setHeroImage(newHeroImage)
+	},[newHeroImage])
 
 	const handelCheck = (e) => {
 		let str = e.target.value
@@ -103,8 +101,7 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 							required="required"
 							value={heroName} />
 						</div>
-						<img src={hero.heroImage} alt={hero.name} className="heroDetImg" />
-						<div>TODO carousel for images you can choose</div>
+						<img src={heroImage} alt={hero.name} className="heroDetImg" />
 					</div>
 					{/* right, main data */}
 					<div className="fdcol hfmn">
@@ -260,4 +257,3 @@ export default EditHeroForm;
 		// 	</label>
 		// 	<input onChange={e => setNumOfAbilities(e.target.value)} type="number" min='0' max='10' step='1' className="" placeholder='0 - 10' required="required" value={numOfAbilities} />
 		// </div>
-
