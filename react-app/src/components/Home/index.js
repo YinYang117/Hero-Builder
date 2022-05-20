@@ -11,7 +11,9 @@ import EditHeroForm from '../Hero/editingHero.js'
 import HeroFrame from "./heroFrame"
 import NewHeroImages from "./newHeroImages"
 import NewAbilityImages from "./newAbilityImages"
+import AbilDetailsCard from "../Abil"
 import NewAbilCard from "../Abil/newAbil.js"
+import AbilEditCard from "../Abil/editAbil"
 import "./home.css"
 
 const Home = () => {
@@ -41,11 +43,11 @@ const Home = () => {
 	const [showallHeros, setShowallHeros] 	= useState(false);
 	const [editingHero, setEditingHero] 	= useState(false)
 	const [editingAbil, setEditingAbil] 	= useState(false)
-	const [currSelAbil, setCurrSelAbil] 	= useState()
+	const [currAbil, setCurrAbil] 			= useState()
 	const [buildNewHero, setBuildNewHero] 	= useState(false)
 	const [buildNewAbil, setBuildNewAbil] 	= useState(false)
 	const [newHeroImage, setNewHeroImage] 	= useState("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804287/Archer-Transparent-Background-2_u09kgp.png")
-	const [selHeroAbilNum, setSelHeroAbilNum] 	= useState(0)
+	// const [selHeroAbilNum, setSelHeroAbilNum] 	= useState(0)
 	const [newAbilityImage, setNewAbilityImage] = useState("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png")
 
 	useEffect(() => {
@@ -87,8 +89,8 @@ const Home = () => {
 		setShowAbils(!showAbils)
 	}
 
-	const setCurrSelAbilFunc = (abil) => {
-		setCurrSelAbil(abil)
+	const setCurrAbilFunc = (abil) => {
+		setCurrAbil(abil)
 	}
 
 	return (
@@ -148,14 +150,14 @@ const Home = () => {
 						<HeroDetailsCard
 						hero={currHero}
 						setCurrHero={setCurrHero}
-						heroAbil={selHeroAbilNum}
+						// heroAbil={selHeroAbilNum}
 						editingHero={editingHero}
 						setEditingHero={setEditingHero}
 					/>}
 					{editingHero && currHero && !buildNewHero &&
 						<EditHeroForm
 						hero={currHero}
-						heroAbil={selHeroAbilNum}
+						// heroAbil={selHeroAbilNum}
 						editingHero={editingHero}
 						setEditingHero={setEditingHero} newHeroImage={newHeroImage}
 					/>}
@@ -173,18 +175,23 @@ const Home = () => {
 							<div key={abil.id} className="could do a component card here">
 								<img src={abil.abilityImage} alt={abil.name}
 									className="abilImgCarousel hcp"
-									
+									onClick={e => setCurrAbilFunc(abil)}
 								/>
 								<div>{abil.name}</div>
 							</div>
 						))}
 					</div>
-					{currSelAbil && 
+					{currAbil && !editingAbil &&
 					<div className="heroDisplay">
-						{currSelAbil.name}
+						<AbilDetailsCard abil={currAbil} setEditingAbil={setEditingAbil} setCurrAbil={setCurrAbil}/>
+					</div>}
+					{currAbil && editingAbil &&
+					<div className="heroDisplay">
+						<AbilEditCard abil={currAbil} setEditingAbil={setEditingAbil} setCurrAbil={setCurrAbil}/>
 					</div>}
 					{buildNewAbil && 
-						<NewAbilCard newAbilityImage={newAbilityImage} setBuildNewAbil={setBuildNewAbil} />}
+						<NewAbilCard newAbilityImage={newAbilityImage} setBuildNewAbil={setBuildNewAbil}
+						/>}
 				</div>
 				<div className="rgrid">
 					<button type="button"

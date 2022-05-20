@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import * as heroActions from "../../store/heros"
 import "./hero.css"
 
-
-const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrHero }) => {
+// heroAbil, setEditingHero
+const HeroDetailsCard = ({ hero, setEditingHero, setCurrHero }) => {
 	const dispatch = useDispatch();
 
 	const [errors, setErrors] = useState([])
@@ -12,7 +12,7 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrH
 	// const currHeroAbils = useSelector(state => state.heroAbils)
 	// might not need ^ depending on where I display these
 
-	const [shrtDate, setShrtDate] = useState('')
+	// const [shrtDate, setShrtDate] = useState('')
 
 	// useEffect(() => {
 	// 	let fullDate = hero?.updatedAt
@@ -21,34 +21,37 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrH
 	// },[hero])
 
 	const editHero = (e) => {
-		e.preventDefault();
+		// e.preventDefault();
 		setEditingHero(true)
 	}
 
 	const deleteHero = async () => {
 		await dispatch(heroActions.deleteHero(hero.id))
 		.then(() => {
-			// setEditingHero(false)
+			// setEditingHero(false) // not needed with current setup
 			setCurrHero()
 		})
 		.catch(async (res) => {
 			const data = await res.json()
 			if (data && data.errors) setErrors(data.errors)
 		})
+		// TODO do I need to update these errors?
+		// const data = await ...
+		// if (data) type of thing
 	}
 	
 	const usesReso = () => {
 		if (hero.resource === 1) return (<div>Yes</div>)
 		else if (hero.resource === 0) return (<div>No</div>)
-		else return (<div>BUG w/ Int</div>)
+		else return (<div>BUG w/ Int</div>) // Shouldnt appear
 	}
 
 	return (
 		<>
 			{errors &&
-				<div className="TODO errors">
-					{errors.map((error) => <div key={error}>{error}</div>)}
-				</div>}
+			<div className="TODO errors">
+				{errors.map((error) => <div key={error}>{error}</div>)}
+			</div>}
 			{/* split img / main data */}
 			<div className="fdrow sa">
 				{/* left, image + name */}

@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { buildAbil } from "../../store/abilities"
+import { editAbil } from "../../store/abilities"
 import './abil.css'
 
 
-const AbilDetailsCard = ({newAbilityImage, abil, editingAbil, setEditingAbil}) => {
+const AbilEditCard = ({newAbilityImage, abil, editingAbil, setEditingAbil}) => {
 	const dispatch = useDispatch();
 
 	const [errors, setErrors] = useState([])
-	const [name,setName] = useState("")
-	const [description, setDescription] = useState("")
-	const [abilityImage, setAbilityImage] = useState(newAbilityImage)
-	const [usesResource, setUsesResource] = useState(0)
-	const [resourceName, setResourceName] = useState("")
-	const [resourceCost, setResourceCost] = useState(1)
-	const [usesCharges, setUsesCharges] = useState(0)
-	const [numCharges, setNumCharges] = useState(1)
-	const [chargeRechargeRate, setChargeRechargeRate] = useState(1)
-	const [usesCooldown, setUsesCooldown] = useState(0)
-	const [cooldown, setCooldown] = useState(2)
-	const [channeled, setChanneled] = useState(0)
-	const [channelTime, setChannelTime] = useState(1.5)
-	const [ultimate, setUltimate] = useState(0)
-	const [details, setDetails] = useState("")
+	const [name,setName] = useState(abil.name)
+	const [description, setDescription] = useState(abil.description)
+	const [abilityImage, setAbilityImage] = useState(abil.abilityImage)
+	const [usesResource, setUsesResource] = useState(abil.usesResource)
+	const [resourceName, setResourceName] = useState(abil?.resourceName)
+	const [resourceCost, setResourceCost] = useState(abil?.resourceCost)
+	const [usesCharges, setUsesCharges] = useState(abil.usesCharges)
+	const [numCharges, setNumCharges] = useState(abil?.numCharges)
+	const [chargeRechargeRate, setChargeRechargeRate] = useState(abil?.chargeRechargeRate)
+	const [usesCooldown, setUsesCooldown] = useState(abil.usesCooldown)
+	const [cooldown, setCooldown] = useState(abil?.cooldown)
+	const [channeled, setChanneled] = useState(abil.channeled)
+	const [channelTime, setChannelTime] = useState(abil?.channelTime)
+	const [ultimate, setUltimate] = useState(abil.ultimate)
+	const [details, setDetails] = useState(abil?.details)
 
 	useEffect(() => {
 		setAbilityImage(newAbilityImage)
 	},[newAbilityImage])
 
-	const submitNewAbil = async () => {
+	const submitEditedAbil = async () => {
 		setErrors([])
 		const editedAbil = abil
 		editedAbil.name = name
@@ -65,7 +65,7 @@ const AbilDetailsCard = ({newAbilityImage, abil, editingAbil, setEditingAbil}) =
 		editedAbil.ultimate = ultimate
 		editedAbil.details = details
 
-		const data = await dispatch(buildAbil(editedAbil))
+		const data = await dispatch(editAbil(editedAbil))
 		if (!data) setEditingAbil(false) // TODO toggle build state
 		else setErrors(data) // should be an array
 	}
@@ -116,7 +116,7 @@ const AbilDetailsCard = ({newAbilityImage, abil, editingAbil, setEditingAbil}) =
 			</div>}
 			<form onSubmit={e => {
 				e.preventDefault()
-				submitNewAbil()
+				submitEditedAbil()
 			}}>
 				<div className="fdrow">
 					<div className="left side fdcol hfmn">
@@ -172,7 +172,7 @@ const AbilDetailsCard = ({newAbilityImage, abil, editingAbil, setEditingAbil}) =
 							<button type="submit"
 							className="w40p h80p confirmShadow"
 							>
-								Build Ability!</button>
+								Submit Edits!</button>
 							<button onClick={handleCancel}
 							className="w40p h80p cancelShadow"
 							>
@@ -274,4 +274,4 @@ const AbilDetailsCard = ({newAbilityImage, abil, editingAbil, setEditingAbil}) =
 	)
 }
 
-export default AbilDetailsCard;
+export default AbilEditCard;
