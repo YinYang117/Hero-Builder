@@ -27,3 +27,5 @@ an ability costs, the more charges it has, etc. will increase the cost of using 
 ability.
 
 Mix and match to create truly unique combinations!
+
+Technologies used include Python, Postgres, SQLAlchemy, WTForms, JS, React, Redux, and Docker.
