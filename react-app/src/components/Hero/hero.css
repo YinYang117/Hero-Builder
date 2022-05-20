@@ -81,3 +81,14 @@
 .editIntro {
 	height: auto;
 }
+
+.heroIntro {
+	width: 100%;
+	word-wrap:break-word;
+	background-color: rgba(180, 251, 244, 0.913);
+	border: 2px solid gold;
+}
+
+.p5 {
+	padding: 5px;
+}

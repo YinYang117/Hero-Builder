@@ -54,7 +54,7 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrH
 				{/* left, image + name */}
 				<div className="fdcol hfmn" >
 						<div className="fdrow sb" >
-							<div className="mlr10 w100p aicen heroDetName" >Name: {hero.name}</div>
+							<div className="mlr10 w100p aicen heroDetName p5" >Name: {hero.name}</div>
 						</div>
 						<img src={hero.heroImage} alt={hero.name} className="heroDetImg" />
 				</div>
@@ -117,6 +117,12 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrH
 					</div> */}
 				</div>
 			</div>
+			<div className='heroIntro p5'>
+				{hero.intro}
+			</div>
+			{hero.details && <div className='heroIntro p5'>
+				{hero.details}
+			</div>}
 		</>
 	)
 }

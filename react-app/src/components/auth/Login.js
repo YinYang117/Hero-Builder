@@ -62,7 +62,7 @@ const Login = () => {
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                             />
-                            <button id="loginButton" type='submit'>Login</button>
+                            <button className="loginButton" type='submit'>Login</button>
                         </div>
                     </form>
                 </Modal>
