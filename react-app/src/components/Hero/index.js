@@ -25,8 +25,8 @@ const HeroDetailsCard = ({ hero, heroAbil, editingHero, setEditingHero, setCurrH
 		setEditingHero(true)
 	}
 
-	const deleteHero = () => {
-		dispatch(heroActions.deleteHero(hero.id))
+	const deleteHero = async () => {
+		await dispatch(heroActions.deleteHero(hero.id))
 		.then(() => {
 			// setEditingHero(false)
 			setCurrHero()

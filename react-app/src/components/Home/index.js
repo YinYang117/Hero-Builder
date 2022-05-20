@@ -38,11 +38,12 @@ const Home = () => {
 	]
 
 	const [showAbils, setShowAbils] 		= useState(false);
+	const [showallHeros, setShowallHeros] 	= useState(false);
 	const [editingHero, setEditingHero] 	= useState(false)
 	const [currSelAbil, setCurrSelAbil] 	= useState()
 	const [buildNewHero, setBuildNewHero] 	= useState(false)
 	const [buildNewAbil, setBuildNewAbil] 	= useState(false)
-	const [newHeroImage, setNewHeroImage] 	= useState()
+	const [newHeroImage, setNewHeroImage] 	= useState("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804287/Archer-Transparent-Background-2_u09kgp.png")
 	const [selHeroAbilNum, setSelHeroAbilNum] 	= useState(0)
 	const [newAbilityImage, setNewAbilityImage] = useState("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png")
 
@@ -62,7 +63,10 @@ const Home = () => {
 
 	const showAllHeros = () => {
 		setCurrHero()
+		setShowallHeros(!showallHeros)
 		setBuildNewHero(false)
+		setBuildNewAbil(false)
+		setEditingHero(false)
 	}
 
 	const startNewHero = () => {
@@ -119,7 +123,7 @@ const Home = () => {
 				<div className="cgrid">
 					{/* small hero images container */}
 					<div className="heroDisplay">
-						{heros && !currHero && !buildNewHero && !buildNewAbil &&
+						{heros && showallHeros && !currHero && !buildNewHero && !buildNewAbil &&
 						heros?.arr?.map(hero => (
 							<HeroFrame key={hero.id} hero={hero} />
 						))}

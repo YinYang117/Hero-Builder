@@ -248,7 +248,7 @@ const EditHeroForm = ({ hero, heroAbil, editingHero, setEditingHero }) => {
 					value={details} />
 				</div>
 			</form>
-			<div >Current hero abilities TODO</div>
+			{/* <div >Current hero abilities TODO</div> */}
 		</div>
 	)
 }

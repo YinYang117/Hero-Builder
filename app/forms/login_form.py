@@ -8,9 +8,12 @@ def user_exists(form, field):
     # Checking if user exists
     credential = form.data["credential"]
     user = User.query.filter(User.email == credential).first()
+    print("-------------------login debug 1", user)
     if not user:
         user = User.query.filter(User.username == credential).first()
+        print("-------------------login debug 2", user)
         if not user:
+            print("---------------------login debug 3")
             raise ValidationError('User not found.')
 
 
@@ -24,8 +27,12 @@ def password_matches(form, field):
             raise ValidationError('Password was incorrect.')
     else:
         user = User.query.filter(User.username == credential).first()
-        if not user.check_password(password):
-            raise ValidationError('Password was incorrect.')
+        if user:
+            if not user.check_password(password):
+                raise ValidationError('Password was incorrect.')
+        else:
+            raise ValidationError('User not found. Check Email / Username and try again.')
+
 
 
 class LoginForm(FlaskForm):

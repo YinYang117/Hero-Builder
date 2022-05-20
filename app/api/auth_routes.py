@@ -37,7 +37,9 @@ def login():
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("---------------------login debug 4")
     if form.validate_on_submit():
+        print("---------------------login debug 5")
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.username == form.data['credential']).first()
         if user:
@@ -47,8 +49,8 @@ def login():
             user = User.query.filter(User.email == form.data['credential']).first()
             login_user(user)
             return user.to_dict()
-
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    else:   
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @auth_routes.route('/logout')

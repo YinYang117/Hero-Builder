@@ -11,7 +11,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero, newHeroImage }) => {
 
 	const [heroName, setHeroName] = useState("")
 	const [intro, setIntro] = useState("")
-	const [heroImage, setHeroImage] = useState("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652802933/fantasy-g8ad69c2ca_1920_fo8cmj.png")
+	const [heroImage, setHeroImage] = useState(newHeroImage)
 	const [hp, setHp] = useState(100)
 	const [resource, setResource] = useState(0)
 	const [resourceName, setResourceName] = useState("")
@@ -245,7 +245,7 @@ const NewHeroForm = ({ buildNewHero, setBuildNewHero, newHeroImage }) => {
 					value={details} />
 				</div>
 			</form>
-			<div >Current hero abilities TODO</div>
+			{/* <div >Current hero abilities TODO</div> */}
 		</div>
 	)
 }
