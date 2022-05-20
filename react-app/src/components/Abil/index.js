@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { AbilContext } from '../../context/AbilContext';
-// import { useSelector } from "react-redux";
 import AllAbilPortraits from "./allAbilPortraits";
 import ChooseAbilImage from "./chooseAbilImage";
 import AbilDetails from "./abilDetails";
@@ -8,9 +7,9 @@ import AbilEdit from "./abilEdit";
 import AbilBuild from "./abilBuild";
 import "./abil.css";
 
+
 const Abils = ({showAbilPortraits, buildingNewAbil, setBuildingNewAbil}) => {
-	// const abils = useSelector(state => state.abilities);
-	const { currAbil, setCurrAbil, abilStockImages } = useContext(AbilContext);
+	const { currAbil } = useContext(AbilContext);
 
 	const [editingAbil, setEditingAbil] = useState(false);
 	const [abilImage, setAbilImage] = useState();
@@ -21,15 +20,16 @@ const Abils = ({showAbilPortraits, buildingNewAbil, setBuildingNewAbil}) => {
 			<AllAbilPortraits />
 			}
 			{(editingAbil || buildingNewAbil) &&
-			<ChooseAbilImage abilImage={abilImage} setAbilImage={setAbilImage} />
+			<ChooseAbilImage abilImage={abilImage}
+				setAbilImage={setAbilImage} />
 			}
-			{!editingAbil &&
+			{currAbil && !editingAbil && !buildingNewAbil &&
 			<AbilDetails setEditingAbil={setEditingAbil} />
 			}
-			{editingAbil && !buildingNewAbil &&
+			{currAbil && editingAbil && !buildingNewAbil &&
 			<AbilEdit abilImage={abilImage} setAbilImage={setAbilImage} />
 			}
-			{buildingNewAbil &&
+			{buildingNewAbil && !currAbil && !editingAbil &&
 			<AbilBuild abilImage={abilImage} setAbilImage={setAbilImage} />
 			}
 		</>

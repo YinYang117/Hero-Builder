@@ -1,30 +1,21 @@
 import React from 'react';
-import Heros from "../Hero"
-import Abils from "../Abil"
-import "./home.css"
+import {useSelector} from 'react-redux';
+import Heros from "../Hero";
+import Abils from "../Abil";
+import "./home.css";
 
-const Center = ({
-	showHeroPortraits, 
-	showAbilPortraits,
-	buildingNewHero,
-	setBuildingNewHero,
-	buildingNewAbil,
-	setBuildingNewAbil,
-}) => {
+const Center = () => {
+	const user = useSelector(state => state.session.user)
 
 	return (
-		<>
-			<Heros
-				showHeroPortraits={showHeroPortraits}
-				buildingNewHero={buildingNewHero}
-				setBuildingNewHero={setBuildingNewHero}
-			/>
-			<Abils
-				showAbilPortraits={showAbilPortraits}
-				buildingNewAbil={buildingNewAbil}
-				setBuildingNewAbil={setBuildingNewAbil}
-			/>
-		</>
+		<div className="cgrid jccen">
+				{user &&
+				<h1 className="cgrid">
+					Welcome to Hero Builder {user.username}!
+				</h1>}
+			<Heros/>
+			<Abils/>
+		</div>
 	)
 }
 

@@ -3,29 +3,30 @@ import { useSelector } from "react-redux";
 import { AbilContext } from '../../context/AbilContext';
 import "./home.css"
 
-const Right = ({showAbilPortraits, setShowAbilPortraits, buildingNewAbil, setBuildingNewAbil}) => {
+const Right = () => {
 	const abils = useSelector(state => state.abilities);
-	const { setCurrAbil } = useContext(AbilContext);
 
-	const startNewAbil = () => {
-		setBuildNewAbil(!buildNewAbil)
-	}
+	const { showAbilPortraits,
+			setShowAbilPortraits,
+			buildingNewAbil,
+			setBuildingNewAbil,
+			setCurrAbil 
+			} = useContext(AbilContext);
 
-	const showAllAbilButton = () => {
-		setShowAbilPortraits(!showAbilPortraits)
-	}
 
 	return (
-		<>
-			<button type="button"
+		<div className="rgrid">
+			<button
 				className="hcp sideButton"
-				onClick={startNewAbil}
+				type="button"
+				onClick={e => setBuildingNewAbil(!buildingNewAbil)}
 			>
 				Build New Ability
 			</button>
-			<button type="button"
+			<button
 				className="hcp sideButton"
-				onClick={showAllAbilButton}
+				type="button"
+				onClick={e => setShowAbilPortraits(!showAbilPortraits)}
 			>
 				Toggle All Abilities
 			</button>
@@ -40,7 +41,7 @@ const Right = ({showAbilPortraits, setShowAbilPortraits, buildingNewAbil, setBui
 					</div>
 				))}
 			</div>}
-		</>
+		</div>
 	)
 }
 

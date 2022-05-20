@@ -4,6 +4,8 @@ export const HeroContext = createContext();
 
 export const HeroProvider = props => {
     const [currHero, setCurrHero] = useState();
+    const [showHeroPortraits, setShowHeroPortraits] = useState(false);
+    const [buildingNewHero, setBuildingNewHero] = useState(false);
 
     const heroStockImages = [
         "https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804394/clipart-royalty-free-download-render-by-yugiohdragon-yugioh-dark-magician-11562867276kbcoi3kkiw_es0eo6.png",

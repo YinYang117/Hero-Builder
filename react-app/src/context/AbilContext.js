@@ -4,6 +4,8 @@ export const AbilContext = createContext();
 
 export const AbilProvider = props => {
     const [currAbil, setCurrAbil] = useState();
+	const [showAbilPortraits, setShowAbilPortraits] = useState(false);
+	const [buildingNewAbil, setBuildingNewAbil] = useState(false);
 
     const abilStockImages = [
 		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png",

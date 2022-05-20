@@ -12,12 +12,7 @@ const HeroFrame = ({hero, heroAbil}) => {
 	}
 	
 	return (
-		<div className="hcp heroFrame fdcol"
-		onClick={selectHero}
-		>
-			<img src={hero.heroImage} alt="heroFrame" className="heroFrameImg" />
-			<div className="">{hero.name}</div>
-		</div>
+
 	)
 }
 
