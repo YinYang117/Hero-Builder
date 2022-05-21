@@ -9,7 +9,7 @@ const HeroBuild = () => {
 
 	const user = useSelector(state => state.session.user)
 
-	const { buildingNewHero, setBuildingNewHero, heroImage, setHeroImage, currHero, setCurrHero } = useContext(HeroContext);
+	const { setBuildingNewHero, heroImage, setHeroImage, currHero, setCurrHero } = useContext(HeroContext);
 
 	const [heroName, setHeroName] = useState("")
 	const [intro, setIntro] = useState("")
