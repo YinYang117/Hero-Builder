@@ -75,10 +75,6 @@ const AbilEdit = () => {
 		setAbilImage(currAbil.abilityImage)
 	},[])
 
-	useEffect(() => {
-		setAbilImage(abilImage)
-	},[abilImage])
-
 	const resourceCheck = (e) => {
 		let str = e.target.value
 		let int = parseInt(str, 10)
@@ -123,7 +119,7 @@ const AbilEdit = () => {
 			}}>
 				<div className="fdrow">
 					<div className="left side fdcol hfmn">
-						<img src={abilImage} alt="new ability portraite" className="abilImg" /> {/* TODO classname */}
+						<img src={abilImage} alt="new ability portrait" className="abilImg" /> {/* TODO classname */}
 						<div className="conditionGroup fdcol">
 							<div>Uses Resources?</div>
 							<div className="checkboxContainer fdrow">

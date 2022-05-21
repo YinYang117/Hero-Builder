@@ -31,11 +31,7 @@ const HeroEdit = () => {
 
 	useEffect(() => {
 		setHeroImage(currHero.heroImage)
-	},[currHero])
-
-	useEffect(() => {
-		setHeroImage(heroImage)
-	},[heroImage])
+	},[])
 
 	const handelResourceCheckboxes = (e) => {
 		let str = e.target.value

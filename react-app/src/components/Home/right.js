@@ -10,8 +10,21 @@ const Right = () => {
 			setShowAbilPortraits,
 			buildingNewAbil,
 			setBuildingNewAbil,
-			setCurrAbil 
+			setCurrAbil,
+			setEditingAbil
 			} = useContext(AbilContext);
+
+	const buildNewAbilFunc = () => {
+		setCurrAbil()
+		setBuildingNewAbil((!buildingNewAbil))
+		setEditingAbil(false)
+	}
+
+	const clickAbilPortrait = (abil) => {
+		setCurrAbil(abil)
+		setBuildingNewAbil(false)
+		setEditingAbil(false)
+	}
 
 
 	return (
@@ -19,7 +32,7 @@ const Right = () => {
 			<button
 				className="hcp sideButton"
 				type="button"
-				onClick={e => setBuildingNewAbil(!buildingNewAbil)}
+				onClick={e => buildNewAbilFunc()}
 			>
 				Build New Ability
 			</button>
@@ -35,7 +48,7 @@ const Right = () => {
 				{abils?.arr?.map(abil => (
 					<div key={abil.id}
 					className="namePlate hcp"
-					onClick={e => setCurrAbil(abil)}
+					onClick={e => clickAbilPortrait(abil)}
 					>
 						{abil.name}
 					</div>

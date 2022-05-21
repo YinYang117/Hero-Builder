@@ -4,10 +4,10 @@ import { AbilContext } from '../../context/AbilContext';
 import { deleteAbil } from "../../store/abilities"
 import "./abil.css";
 
-const AbilDetails = ({setEditingAbil}) => {
+const AbilDetails = () => {
 	const dispatch = useDispatch();
 
-	const { currAbil, setCurrAbil } = useContext(AbilContext);
+	const { currAbil, setCurrAbil, editingAbil, setEditingAbil } = useContext(AbilContext);
 
 	const editAbilFunc = () => {
 		setEditingAbil(true)
@@ -19,8 +19,8 @@ const AbilDetails = ({setEditingAbil}) => {
 	}
 
 	const usesResourcesFunc = () => {
-		if (currAbil.usesResource === 1) return (<div>Yes</div>)
-		else return (<div>No</div>) // === 0
+		if (currAbil.usesResource === 1) return <div>Yes</div>
+		else return <div>No</div> // === 0
 	}
 
 	const usesChargesFunc = () => {
@@ -58,12 +58,12 @@ const AbilDetails = ({setEditingAbil}) => {
 				{/* right, main data */}
 				<div className="fdcol hfmn" >
 					<div className="dataStripe1 fdrow sa aicen" >
-						<button onClick={editAbilFunc}
+						<button onClick={editAbilFunc()}
 							className="w40p h80p confirmShadow"
 						>
 							Edit
 						</button>
-						<button onClick={deleteAbilFunc}
+						<button onClick={deleteAbilFunc()}
 							className="w40p h80p cancelShadow"
 						>
 							Delete
@@ -72,7 +72,7 @@ const AbilDetails = ({setEditingAbil}) => {
 					<div className="dataStripe2 fdrow sa aicen" >
 						<div className="mlr10 fdcol aicen">
 							<div>Use Resources?</div>
-							<div>{usesResourcesFunc}</div>
+							<div>{usesResourcesFunc()}</div>
 						</div>
 					</div>
 					{(currAbil.usesRerources === 1) &&
@@ -83,7 +83,7 @@ const AbilDetails = ({setEditingAbil}) => {
 					<div className="dataStripe2 fdrow sa aicen" >
 						<div className="mlr10 fdcol aicen">
 							<div>Use Charges?</div>
-							<div>{usesChargesFunc}</div>
+							<div>{usesChargesFunc()}</div>
 						</div>
 					</div>
 					{(currAbil.usesCharges === 1) &&
@@ -94,9 +94,9 @@ const AbilDetails = ({setEditingAbil}) => {
 					<div className="dataStripe2 fdrow sa aicen" >
 						<div className="mlr10 fdrow aicen">
 							<div>Uses Cooldown?</div>
-							<div>{usesCooldownFunc}</div>
+							<div>{usesCooldownFunc()}</div>
 						</div>
-						{(currAbil.usesCooldown) &&
+						{(currAbil.usesCooldown === 1) &&
 						<div className="mlr10 fdrow aicen">
 							<div>Cooldown Time: {currAbil.cooldown}</div>
 						</div>}
@@ -104,9 +104,9 @@ const AbilDetails = ({setEditingAbil}) => {
 					<div className="dataStripe1 fdrow sa aicen" >
 						<div className="fdrow sa aicen">
 							<div>Channeled Ability?</div>
-							<div>{channeledFunc}</div>
+							<div>{channeledFunc()}</div>
 						</div>
-						{(currAbil.channeled) &&
+						{(currAbil.channeled === 1) &&
 						<div className="fdrow aicen">
 							<div>Channel Time: {currAbil.channelTime}</div>
 						</div>}
@@ -114,7 +114,7 @@ const AbilDetails = ({setEditingAbil}) => {
 					<div className="dataStripe1 fdrow sa aicen" >
 						<div className="fdrow sa aicen">
 							<div>Ultimate Ability?</div>
-							<div>{ultimateFunc}</div>
+							<div>{ultimateFunc()}</div>
 						</div>
 					</div>
 				</div>

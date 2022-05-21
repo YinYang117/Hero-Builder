@@ -6,8 +6,13 @@ import "./abil.css";
 const AllAbilPortraits = () => {
 	const abils = useSelector(state => state.abilities)
 
-	const { setCurrAbil } = useContext(AbilContext);
+	const { setCurrAbil, setEditingAbil, setBuildingNewAbil } = useContext(AbilContext);
 
+	const setCurrAbilFunc = (abil) => {
+		setCurrAbil(abil)
+		setEditingAbil(false)
+		setBuildingNewAbil(false)
+	}
 
 	return (
 		<>
@@ -18,7 +23,7 @@ const AllAbilPortraits = () => {
 			<div className="fdrow fww" >
 				{abils?.arr?.map(abil => (
 					<div className="hcp abilFrame fdcol"
-						onClick={e => setCurrAbil(abil)}
+						onClick={e => setCurrAbilFunc(abil)}
 					>
 						<img
 							className="abilFrameImg"

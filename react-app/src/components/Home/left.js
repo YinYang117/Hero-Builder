@@ -10,8 +10,21 @@ const Left = () => {
 			setShowHeroPortraits,
 			buildingNewHero,
 			setBuildingNewHero,
-			setCurrHero
-			} = useContext(HeroContext);
+			setCurrHero,
+			setEditingHero
+		} = useContext(HeroContext);
+
+	const buildNewHeroFunc = () => {
+		setCurrHero()
+		setBuildingNewHero(!buildingNewHero)
+		setEditingHero(false)
+	}
+
+	const clickHeroPortrait = (hero) => {
+		setCurrHero(hero)
+		setBuildingNewHero(false)
+		setEditingHero(false)
+	}
 
 
 	return (
@@ -19,7 +32,7 @@ const Left = () => {
 			<button
 				className="hcp sideButton"
 				type="button"
-				onClick={e => setBuildingNewHero((!buildingNewHero))}
+				onClick={e => buildNewHeroFunc()}
 			>
 				Build New Hero
 			</button>
@@ -36,7 +49,7 @@ const Left = () => {
 					<div
 						key={hero.id}
 						className="namePlate hcp"
-						onClick={e => setCurrHero(hero)}
+						onClick={e => clickHeroPortrait(hero)}
 					>
 						{hero.name}
 					</div>

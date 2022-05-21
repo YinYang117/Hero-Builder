@@ -6,7 +6,13 @@ import "./hero.css";
 const AllHeroPortraits = () => {
 	const heros = useSelector(state => state.heros)
 
-	const { setCurrHero } = useContext(HeroContext);
+	const { setCurrHero, setEditingHero, setBuildingNewHero } = useContext(HeroContext);
+
+	const setCurrHeroFunc = (hero) => {
+		setCurrHero(hero)
+		setBuildingNewHero(false)
+		setEditingHero(false)
+	}
 
 
 	return (
@@ -18,7 +24,7 @@ const AllHeroPortraits = () => {
 			<div className="fdrow fww" >
 				{heros?.arr?.map(hero => (
 					<div className="hcp heroFrame fdcol jccen aicen"
-						onClick={e => setCurrHero(hero)}
+						onClick={e => setCurrHeroFunc(hero)}
 					>
 						<img
 							className="heroFrameImg"

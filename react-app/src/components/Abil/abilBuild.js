@@ -4,7 +4,7 @@ import { AbilContext } from '../../context/AbilContext';
 import { buildAbil } from '../../store/abilities';
 import "./abil.css";
 
-const AbilBuild = ({ }) => {
+const AbilBuild = () => {
 	const dispatch = useDispatch();
 
 	const user = useSelector(state => state.session.user)
