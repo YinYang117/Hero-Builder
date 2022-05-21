@@ -11,7 +11,6 @@ const HeroEdit = () => {
 	const { currHero,
 			heroImage,
 			setHeroImage,
-			editingHero,
 			setEditingHero
 		} = useContext(HeroContext);
 
@@ -38,7 +37,7 @@ const HeroEdit = () => {
 		setHeroImage(heroImage)
 	},[heroImage])
 
-	const handelResourceCheckboxs = (e) => {
+	const handelResourceCheckboxes = (e) => {
 		let str = e.target.value
 		let int = parseInt(str, 10)
 		setResource(int)
@@ -133,9 +132,9 @@ const HeroEdit = () => {
 							<div className="mlr10" >
 								<label  >Use Resources?</label>
 								<div className="sb aicen">
-									<input type="checkbox" name="resource" checked={resource === 1} value={1} onClick={e => handelResourceCheckboxs(e)} />
+									<input type="checkbox" name="resource" checked={resource === 1} value={1} onClick={e => handelResourceCheckboxes(e)} />
 									<label>Yes</label>
-									<input type="checkbox" name="resource" checked={resource === 0} value={0} onClick={e => handelResourceCheckboxs(e)} />
+									<input type="checkbox" name="resource" checked={resource === 0} value={0} onClick={e => handelResourceCheckboxes(e)} />
 									<label>No</label>
 								</div>
 							</div>

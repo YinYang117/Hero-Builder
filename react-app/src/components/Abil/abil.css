@@ -10,3 +10,114 @@
 	height: auto;
 	max-height: 60px;
 }
+
+.abilDetImg {
+	border: 1px gold;
+	max-width: 400px;
+	max-height: 600px;
+}
+
+.abilDetName {
+	background-color: aqua;
+	border: 2px gold;
+	width: 200px;
+	height: 30px;
+}
+
+.abilDetInt {
+	background-color: aqua;
+	border: 1px gold;
+	width: 200px;
+	min-height: 50px;
+}
+
+.abilDetSec {
+	background-color: aqua;
+	border: 1px gold;
+	width: 200px;
+	height: 80px;
+}
+
+.dataStripe1{
+	background-color: aqua;
+	border: 2px solid rgb(255, 198, 106);
+	width: 33vw;
+	/* 1/2ish of 70vw main body */
+	height: 50px;
+}
+
+.dataStripe2{
+	background-color: rgb(0, 207, 207);
+	border: 2px solid rgb(255, 207, 33);
+	width: 33vw;
+	/* 1/2ish of 70vw main body */
+	height: 50px;
+}
+
+.dataStripe3{
+	background-color: rgb(129, 226, 255);
+	border: 2px dashed gold;
+	width: 33vw;
+	/* 1/2ish of 70vw main body */
+	height: 60px;
+}
+
+.w40p {
+	width: 40%;
+}
+
+.h80p {
+	height: 80%;
+}
+
+.bottomSpan {
+	background-color: aqua;
+	border: 2px solid gold;
+	width: 90%;
+	height: auto;
+}
+
+.confirmShadow {
+	box-shadow: 0px 5px 10px 0px rgba(0, 94, 0, 0.913);
+}
+
+.cancelShadow {
+	box-shadow: 0px 5px 10px 0px rgba(94, 0, 0, 0.913);
+}
+
+.editIntro {
+	height: auto;
+}
+
+.abilIntro {
+	width: 100%;
+	word-wrap:break-word;
+	background-color: rgba(180, 251, 244, 0.913);
+	border: 2px solid gold;
+}
+
+.abilDisplay{
+	display: flex;
+	flex-flow: row;
+	max-width: 70vw;
+	flex-wrap: wrap;
+	border: 1px solid rgb(255, 208, 0);
+	margin: 10px;
+}
+
+.abilFrame{
+	border: 1px solid rgb(255, 208, 0);
+	background-color: rgb(0, 242, 255);
+	width: auto;
+	min-width: 120px;
+	height: auto;
+	min-height: 160px;
+	margin: 5px 0px 5px 5px;
+	box-shadow: 0px 10px 15px -5px #34005a, 5px 5px 15px 5px rgba(159,0,173,0);
+}
+
+.abilFrameImg{
+	max-width: 110px;
+	max-height: 140px;
+}
+

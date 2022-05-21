@@ -1,13 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from "react-redux";
+import React, { useContext } from 'react';
+import { AbilContext } from "../../context/AbilContext";
 import "./abil.css";
 
-const ChooseAbilImage = ({ }) => {
-	const abils = useSelector(state => state.abilities)
+const ChooseAbilImage = () => {
+	const { abilStockImages, setAbilImage } = useContext(AbilContext);
+
 
 	return (
 		<>
-
+			{abilStockImages.map(img => (
+				<div className="hcp abilFrame"
+					onClick={e => setAbilImage(img)}
+				>
+					<img
+						className="abilFrameImg"
+						src={img}
+						alt="newAbilityChoice"
+					/>
+				</div>
+			))}
 		</>
 	)
 }
