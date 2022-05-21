@@ -26,20 +26,45 @@ def validation_errors_to_error_messages(validation_errors):
 #         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# expected route /api/hero_abil/test
-@hero_abil_routes.route('/test', methods=["GET"])
-def test():
-    return {"test": "complete"}
-
-
-@hero_abil_routes.route('/<int:id>', methods=["GET"])
+@hero_abil_routes.route('/<int:id>', methods=["GET", "POST", "DELETE"])
 def get_hero_abil(id):
-    hero = Hero.query.get(id)
-    currAbils = hero.hero_equipped_abilities
-    heroAbils = {}
-    for abil in currAbils:
-        heroAbils[abil.id] = abil.to_js_obj
-    return heroAbils
+    if request.methond == "GET":
+        hero = Hero.query.get(id)
+        currAbils = hero.hero_equipped_abilities
+        heroAbils = {}
+        for abil in currAbils:
+            heroAbils[abil.id] = abil.to_js_obj
+        return heroAbils
+
+    if request.method == "POST":
+        data = request.get_json(force=True)
+        # data should look like {"abilId: 1"}
+        abil_id = data["abilId"]
+        hero = Hero.query.get(id)
+        abil = Abil.query.get(abil_id)
+        if hero and abil:
+            hero.hero_equipped_abilities.append(abil)
+        else:
+            return {'error': ['Either Hero or Ability was not found']}
+        db.session.commit()
+        currAbils = hero.hero_equipped_abilities
+        heroAbils = {}
+        for abil in currAbils:
+            heroAbils[abil.id] = abil.to_js_obj
+        return heroAbils
+
+    if request.method == "DELETE":
+        data = request.get_json(force=True)
+        # data should look like {"abilId: 1"}
+        abil_id = data["abilId"]
+        hero = Hero.query.get(id)
+        abil = Abil.query.get(abil_id)
+        if hero and abil:
+            hero.hero_equipped_abilities.remove(abil)
+        else:
+            return {'error': ['Either Hero or Ability was not found']}
+        db.session.commit()
+        return {}
 
 
 @hero_abil_routes.errorhandler(500)

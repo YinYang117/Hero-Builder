@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { HeroContext } from '../../context/HeroContext';
 import { deleteHero } from "../../store/heros"
+import fetchHeroAbilities from "../../store/heroAbil"
 import "./hero.css";
 
 const HeroDetails = () => {
@@ -19,6 +20,10 @@ const HeroDetails = () => {
 		else return (<div>No</div>) // (currHero.resource === 0)
 	}
 	
+	useEffect(() => {
+		fetchHeroAbilities(currHero)
+	},[currHero])
+
 
 	return (
 		<>
@@ -96,6 +101,9 @@ const HeroDetails = () => {
 			{currHero.details && <div className='heroIntro p5'>
 				{currHero.details}
 			</div>}
+			<div className='heroIntro p5'>
+				Hero Equiped Abils: {currHero?.hero_equipped_abilities}
+			</div>
 		</>
 	)
 }
