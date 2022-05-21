@@ -58,12 +58,12 @@ const AbilDetails = () => {
 				{/* right, main data */}
 				<div className="fdcol hfmn" >
 					<div className="dataStripe1 fdrow sa aicen" >
-						<button onClick={editAbilFunc()}
+						<button onClick={editAbilFunc}
 							className="w40p h80p confirmShadow"
 						>
 							Edit
 						</button>
-						<button onClick={deleteAbilFunc()}
+						<button onClick={deleteAbilFunc}
 							className="w40p h80p cancelShadow"
 						>
 							Delete
