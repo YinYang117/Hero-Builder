@@ -11,19 +11,25 @@ const AllAbilPortraits = () => {
 
 	return (
 		<>
-			{abils?.arr?.map(abil => (
-				<div className="hcp abilFrame fdcol"
-					onClick={e => setCurrAbil(abil)}
-				>
-					<img
-						className="abilFrameImg"
-						// className="abilImgCarousel hcp" // TODO use or remove
-						src={abil.abilityImage}
-						alt="abilityFrame"
-					/>
-					<div>{abil.name}</div>
-				</div>
-			))}
+			<div>
+			{/* TODO CSS here */}
+				These are all your Abilities
+			</div>
+			<div className="fdrow fww" >
+				{abils?.arr?.map(abil => (
+					<div className="hcp abilFrame fdcol"
+						onClick={e => setCurrAbil(abil)}
+					>
+						<img
+							className="abilFrameImg"
+							// className="abilImgCarousel hcp" // TODO use or remove
+							src={abil.abilityImage}
+							alt="abilityFrame"
+						/>
+						<div>{abil.name}</div>
+					</div>
+				))}
+			</div>
 		</>
 	)
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { AbilContext } from '../../context/HeroContext';
+import { AbilContext } from '../../context/AbilContext';
 import { buildAbil } from '../../store/abilities';
 import "./abil.css";
 
@@ -28,11 +28,8 @@ const AbilBuild = ({ }) => {
 	const [details, setDetails] = useState("")
 
 	useEffect(() => {
-		setAbilImage("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png")
-	},[])
-
-	useEffect(() => {
-		setAbilImage(abilImage)
+		if (abilImage) setAbilImage(abilImage)
+		else setAbilImage("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png")
 	},[abilImage])
 
 	const resourceCheck = (e) => {
@@ -122,7 +119,7 @@ const AbilBuild = ({ }) => {
 			}}>
 				<div className="fdrow">
 					<div className="left side fdcol hfmn">
-						<img src={abilImage} alt="new ability portraite" className="abilImg" /> {/* TODO classname */}
+						<img src={abilImage} alt="new ability portrait" className="abilImg" /> {/* TODO classname */}
 						<div className="conditionGroup fdcol">
 							<div>Uses Resources?</div>
 							<div className="checkboxContainer fdrow">

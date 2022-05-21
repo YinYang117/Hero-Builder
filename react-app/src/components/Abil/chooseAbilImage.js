@@ -8,8 +8,13 @@ const ChooseAbilImage = () => {
 
 	return (
 		<>
-			{abilStockImages.map(img => (
-				<div className="hcp abilFrame"
+			<div>
+			{/* TODO CSS here */}
+				Pick an image for this Ability!
+			</div>
+			<div className="fdrow fww">
+				{abilStockImages.map(img => (
+				<div className="hcp abilFrame jccen aicen"
 					onClick={e => setAbilImage(img)}
 				>
 					<img
@@ -18,7 +23,8 @@ const ChooseAbilImage = () => {
 						alt="newAbilityChoice"
 					/>
 				</div>
-			))}
+				))}
+			</div>
 		</>
 	)
 }

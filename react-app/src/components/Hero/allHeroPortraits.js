@@ -11,18 +11,24 @@ const AllHeroPortraits = () => {
 
 	return (
 		<>
-			{heros?.arr?.map(hero => (
-				<div className="hcp heroFrame fdcol"
-					onClick={e => setCurrHero(hero)}
-				>
-					<img
-						className="heroFrameImg"
-						src={hero.heroImage}
-						alt="heroFrame"
-					/>
-					<div>{hero.name}</div>
-				</div>
-			))}
+			<div>
+				These are all your Heros
+				{/* TODO CSS here */}
+			</div>
+			<div className="fdrow fww" >
+				{heros?.arr?.map(hero => (
+					<div className="hcp heroFrame fdcol jccen aicen"
+						onClick={e => setCurrHero(hero)}
+					>
+						<img
+							className="heroFrameImg"
+							src={hero.heroImage}
+							alt="heroFrame"
+						/>
+						<div>{hero.name}</div>
+					</div>
+				))}
+			</div>
 		</>
 	)
 }

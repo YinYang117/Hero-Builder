@@ -27,11 +27,8 @@ const HeroBuild = () => {
 	const [errors, setErrors] = useState([])
 
 	useEffect(() => {
-		setHeroImage("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804287/Archer-Transparent-Background-2_u09kgp.png")
-	},[])
-
-	useEffect(() => {
-		setHeroImage(heroImage)
+		if (heroImage) setHeroImage(heroImage)
+		else setHeroImage("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804287/Archer-Transparent-Background-2_u09kgp.png")
 	},[heroImage])
 
 	const handelResourceCheckboxes = (e) => {

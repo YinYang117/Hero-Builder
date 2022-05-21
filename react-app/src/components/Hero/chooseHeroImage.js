@@ -8,8 +8,13 @@ const ChooseHeroImage = () => {
 
 	return (
 		<>
-			{heroStockImages.map(img => (
-				<div className="hcp heroFrame"
+			<div>
+			{/* TODO CSS here */}
+				Pick an image for this Hero!
+			</div>
+			<div className="fdrow fww">
+				{heroStockImages.map(img => (
+				<div className="hcp heroFrame jccen aicen"
 					onClick={e => setHeroImage(img)}
 				>
 					<img
@@ -18,7 +23,8 @@ const ChooseHeroImage = () => {
 						alt="newHeroChoice"
 					/>
 				</div>
-			))}
+				))}
+			</div>
 		</>
 	)
 }
