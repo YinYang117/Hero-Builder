@@ -14,7 +14,7 @@ const AbilEdit = () => {
 		} = useContext(AbilContext);
 
 	const [errors, setErrors] = useState([])
-	const [name,setName] = useState(currAbil.name)
+	const [name, setName] = useState(currAbil.name)
 	const [description, setDescription] = useState(currAbil.description)
 	const [usesResource, setUsesResource] = useState(currAbil.usesResource)
 	const [resourceName, setResourceName] = useState(currAbil?.resourceName)
@@ -32,6 +32,7 @@ const AbilEdit = () => {
 	const submitEditedAbil = async () => {
 		setErrors([])
 		const editedAbil = currAbil
+		console.log("abilEdit submitting 1", name, currAbil.name)
 		editedAbil.name = name
 		editedAbil.description = description
 		editedAbil.abilityImage = abilImage

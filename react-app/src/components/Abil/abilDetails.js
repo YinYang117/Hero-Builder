@@ -7,7 +7,7 @@ import "./abil.css";
 const AbilDetails = () => {
 	const dispatch = useDispatch();
 
-	const { currAbil, setCurrAbil, editingAbil, setEditingAbil } = useContext(AbilContext);
+	const { currAbil, setCurrAbil, setEditingAbil } = useContext(AbilContext);
 
 	const editAbilFunc = () => {
 		setEditingAbil(true)

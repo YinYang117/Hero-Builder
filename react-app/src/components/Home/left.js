@@ -48,7 +48,7 @@ const Left = () => {
 				{heros?.arr?.map(hero => (
 					<div
 						key={hero.id}
-						className="namePlate hcp"
+						className="namePlate hcp fww"
 						onClick={e => clickHeroPortrait(hero)}
 					>
 						{hero.name}

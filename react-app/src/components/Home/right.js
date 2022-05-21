@@ -47,7 +47,7 @@ const Right = () => {
 			<div>
 				{abils?.arr?.map(abil => (
 					<div key={abil.id}
-					className="namePlate hcp"
+					className="namePlate hcp fww"
 					onClick={e => clickAbilPortrait(abil)}
 					>
 						{abil.name}
