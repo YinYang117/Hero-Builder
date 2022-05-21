@@ -3,9 +3,11 @@ import { useState, createContext } from 'react';
 export const AbilContext = createContext();
 
 export const AbilProvider = props => {
-    const [currAbil, setCurrAbil] = useState();
 	const [showAbilPortraits, setShowAbilPortraits] = useState(false);
-	const [buildingNewAbil, setBuildingNewAbil] = useState(false);
+	const [buildingNewAbil, setBuildingNewAbil]		= useState(false);
+	const [editingAbil, setEditingAbil]				= useState(false);
+	const [abilImage, setAbilImage]					= useState();
+    const [currAbil, setCurrAbil]					= useState();
 
     const abilStockImages = [
 		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png",
@@ -21,9 +23,10 @@ export const AbilProvider = props => {
 		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652913823/fireball_vrtuhf.png",
 	]
 
+
     return (
         <AbilContext.Provider
-            value={{ currAbil, setCurrAbil, abilStockImages }}
+            value={{ abilStockImages, currAbil, setCurrAbil, abilImage, setAbilImage, editingAbil, setEditingAbil, buildingNewAbil, setBuildingNewAbil, showAbilPortraits, setShowAbilPortraits }}
         >
             {props.children}
         </AbilContext.Provider>

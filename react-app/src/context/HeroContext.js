@@ -3,9 +3,11 @@ import { useState, createContext } from 'react';
 export const HeroContext = createContext();
 
 export const HeroProvider = props => {
-    const [currHero, setCurrHero] = useState();
     const [showHeroPortraits, setShowHeroPortraits] = useState(false);
-    const [buildingNewHero, setBuildingNewHero] = useState(false);
+    const [buildingNewHero, setBuildingNewHero]     = useState(false);
+    const [editingHero, setEditingHero]             = useState(false);
+	const [heroImage, setHeroImage]                 = useState();
+    const [currHero, setCurrHero]                   = useState();
 
     const heroStockImages = [
         "https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804394/clipart-royalty-free-download-render-by-yugiohdragon-yugioh-dark-magician-11562867276kbcoi3kkiw_es0eo6.png",
@@ -20,9 +22,10 @@ export const HeroProvider = props => {
         "https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804403/1125486710_4e2c6b05ab_b_qbkfti.jpg", 
     ]
 
+
     return (
         <HeroContext.Provider
-            value={{ currHero, setCurrHero, heroStockImages }}
+            value={{ heroStockImages, currHero, setCurrHero, heroImage, setHeroImage, editingHero, setEditingHero, buildingNewHero, setBuildingNewHero, showHeroPortraits, setShowHeroPortraits }}
         >
             {props.children}
         </HeroContext.Provider>

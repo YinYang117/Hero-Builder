@@ -5,7 +5,6 @@ import "./hero.css"
 
 
 const NewHeroForm = ({ buildNewHero, setBuildNewHero, newHeroImage }) => {
-	const dispatch = useDispatch(); 
 
 	const user = useSelector(state => state.session.user)
 

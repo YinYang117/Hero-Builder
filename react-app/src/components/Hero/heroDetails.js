@@ -4,14 +4,10 @@ import { HeroContext } from '../../context/HeroContext';
 import { deleteHero } from "../../store/heros"
 import "./hero.css";
 
-const HeroDetails = ({setEditingHero}) => {
+const HeroDetails = () => {
 	const dispatch = useDispatch();
 
-	const { currHero, setCurrHero } = useContext(HeroContext);
-
-	const editHero = (e) => {
-		setEditingHero(true)
-	}
+	const { currHero, setCurrHero, setEditingHero } = useContext(HeroContext);
 
 	const deleteHeroFunc = async () => {
 		await dispatch(deleteHero(currHero.id))
@@ -22,6 +18,7 @@ const HeroDetails = ({setEditingHero}) => {
 		if (currHero.resource === 1) return (<div>Yes</div>)
 		else return (<div>No</div>) // (currHero.resource === 0)
 	}
+	
 
 	return (
 		<>
@@ -37,7 +34,7 @@ const HeroDetails = ({setEditingHero}) => {
 				{/* right, main data */}
 				<div className="fdcol hfmn" >
 					<div className="dataStripe1 fdrow sa aicen" >
-						<button onClick={e => editHero(e)}
+						<button onClick={e => setEditingHero(true)}
 							className="w40p h80p confirmShadow"
 						>
 							Edit</button>

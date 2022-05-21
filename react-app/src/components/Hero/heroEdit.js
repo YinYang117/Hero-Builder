@@ -5,10 +5,15 @@ import { editHero } from "../../store/heros"
 import "./hero.css"
 
 
-const HeroEdit = ({heroImage, setHeroImage, editingHero, setEditingHero}) => {
+const HeroEdit = () => {
 	const dispatch = useDispatch();
 
-	const { currHero } = useContext(HeroContext);
+	const { currHero,
+			heroImage,
+			setHeroImage,
+			editingHero,
+			setEditingHero
+		} = useContext(HeroContext);
 
 	const [heroName, setHeroName] = useState(currHero.name)
 	const [intro, setIntro] = useState(currHero.intro)
@@ -27,13 +32,13 @@ const HeroEdit = ({heroImage, setHeroImage, editingHero, setEditingHero}) => {
 
 	useEffect(() => {
 		setHeroImage(currHero.heroImage)
-	},[currHero, setHeroImage])
+	},[currHero])
 
 	useEffect(() => {
 		setHeroImage(heroImage)
-	},[heroImage, setHeroImage])
+	},[heroImage])
 
-	const handelCheck = (e) => {
+	const handelResourceCheckboxs = (e) => {
 		let str = e.target.value
 		let int = parseInt(str, 10)
 		setResource(int)
@@ -128,9 +133,9 @@ const HeroEdit = ({heroImage, setHeroImage, editingHero, setEditingHero}) => {
 							<div className="mlr10" >
 								<label  >Use Resources?</label>
 								<div className="sb aicen">
-									<input type="checkbox" name="resource" checked={resource === 1} value={1} onClick={e => handelCheck(e)} />
+									<input type="checkbox" name="resource" checked={resource === 1} value={1} onClick={e => handelResourceCheckboxs(e)} />
 									<label>Yes</label>
-									<input type="checkbox" name="resource" checked={resource === 0} value={0} onClick={e => handelCheck(e)} />
+									<input type="checkbox" name="resource" checked={resource === 0} value={0} onClick={e => handelResourceCheckboxs(e)} />
 									<label>No</label>
 								</div>
 							</div>

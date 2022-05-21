@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AbilContext } from '../../context/AbilContext';
 import AllAbilPortraits from "./allAbilPortraits";
 import ChooseAbilImage from "./chooseAbilImage";
@@ -8,11 +8,9 @@ import AbilBuild from "./abilBuild";
 import "./abil.css";
 
 
-const Abils = ({showAbilPortraits, buildingNewAbil, setBuildingNewAbil}) => {
-	const { currAbil } = useContext(AbilContext);
+const Abils = () => {
+	const { currAbil, showAbilPortraits, buildingNewAbil, editingAbil } = useContext(AbilContext);
 
-	const [editingAbil, setEditingAbil] = useState(false);
-	const [abilImage, setAbilImage] = useState();
 
 	return (
 		<>
@@ -20,17 +18,16 @@ const Abils = ({showAbilPortraits, buildingNewAbil, setBuildingNewAbil}) => {
 			<AllAbilPortraits />
 			}
 			{(editingAbil || buildingNewAbil) &&
-			<ChooseAbilImage abilImage={abilImage}
-				setAbilImage={setAbilImage} />
+			<ChooseAbilImage />
 			}
 			{currAbil && !editingAbil && !buildingNewAbil &&
-			<AbilDetails setEditingAbil={setEditingAbil} />
+			<AbilDetails />
 			}
 			{currAbil && editingAbil && !buildingNewAbil &&
-			<AbilEdit abilImage={abilImage} setAbilImage={setAbilImage} />
+			<AbilEdit />
 			}
 			{buildingNewAbil && !currAbil && !editingAbil &&
-			<AbilBuild abilImage={abilImage} setAbilImage={setAbilImage} />
+			<AbilBuild />
 			}
 		</>
 	)
