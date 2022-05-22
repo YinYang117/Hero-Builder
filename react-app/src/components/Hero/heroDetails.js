@@ -107,7 +107,7 @@ const HeroDetails = () => {
 			</div>}
 			{currHeroAbils &&
 			<>
-				<div>Hero Equiped Abils:</div>
+				<div>Hero Equiped Abils {`(${currHeroAbils?.arr.length}/6)`}</div>
 				<div className='heroIntro p5 fdrow fww'>
 					{currHeroAbils?.arr?.map(abil => (
 						<HeroAbilCard abil={abil} />

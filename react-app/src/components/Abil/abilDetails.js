@@ -88,20 +88,26 @@ const AbilDetails = () => {
 	}
 	
 	const addAbilToHeroFunc = () => {
-		if (currHero && !(Object.values(currHeroAbils).includes(currAbil))) {
-			return (			
-				<div>
-					Add this Ability to your currently selected Hero? <button onClick={addAbilToHero}>Add</button>
-				</div>
-			)
+		console.log("GGG-------------- 1", currHero)
+		console.log("GGG-------------- 2", currHeroAbils.arr)
+		console.log("GGG-------------- 3", currAbil)
+		console.log("comparison-------------- 4", currHeroAbils[currAbil.id])
+		if (currHero) {
+			if (!(currHeroAbils[currAbil.id])) {
+				return (			
+					<div>
+						Add this Ability to your currently selected Hero? <button onClick={addAbilToHero}>Add</button>
+					</div>
+				)
+			}
 		}
 	}
 
 	const addAbilToHero = async () => {
-		if (currHeroAbils.length < 6) {
+		if (currHeroAbils?.arr.length < 6) {
 			const data = await dispatch(addOneHeroAbil(currHero, currAbil))
 		}
-		else if (currHeroAbils.length >= 6) {
+		else if (currHeroAbils?.arr.length >= 6) {
 			alert("This Hero already has the maximum number of abilities.")
 		}
 	}
