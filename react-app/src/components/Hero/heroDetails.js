@@ -62,9 +62,9 @@ const HeroDetails = () => {
 					</div>
 					<div className="dataStripe2 fdrow sa aicen" >
 						<div className="mlr10">HP: {currHero.hp}</div>
-						<div className="mlr10 fdcol aicen">
+						<div className="mlr10 fdrow aicen">
 							<div>Use Resources?</div>
-							<div>{usesResourcesFunc()}</div>
+							<div className='mlr10'>{usesResourcesFunc()}</div>
 						</div>
 					</div>
 					{(currHero.resource === 1) &&
@@ -75,21 +75,21 @@ const HeroDetails = () => {
 					<div className="dataStripe1 fdrow sa aicen" >
 						<div className="mlr10 fdrow aicen">
 							<div>Physical Armor: </div>
-							<div>{currHero.physicalArmor}</div>
+							<div className='mlr10'>{currHero.physicalArmor}</div>
 						</div>
 						<div className="mlr10 fdrow aicen">
 							<div>Magic Resist: </div>
-							<div>{currHero.magicResist}</div>
+							<div className='mlr10'>{currHero.magicResist}</div>
 						</div>
 					</div>
 					<div className="dataStripe2 fdrow sa aicen" >
 						<div className="mlr10 fdrow aicen">
 							<div>Attack Damage: </div>
-							<div>{currHero.attackDamage}</div>
+							<div className='mlr10'>{currHero.attackDamage}</div>
 						</div>
 						<div className="mlr10 fdrow aicen">
 							<div>Attack Range: </div>
-							<div>{currHero.attackRange}</div>
+							<div className='mlr10'>{currHero.attackRange}</div>
 						</div>
 					</div>
 					<div className="dataStripe1 fdrow sa aicen" >

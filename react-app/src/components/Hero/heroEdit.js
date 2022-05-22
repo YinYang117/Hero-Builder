@@ -80,10 +80,15 @@ const HeroEdit = () => {
 	return (
 		<div className="fdcol">
 			{errors &&
-				<div className="TODO errors">
-					{errors.map((error, idx) => <p key={idx}>{error}</p>)}
+				<div className="fdcol aicen">
+					{errors.map(error => (
+						<div key={error} className="rerr">
+							{error}
+						</div>
+						))}
 				</div>}
-			<form onSubmit={e => {
+			<form className='fs90'
+				onSubmit={e => {
 				e.preventDefault()
 				submitEditHero()
 			}}>
@@ -126,7 +131,7 @@ const HeroEdit = () => {
 								value={hp} />
 							</div>
 							<div className="mlr10" >
-								<label  >Use Resources?</label>
+								<label >Use Resources?</label>
 								<div className="sb aicen">
 									<input type="checkbox" name="resource" checked={resource === 1} value={1} onClick={e => handelResourceCheckboxes(e)} />
 									<label>Yes</label>

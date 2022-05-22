@@ -39,8 +39,10 @@ const Login = () => {
                         className="formContainer form fdcol"
                         onSubmit={e => loginFunc(e)}>
                         <div>
-                            {errors && errors.map((error, ind) => (
-                                <div key={ind}>{error}</div>
+                            {errors && errors.map(error => (
+                                <div key={error} className="rerr">
+                                    {error}
+                                </div>
                             ))}
                         </div>
                         <div className="aicen fdcol">

@@ -3,8 +3,18 @@ body {
     background-color: rgb(34, 8, 0);
 }
 
+@font-face {
+    font-family: fantasy2;
+    src: url(https://res.cloudinary.com/dzrimpg5t/raw/upload/v1653248802/Enchanted_Land_qtjcva.otf);
+}
+
 * {
-    font-family: Cambria;
+    font-family: fantasy2;
+    font-size: 105%;
+}
+
+.fs90 {
+    font-size: 90%;
 }
 
 .hcp:hover {
@@ -71,6 +81,10 @@ body {
     margin: 10px;
 }
 
+.mt10 {
+    margin-top: 100px;
+}
+
 .mlr10 {
     margin-left: 10px;
     margin-right: 10px;
@@ -94,4 +108,8 @@ body {
 	/* stands for half main, which references homeMainContainer */
 	/* TODO, change to 45% of container instead...?? */
 	width: 33vw;
+}
+
+.rerr{
+    color: rgb(132, 29, 0);
 }

@@ -76,7 +76,11 @@ const HeroBuild = () => {
 		<div className="fdcol">
 			{errors &&
 				<div className="TODO errors">
-					{errors.map((error, idx) => <div key={idx}>{error}</div>)}
+					{errors.map(error => (
+						<div key={error} className="rerr">
+							{error}
+						</div>
+						))}
 				</div>}
 			<form onSubmit={e => {
 				e.preventDefault()

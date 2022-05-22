@@ -88,10 +88,6 @@ const AbilDetails = () => {
 	}
 	
 	const addAbilToHeroFunc = () => {
-		console.log("GGG-------------- 1", currHero)
-		console.log("GGG-------------- 2", currHeroAbils.arr)
-		console.log("GGG-------------- 3", currAbil)
-		console.log("comparison-------------- 4", currHeroAbils[currAbil.id])
 		if (currHero) {
 			if (!(currHeroAbils[currAbil.id])) {
 				return (			

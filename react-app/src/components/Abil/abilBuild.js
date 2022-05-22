@@ -112,13 +112,6 @@ const AbilBuild = () => {
 	return (
 		// whole container is col
 		<div className="fdcol">
-			{errors &&
-			<div className="TODO errors">
-				{errors.map((error, idx) =>
-					<div key={idx}>
-						{error}
-					</div>)}
-			</div>}
 			<form onSubmit={e => {
 				e.preventDefault()
 				submitNewAbil()
@@ -173,6 +166,13 @@ const AbilBuild = () => {
 						</div>
 					</div>
 					<div className="right side fdcol hfmn">
+						{errors &&
+						<div className="TODO errors">
+							{errors.map(error =>
+								<div key={error} className="rerr">
+									{error}
+								</div>)}
+						</div>}
 						<div className="dataStripe1 fdrow sa aicen" >
 							<button type="submit"
 							className="w40p h80p confirmShadow"

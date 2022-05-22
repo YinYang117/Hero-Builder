@@ -77,9 +77,9 @@ def ultCheck(form, field):
 
 class NewAbility(FlaskForm):
     ownerId = IntegerField("Owner", validators=[DataRequired()])
-    name = StringField("Hero Name", validators=[DataRequired(), Length(min=2, max=30)])
+    name = StringField("Ability Name", validators=[DataRequired(), Length(min=2, max=30)])
     description = StringField("Description", validators=[DataRequired(), Length(min=2, max=500)])
-    abilityImage = StringField("Hero Image", validators=[DataRequired()])
+    abilityImage = StringField("Ability Image", validators=[DataRequired()])
     usesResource = IntegerField("Uses Resource", validators=[resourceCheck])
     resourceName = StringField("Resource Name", validators=[resourceNameCheck])
     resourceCost = IntegerField("Resource Cost", validators=[resourceCostCheck])
@@ -96,9 +96,9 @@ class NewAbility(FlaskForm):
 
 
 class EditAbility(FlaskForm):
-    name = StringField("Hero Name", validators=[DataRequired(), Length(min=2, max=30)])
+    name = StringField("Ability Name", validators=[DataRequired(), Length(min=2, max=30)])
     description = StringField("Description", validators=[DataRequired(), Length(min=2, max=500)])
-    abilityImage = StringField("Hero Image", validators=[DataRequired()])
+    abilityImage = StringField("Ability Image", validators=[DataRequired()])
     usesResource = IntegerField("Uses Resource", validators=[resourceCheck])
     resourceName = StringField("Resource Name", validators=[resourceNameCheck])
     resourceCost = IntegerField("Resource Cost", validators=[resourceCostCheck])
