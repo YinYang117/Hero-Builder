@@ -31,7 +31,7 @@ def password_matches(form, field):
             if not user.check_password(password):
                 raise ValidationError('Password was incorrect.')
         else:
-            raise ValidationError('User not found. Check Email / Username and try again.')
+            raise ValidationError('Check Email / Username and try again.')
 
 
 

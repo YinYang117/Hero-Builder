@@ -133,6 +133,6 @@ each of the following variables:
 | `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
 | `heroku run -a hero-builder-app` | Run a command from within the deployed container on Heroku |
-
+ 
 heroku run -a hero-builder-app
 heroku run -a hero-builder-app flask seed all
