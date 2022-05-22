@@ -68,7 +68,7 @@ const AbilEdit = () => {
 		editedAbil.details = details
 
 		const data = await dispatch(editAbil(editedAbil))
-		if (!data) setEditingAbil(false) // TODO toggle build state
+		if (!data) setEditingAbil(false)
 		else setErrors(data) // should be an array
 	}
 

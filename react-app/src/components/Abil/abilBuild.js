@@ -30,7 +30,7 @@ const AbilBuild = () => {
 	useEffect(() => {
 		if (abilImage) setAbilImage(abilImage)
 		else setAbilImage("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652916118/thorn_pre75p.png")
-	},[abilImage])
+	},[abilImage, setAbilImage])
 
 	const resourceCheck = (e) => {
 		let str = e.target.value
@@ -114,7 +114,10 @@ const AbilBuild = () => {
 		<div className="fdcol">
 			{errors &&
 			<div className="TODO errors">
-				{errors.map((error, idx) => <div key={idx}>{error}</div>)}
+				{errors.map((error, idx) =>
+					<div key={idx}>
+						{error}
+					</div>)}
 			</div>}
 			<form onSubmit={e => {
 				e.preventDefault()
