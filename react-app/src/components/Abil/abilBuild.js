@@ -9,7 +9,7 @@ const AbilBuild = () => {
 
 	const user = useSelector(state => state.session.user)
 
-	const { setBuildingNewAbil, abilImage, setAbilImage, currAbil, setCurrAbil } = useContext(AbilContext);
+	const { setBuildingNewAbil, abilImage, setAbilImage, setCurrAbil } = useContext(AbilContext);
 
 	const [errors, setErrors] = useState([])
 	const [name,setName] = useState("")
@@ -101,7 +101,10 @@ const AbilBuild = () => {
 		newAbil.details = details
 
 		const data = await dispatch(buildAbil(newAbil))
-		if (!data) setBuildingNewAbil(false) // TODO set as currAbil after
+		if (!data) {
+			setBuildingNewAbil(false)
+			setCurrAbil(newAbil)
+		}
 		else setErrors(data) // should be an array
 	}
 

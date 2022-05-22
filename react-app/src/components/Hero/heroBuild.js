@@ -9,7 +9,7 @@ const HeroBuild = () => {
 
 	const user = useSelector(state => state.session.user)
 
-	const { setBuildingNewHero, heroImage, setHeroImage, currHero, setCurrHero } = useContext(HeroContext);
+	const { setBuildingNewHero, heroImage, setHeroImage, setCurrHero } = useContext(HeroContext);
 
 	const [heroName, setHeroName] = useState("")
 	const [intro, setIntro] = useState("")
@@ -29,7 +29,7 @@ const HeroBuild = () => {
 	useEffect(() => {
 		if (heroImage) setHeroImage(heroImage)
 		else setHeroImage("https://res.cloudinary.com/dzrimpg5t/image/upload/v1652804287/Archer-Transparent-Background-2_u09kgp.png")
-	},[heroImage])
+	},[heroImage, setHeroImage])
 
 	const handelResourceCheckboxes = (e) => {
 		let str = e.target.value
@@ -60,16 +60,15 @@ const HeroBuild = () => {
 		newHero.attackRange = attackRange
 		newHero.attackSpeed = attackSpeed
 		newHero.moveSpeed = moveSpeed
-		// newHero.numOfAbilities = numOfAbilities
-		// TODO add an extra notification or something if
-		// hero has more abilities allocated then the new num of abils
 		newHero.details = details
 
 		const data = await dispatch(buildHero(newHero))
-		if (!data) setBuildingNewHero(false)
-		else {
-			setErrors(data) // should be an array
+		if (!data) {
+			setBuildingNewHero(false)
+			setCurrHero(newHero)
 		}
+		else setErrors(data) // should be an array
+
 	}
 
 
