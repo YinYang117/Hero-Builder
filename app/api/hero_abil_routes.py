@@ -30,8 +30,6 @@ def get_hero_abil(id):
         abil = Ability.query.get(abil_id)
         if hero and abil:
             hero.hero_equipped_abilities.append(abil)
-            print("--------------------------------- test 1", hero.hero_equipped_abilities)
-            print("--------------------------------- test 2", len(hero.hero_equipped_abilities))
         else:
             return {'error': ['Either Hero or Ability was not found']}
         db.session.commit()

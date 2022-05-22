@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { HeroContext } from '../../context/HeroContext';
 import { deleteHero } from "../../store/heros";
@@ -12,6 +12,8 @@ const HeroDetails = () => {
 	const currHeroAbils = useSelector(state => state.heroAbil)
 
 	const { currHero, setCurrHero, setEditingHero } = useContext(HeroContext);
+
+	const [loaded, setLoaded] = useState(false)
 
 	const deleteHeroFunc = async () => {
 		await dispatch(deleteHero(currHero.id))
@@ -28,11 +30,14 @@ const HeroDetails = () => {
 	// },[])
 
 	useEffect(() => {
-		dispatch(fetchHeroAbilities(currHero))
-	},[currHero])
+		if (currHero) {
+			dispatch(fetchHeroAbilities(currHero))
+			setLoaded(true)
+		}
+	},[currHero, dispatch])
 
 
-	return (
+	return loaded && (
 		<>
 			{/* split img / main data */}
 			<div className="fdrow sa">
@@ -107,10 +112,10 @@ const HeroDetails = () => {
 			</div>}
 			{currHeroAbils &&
 			<>
-				<div>Hero Equiped Abils {`(${currHeroAbils?.arr.length}/6)`}</div>
+				<div>Hero Equiped Abils {`(${currHeroAbils?.arr?.length}/6)`}</div>
 				<div className='heroIntro p5 fdrow fww'>
 					{currHeroAbils?.arr?.map(abil => (
-						<HeroAbilCard abil={abil} />
+						<HeroAbilCard key={abil.id} abil={abil} />
 					))}
 				</div>
 			</>}

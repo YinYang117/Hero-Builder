@@ -49,10 +49,8 @@ class NewHero(FlaskForm):
     attackRange = IntegerField("Attack Range", validators=[DataRequired(), NumberRange(min=1, max=500)])
     attackSpeed = FloatField("Attack Speed", validators=[DataRequired(), NumberRange(min=0.1, max=10.0)])
     moveSpeed = FloatField("Move Speed", validators=[DataRequired(), NumberRange(min=1.0, max=20.0)])
-    # numOfAbilities = IntegerField("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
     details = StringField("Hero Details")
     submit = SubmitField("Submit")
-    # created_at and updated_at on API
 
 
 class EditHero(FlaskForm):
@@ -69,6 +67,5 @@ class EditHero(FlaskForm):
     attackRange = IntegerField("Attack Range", validators=[DataRequired(), NumberRange(min=1, max=500)])
     attackSpeed = FloatField("Attack Speed", validators=[DataRequired(), NumberRange(min=0.1, max=10.0)])
     moveSpeed = FloatField("Move Speed", validators=[DataRequired(), NumberRange(min=1.0, max=20.0)])
-    # numOfAbilities = IntegerField("Number of Abilities", validators=[DataRequired(), NumberRange(min=0, max=10)])
     details = StringField("Hero Details")
     submit = SubmitField("Submit")

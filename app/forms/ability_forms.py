@@ -93,7 +93,6 @@ class NewAbility(FlaskForm):
     ultimate = IntegerField("Ultimate", validators=[ultCheck])
     details = StringField("Details")
     submit = SubmitField("Submit")
-    # created_at and updated_at on API
 
 
 class EditAbility(FlaskForm):
