@@ -17,11 +17,11 @@ const AllHeroPortraits = () => {
 
 	return (
 		<>
-			<div>
+			<div className="mt30 mb10 Aflarg">
 				These are all your Heros
 				{/* TODO CSS here */}
 			</div>
-			<div className="fdrow fww" >
+			<div className="fdrow fww jccen" >
 				{heros?.arr?.map(hero => (
 					<div className="hcp heroFrame fdcol jccen aicen"
 						onClick={e => setCurrHeroFunc(hero)}
@@ -35,6 +35,7 @@ const AllHeroPortraits = () => {
 					</div>
 				))}
 			</div>
+			<div className="mb30"></div>
 		</>
 	)
 }

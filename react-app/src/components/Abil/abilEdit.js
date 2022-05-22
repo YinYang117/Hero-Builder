@@ -184,7 +184,7 @@ const AbilEdit = () => {
 							>
 								Cancel</button>
 						</div>
-						<>
+						<div className="fdrow sb" >
 							<label className="mlr10" >Name:</label>
 							<input onChange={e => setName(e.target.value)}
 								className="w100p"
@@ -192,7 +192,7 @@ const AbilEdit = () => {
 								placeholder='Ability Name'
 								required="required"
 								value={name} />
-						</>
+						</div>
 						<>
 							<label>Description:</label>
 							<textarea onChange={e => setDescription(e.target.value)}

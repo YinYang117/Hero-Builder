@@ -18,14 +18,14 @@
 }
 
 .abilDetName {
-	background-color: aqua;
+	background: rgb(255, 195, 255);
 	border: 2px gold;
 	width: 200px;
 	height: 30px;
 }
 
 .abilDetInt {
-	background-color: aqua;
+	background-color: rgb(255, 133, 231);
 	border: 1px gold;
 	width: 200px;
 	min-height: 50px;
@@ -38,28 +38,28 @@
 	height: 80px;
 }
 
-.dataStripe1{
-	background-color: aqua;
+.AdataStripe1{
+	background: rgb(255, 195, 255);
 	border: 2px solid rgb(255, 198, 106);
 	width: 33vw;
 	/* 1/2ish of 70vw main body */
-	height: 50px;
+	height: 70px;
 }
 
-.dataStripe2{
-	background-color: rgb(0, 207, 207);
+.AdataStripe2{
+	background-color: rgb(245, 132, 255);
 	border: 2px solid rgb(255, 207, 33);
 	width: 33vw;
 	/* 1/2ish of 70vw main body */
-	height: 50px;
+	height: 80px;
 }
 
-.dataStripe3{
-	background-color: rgb(129, 226, 255);
+.AdataStripe3{
+	background: rgb(255, 195, 255);
 	border: 2px dashed gold;
 	width: 33vw;
 	/* 1/2ish of 70vw main body */
-	height: 60px;
+	height: 70px;
 }
 
 .w40p {
@@ -90,9 +90,9 @@
 }
 
 .abilIntro {
-	width: 100%;
+	width: 95%;
 	word-wrap:break-word;
-	background-color: rgba(180, 251, 244, 0.913);
+	background-color: rgba(234, 180, 251, 0.913);
 	border: 2px solid gold;
 }
 
@@ -107,7 +107,7 @@
 
 .abilFrame{
 	border: 1px solid rgb(255, 208, 0);
-	background-color: rgb(0, 242, 255);
+	background: rgb(255, 195, 255);
 	width: auto;
 	min-width: 120px;
 	height: auto;
@@ -119,5 +119,10 @@
 .abilFrameImg{
 	max-width: 110px;
 	max-height: 140px;
+}
+
+.Aflarg {
+	font-size: xx-large;
+	font-style: italic;
 }
 

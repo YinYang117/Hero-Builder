@@ -124,7 +124,7 @@ const AbilDetails = () => {
 				</div>
 				{/* right, main data */}
 				<div className="fdcol hfmn" >
-					<div className="dataStripe1 fdrow sa aicen" >
+					<div className="AdataStripe1 fdrow sa aicen" >
 						<button onClick={editAbilFunc}
 							className="w40p h80p confirmShadow"
 						>
@@ -136,12 +136,12 @@ const AbilDetails = () => {
 							Delete
 						</button>
 					</div>
-					<div className="dataStripe2 fdrow sa aicen" >
+					<div className="AdataStripe2 fdrow sa aicen" >
 						<div>Use Resources?</div>
 						<div className="mlr10">{usesResourcesFunc()}</div>
 					</div>
 					{(currAbil.usesResource === 1) &&
-					<div className="dataStripe3 fdrow sa aicen" >
+					<div className="AdataStripe3 fdrow sa aicen" >
 						<div className="fdcol aicen">
 							<div>Resource Name: </div>
 							<div>{currAbil.resourceName}</div>
@@ -151,12 +151,12 @@ const AbilDetails = () => {
 							<div>{currAbil.resourceCost}</div>
 						</div>
 					</div>}
-					<div className="dataStripe2 fdrow sa aicen" >
+					<div className="AdataStripe2 fdrow sa aicen" >
 						<div>Use Charges?</div>
 						<div className="mlr10">{usesChargesFunc()}</div>
 					</div>
 					{(currAbil.usesCharges === 1) &&
-					<div className="dataStripe3 fdrow sa aicen" >
+					<div className="AdataStripe3 fdrow sa aicen" >
 						<div className="fdcol aicen">
 							<div># of Charges: </div>
 							<div>{currAbil.numCharges}</div>
@@ -166,21 +166,23 @@ const AbilDetails = () => {
 							<div>{currAbil.chargeRechargeRate} Seconds</div>
 						</div>
 					</div>}
-					<div className="dataStripe2 fdrow sa aicen" >
+					<div className="AdataStripe2 fdrow sa aicen" >
 						{usesCooldownFunc()}
 					</div>
-					<div className="dataStripe1 fdrow sa aicen" >
+					<div className="AdataStripe1 fdrow sa aicen" >
 						{channeledFunc()}
 					</div>
-					<div className="dataStripe1 fdrow sa aicen" >
+					<div className="AdataStripe2 fdrow sa aicen" >
 						<div>Ultimate Ability?</div>
 						<div>{ultimateFunc()}</div>
 					</div>
 				</div>
 			</div>
-			{currAbil.details && <div className='abilIntro p5'>
+			{currAbil.details &&
+			<div className='abilIntro'>
 				{currAbil.details}
 			</div>}
+			<div className="mb30"></div>
 		</>
 	)
 }

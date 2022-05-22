@@ -16,11 +16,10 @@ const AllAbilPortraits = () => {
 
 	return (
 		<>
-			<div>
-			{/* TODO CSS here */}
+			<div className="mt30 mb10 Aflarg">
 				These are all your Abilities
 			</div>
-			<div className="fdrow fww" >
+			<div className="fdrow fww jccen" >
 				{abils?.arr?.map(abil => (
 					<div className="hcp abilFrame fdcol"
 						onClick={e => setCurrAbilFunc(abil)}
@@ -35,6 +34,7 @@ const AllAbilPortraits = () => {
 					</div>
 				))}
 			</div>
+			<div className="mb30"></div>
 		</>
 	)
 }
