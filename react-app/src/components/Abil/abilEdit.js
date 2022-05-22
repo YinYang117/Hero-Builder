@@ -32,7 +32,7 @@ const AbilEdit = () => {
 	const submitEditedAbil = async () => {
 		setErrors([])
 		const editedAbil = currAbil
-		console.log("abilEdit submitting 1", name, currAbil.name)
+		// console.log("abilEdit submitting 1", name, currAbil.name)
 		editedAbil.name = name
 		editedAbil.description = description
 		editedAbil.abilityImage = abilImage
@@ -205,6 +205,7 @@ const AbilEdit = () => {
 									className=""
 									type="text"
 									placeholder='Resource Name'
+									required="required"
 									value={resourceName} />
 							</div>
 							<div className="fdcol">
@@ -214,6 +215,7 @@ const AbilEdit = () => {
 									type="number"
 									min='1' max='1000' step='1'
 									placeholder='1 - 1000'
+									required="required"
 									value={resourceCost} />
 							</div>
 						</div>}
@@ -226,6 +228,7 @@ const AbilEdit = () => {
 									type="number"
 									min='1' max='100' step='1'
 									placeholder='1 - 100'
+									required="required"
 									value={numCharges} />
 							</div>
 							<div className="fdcol">
@@ -235,6 +238,7 @@ const AbilEdit = () => {
 									type="number"
 									min='1' max='120' step='1'
 									placeholder='1 - 120'
+									required="required"
 									value={chargeRechargeRate} />
 							</div>
 						</div>}
@@ -246,6 +250,7 @@ const AbilEdit = () => {
 								type="number"
 								min='2' max='120' step='1'
 								placeholder='1 - 120'
+								required="required"
 								value={cooldown} />
 						</div>}
 						{(channeled === 1) &&
@@ -256,6 +261,7 @@ const AbilEdit = () => {
 								type="number"
 								min='1.5' max='20' step='0.5'
 								placeholder='1.5 - 20.0'
+								required="required"
 								value={channelTime} />
 						</div>}
 					</div>
