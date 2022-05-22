@@ -43,8 +43,9 @@ const HeroDetails = () => {
 			<div className="fdrow sa">
 				{/* left, image + name */}
 				<div className="fdcol hfmn" >
-					<div className="fdrow sb" >
-						<div className="mlr10 w100p aicen heroDetName p5" >Name: {currHero.name}</div>
+					<div className="fdrow w100p aicen heroDetName p5" >
+						<div className="mlr10">Name: </div>
+						<div>{currHero.name}</div>
 					</div>
 					<img src={currHero.heroImage} alt={currHero.name} className="heroDetImg" />
 				</div>
@@ -62,14 +63,14 @@ const HeroDetails = () => {
 					</div>
 					<div className="dataStripe2 fdrow sa aicen" >
 						<div className="mlr10">HP: {currHero.hp}</div>
-						<div className="mlr10 fdrow aicen">
+						<div className="fdrow aicen">
 							<div>Use Resources?</div>
 							<div className='mlr10'>{usesResourcesFunc()}</div>
 						</div>
 					</div>
 					{(currHero.resource === 1) &&
 						<div className="dataStripe3 fdrow sa aicen" >
-							<div className="mlr10 fdcoln">{currHero.resourceName}: </div>
+							<div className="mlr10 fdcol">{currHero.resourceName}: </div>
 							<div className="mlr10 fdcol">{currHero.resourceAmount}</div>
 						</div>}
 					<div className="dataStripe1 fdrow sa aicen" >

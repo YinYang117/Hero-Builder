@@ -102,8 +102,9 @@ const AbilBuild = () => {
 
 		const data = await dispatch(buildAbil(newAbil))
 		if (!data) {
-			setBuildingNewAbil(false)
-			setCurrAbil(newAbil)
+		setBuildingNewAbil(false)
+		// console.log('new abil in the build',newAbil)
+		// setCurrAbil(newAbil) // currently causing a bug in immediately editing
 		}
 		else setErrors(data) // should be an array
 	}

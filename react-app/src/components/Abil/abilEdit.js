@@ -13,6 +13,8 @@ const AbilEdit = () => {
 			setEditingAbil
 		} = useContext(AbilContext);
 
+		// console.log('curr abil in the abil edit', currAbil);
+
 	const [errors, setErrors] = useState([])
 	const [name, setName] = useState(currAbil.name)
 	const [description, setDescription] = useState(currAbil.description)

@@ -65,7 +65,7 @@ const HeroBuild = () => {
 		const data = await dispatch(buildHero(newHero))
 		if (!data) {
 			setBuildingNewHero(false)
-			setCurrHero(newHero)
+			// setCurrHero(newHero) // causing bug if immediately updating
 		}
 		else setErrors(data) // should be an array
 
@@ -136,7 +136,7 @@ const HeroBuild = () => {
 						</div>
 						{(resource === 1) &&
 						<div className="dataStripe3 fdrow sa aicen" >
-							<div className="mlr10 fdcoln" >
+							<div className="mlr10 fdcol" >
 								<label  >Resource Name</label>
 								<input onChange={e => setResourceName(e.target.value)}
 								className=""

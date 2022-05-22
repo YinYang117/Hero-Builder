@@ -30,7 +30,7 @@
 	border: 2px solid rgb(255, 198, 106);
 	width: 33vw;
 	/* 1/2ish of 70vw main body */
-	height: 50px;
+	min-height: 70px;
 }
 
 .dataStripe2{
@@ -38,7 +38,7 @@
 	border: 2px solid rgb(255, 207, 33);
 	width: 33vw;
 	/* 1/2ish of 70vw main body */
-	height: 50px;
+	min-height: 80px;
 }
 
 .dataStripe3{
@@ -46,7 +46,15 @@
 	border: 2px dashed gold;
 	width: 33vw;
 	/* 1/2ish of 70vw main body */
-	height: 60px;
+	min-height: 80px;
+}
+
+.mw50px {
+	width: 50px;
+}
+
+.mw60px {
+	width: 60px;
 }
 
 .w40p {

@@ -123,7 +123,7 @@ const HeroEdit = () => {
 							<div className="mlr10" >
 								<label>HP: </label>
 								<input onChange={e => setHp(e.target.value)}
-								className="h80p"
+								className="mlr10 h80p"
 								type="number"
 								min='100' max='10000' step='10'
 								placeholder='100-10000'
@@ -142,16 +142,16 @@ const HeroEdit = () => {
 						</div>
 						{(resource === 1) &&
 						<div className="dataStripe3 fdrow sa aicen" >
-							<div className="mlr10 fdcoln" >
-								<label  >Resource Name</label>
+							<div className="mlr10 fdcol aicen" >
+								<label  >Resource Name: </label>
 								<input onChange={e => setResourceName(e.target.value)}
 								className=""
 								type="text"
 								placeholder='Mana / Energy / Etc'
 								value={resourceName} />
 							</div>
-							<div className="mlr10 fdcol" >
-								<label className=''>Amount</label>
+							<div className="mlr10 fdcol aicen" >
+								<label className=''>Amount: </label>
 								<input onChange={e => setResourceAmount(e.target.value)}
 								className=""
 								type="number"
@@ -164,7 +164,7 @@ const HeroEdit = () => {
 							<div className="mlr10 fdrow sa aicen" >
 								<label>Physical Armor</label>
 								<input onChange={e => setPhysicalArmor(e.target.value)}
-								className=""
+								className="mw50px mlr10"
 								type="number"
 								min='0' max='500' step='1'
 								placeholder='0-500'
@@ -174,7 +174,7 @@ const HeroEdit = () => {
 							<div className="mlr10 fdrow sa aicen" >
 								<label>Magic Resist</label>
 								<input onChange={e => setMagicResist(e.target.value)}
-								className=""
+								className="mw50px mlr10"
 								type="number"
 								min='0' max='500' step='1'
 								placeholder='0-500'
@@ -186,9 +186,9 @@ const HeroEdit = () => {
 							<div className="mlr10 fdrow sa aicen" >
 								<label>Attack Damage</label>
 								<input onChange={e => setAttackDamage(e.target.value)}
+								className="ml10 mw60px"
 								type="number"
 								min='10' max='2000' step='1'
-								className=""
 								placeholder='10-2000'
 								required="required"
 								value={attackDamage} />
@@ -198,7 +198,7 @@ const HeroEdit = () => {
 								<input onChange={e => setAttackRange(e.target.value)}
 								type="number"
 								min='1' max='500' step='1'
-								className=""
+								className="ml10 mw60px"
 								placeholder='1-500'
 								required="required"
 								value={attackRange} />
