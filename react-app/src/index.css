@@ -81,8 +81,16 @@ body {
     margin: 10px;
 }
 
-.mt10 {
-    margin-top: 100px;
+.mt30 {
+    margin-top: 30px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
 }
 
 .mlr10 {

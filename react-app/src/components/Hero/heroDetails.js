@@ -42,12 +42,12 @@ const HeroDetails = () => {
 			{/* split img / main data */}
 			<div className="fdrow sa">
 				{/* left, image + name */}
-				<div className="fdcol hfmn" >
+				<div className="fdcol hfmn aicen jccen" >
 					<div className="fdrow w100p aicen heroDetName p5" >
 						<div className="mlr10">Name: </div>
 						<div>{currHero.name}</div>
 					</div>
-					<img src={currHero.heroImage} alt={currHero.name} className="heroDetImg" />
+					<img src={currHero.heroImage} alt={currHero.name} className="heroDetImg m10" />
 				</div>
 				{/* right, main data */}
 				<div className="fdcol hfmn" >
@@ -105,21 +105,25 @@ const HeroDetails = () => {
 					</div>
 				</div>
 			</div>
-			<div className='heroIntro p5'>
+			<div className='heroIntro'>
 				{currHero.intro}
 			</div>
-			{currHero.details && <div className='heroIntro p5'>
+			{currHero.details &&
+			<div className='heroIntro'>
 				{currHero.details}
 			</div>}
 			{currHeroAbils &&
-			<>
-				<div>Hero Equiped Abils {`(${currHeroAbils?.arr?.length}/6)`}</div>
-				<div className='heroIntro p5 fdrow fww'>
+			<div className="heroIntro fdcol aicen">
+				<div className="mt30 mb10 flarg">
+					Hero Equiped Abils {`(${currHeroAbils?.arr?.length}/6)`}
+				</div>
+				<div className=' p5 fdrow fww mb10'>
 					{currHeroAbils?.arr?.map(abil => (
-						<HeroAbilCard key={abil.id} abil={abil} />
+						<HeroAbilCard key={abil.id} abil={abil}/>
 					))}
 				</div>
-			</>}
+			</div>}
+			<div className="mb30"></div>
 		</>
 	)
 }

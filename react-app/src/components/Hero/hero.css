@@ -6,9 +6,9 @@
 
 .heroDetName {
 	background-color: aqua;
-	border: 2px gold;
+	border: 2px solid gold;
 	width: 200px;
-	height: 30px;
+	height: 40px;
 }
 
 .heroDetInt {
@@ -85,7 +85,7 @@
 }
 
 .heroIntro {
-	width: 100%;
+	width: 95%;
 	word-wrap:break-word;
 	background-color: rgba(180, 251, 244, 0.913);
 	border: 2px solid gold;
@@ -115,4 +115,11 @@
 	max-width: 110px;
 	max-height: 140px;
 }
+
+.flarg {
+	font-size: larger;
+	font-style: italic;
+}
+
+
 
