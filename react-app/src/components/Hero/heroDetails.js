@@ -1,12 +1,15 @@
 import React, { useContext, useEffect } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { HeroContext } from '../../context/HeroContext';
-import { deleteHero } from "../../store/heros"
-import fetchHeroAbilities from "../../store/heroAbil"
+import { deleteHero } from "../../store/heros";
+import {fetchHeroAbilities} from "../../store/heroAbil";
+import HeroAbilCard from './heroAbilCard';
 import "./hero.css";
 
 const HeroDetails = () => {
 	const dispatch = useDispatch();
+
+	const currHeroAbils = useSelector(state => state.heroAbil)
 
 	const { currHero, setCurrHero, setEditingHero } = useContext(HeroContext);
 
@@ -19,9 +22,13 @@ const HeroDetails = () => {
 		if (currHero.resource === 1) return (<div>Yes</div>)
 		else return (<div>No</div>) // (currHero.resource === 0)
 	}
-	
+
+	// useEffect(() => {
+	// 	fetchHeroAbilities(currHero)
+	// },[])
+
 	useEffect(() => {
-		fetchHeroAbilities(currHero)
+		dispatch(fetchHeroAbilities(currHero))
 	},[currHero])
 
 
@@ -90,9 +97,6 @@ const HeroDetails = () => {
 							<div className="mlr10">{currHero.moveSpeed}</div>
 						</div>
 					</div>
-					{/* <div className="dataStripe1 fdrow sb aicen" >
-						<div className="" >Abilities: {currHero.numOfAbilities}</div>
-					</div> */}
 				</div>
 			</div>
 			<div className='heroIntro p5'>
@@ -101,9 +105,15 @@ const HeroDetails = () => {
 			{currHero.details && <div className='heroIntro p5'>
 				{currHero.details}
 			</div>}
-			<div className='heroIntro p5'>
-				Hero Equiped Abils: {currHero?.hero_equipped_abilities}
-			</div>
+			{currHeroAbils &&
+			<>
+				<div>Hero Equiped Abils:</div>
+				<div className='heroIntro p5 fdrow fww'>
+					{currHeroAbils?.arr?.map(abil => (
+						<HeroAbilCard abil={abil} />
+					))}
+				</div>
+			</>}
 		</>
 	)
 }

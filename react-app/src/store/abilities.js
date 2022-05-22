@@ -66,7 +66,6 @@ export const fetchUserAbilities = (user) => async (dispatch) => {
 
 export const editAbil = (abil) => async (dispatch) => {
     const id = abil.id
-    console.log("abil store abil", abil)
     const res = await fetch(`/api/abilities/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

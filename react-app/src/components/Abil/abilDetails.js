@@ -1,16 +1,23 @@
 import React, { useContext } from 'react';
 import { useDispatch } from "react-redux";
 import { AbilContext } from '../../context/AbilContext';
+import { HeroContext } from '../../context/HeroContext';
 import { deleteAbil } from "../../store/abilities"
+import { addOneHeroAbil } from "../../store/heroAbil"
 import "./abil.css";
 
 const AbilDetails = () => {
 	const dispatch = useDispatch();
 
+	const { currHero } = useContext(HeroContext);
 	const { currAbil, setCurrAbil, setEditingAbil } = useContext(AbilContext);
 
 	const editAbilFunc = () => {
 		setEditingAbil(true)
+	}
+
+	const addAbilToHero = async () => {
+		const data = await dispatch(addOneHeroAbil(currHero, currAbil))
 	}
 
 	const deleteAbilFunc = async () => {
@@ -46,8 +53,13 @@ const AbilDetails = () => {
 
 	return (
 		<>
+			{currHero &&
+			<div>
+				Add this Ability to your currently selected Hero? <button onClick={addAbilToHero}>Add</button>
+			</div>}
 			{/* split img / main data */}
 			<div className="fdrow sa">
+
 				{/* left, image + name */}
 				<div className="fdcol hfmn" >
 					<div className="fdrow sb" >
