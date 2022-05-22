@@ -35,10 +35,10 @@ const AbilDetails = () => {
 	const usesCooldownFunc = () => {
 		if (currAbil.usesCooldown === 0) {
 			return (
-				<div className="fdrow sa aicen" >
+				<>
 					<div>Uses Cooldown?</div>
 					<div>No</div>
-				</div>
+				</>
 			)
 		}
 		else if (currAbil.usesCooldown === 1) {
@@ -60,10 +60,10 @@ const AbilDetails = () => {
 	const channeledFunc = () => {
 		if (currAbil.channeled === 0) {
 			return (
-				<div className="fdrow sa aicen" >
+				<>
 					<div>Channeled Ability?</div>
 					<div>No</div>
-				</div>
+				</>
 			)
 		}
 		else if ((currAbil.channeled === 1)) {
