@@ -1,5 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import {fetchHeroAbilities} from "../../store/heroAbil";
 import { AbilContext } from '../../context/AbilContext';
+import { HeroContext } from '../../context/HeroContext';
 import AllAbilPortraits from "./allAbilPortraits";
 import ChooseAbilImage from "./chooseAbilImage";
 import AbilDetails from "./abilDetails";
@@ -9,8 +12,14 @@ import "./abil.css";
 
 
 const Abils = () => {
-	const { currAbil, showAbilPortraits, buildingNewAbil, editingAbil } = useContext(AbilContext);
+	const dispatch = useDispatch();
 
+	const { currAbil, showAbilPortraits, buildingNewAbil, editingAbil } = useContext(AbilContext);
+	const { currHero } = useContext(HeroContext);
+
+	// useEffect(()=> {
+	// 	if (currHero) dispatch(fetchHeroAbilities(currHero))
+	// },[currAbil])
 
 	return (
 		<>

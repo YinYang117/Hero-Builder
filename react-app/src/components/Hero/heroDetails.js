@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { HeroContext } from '../../context/HeroContext';
+import { AbilContext } from '../../context/AbilContext';
 import { deleteHero } from "../../store/heros";
 import {fetchHeroAbilities} from "../../store/heroAbil";
 import HeroAbilCard from './heroAbilCard';
@@ -12,6 +13,8 @@ const HeroDetails = () => {
 	const currHeroAbils = useSelector(state => state.heroAbil)
 
 	const { currHero, setCurrHero, setEditingHero } = useContext(HeroContext);
+	const { currAbil } = useContext(AbilContext);
+
 
 	const [loaded, setLoaded] = useState(false)
 
@@ -34,7 +37,9 @@ const HeroDetails = () => {
 			dispatch(fetchHeroAbilities(currHero))
 			setLoaded(true)
 		}
-	},[currHero, dispatch])
+	},[currHero, dispatch, currAbil])
+
+
 
 
 	return loaded && (
