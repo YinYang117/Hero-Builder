@@ -17,8 +17,8 @@ const HeroAbilCard = ({abil}) => {
 
 	return (
 		<>
-			<div className="fdcol mlr10 fww" >
-					<div className="abilFrame fdcol">
+			<div className="fdcol mlr10 fww aicen" >
+					<div className="abilFrame fdcol jccen aicen">
 						<img
 							className="abilFrameImg"
 							// className="abilImgCarousel hcp" // TODO use or remove
@@ -28,7 +28,7 @@ const HeroAbilCard = ({abil}) => {
 						<div>{abil.name}</div>
 					</div>
 					<button
-						className="hcp"
+						className="hcp w60p cancelShadow"
 						onClick={handleDelete}
 					>
 						X

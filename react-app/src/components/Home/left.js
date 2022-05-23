@@ -35,7 +35,7 @@ const Left = () => {
 
 
 	return (
-		<div className="lgrid">
+		<div className="lgrid fdcol">
 			<button
 				className="hcp sideButton"
 				type="button"

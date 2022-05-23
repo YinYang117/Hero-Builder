@@ -120,7 +120,7 @@ const AbilDetails = () => {
 						<div className="mlr10 w100p aicen abilDetName p5" >Name: {currAbil.name}</div>
 					</div>
 					<img src={currAbil.abilityImage} alt={currAbil.name} className="abilDetImg" />
-					<div className='abilIntro'>
+					<div className='abilIntro p5'>
 						{currAbil.description}
 					</div>
 				</div>
@@ -153,7 +153,7 @@ const AbilDetails = () => {
 							<div>{currAbil.resourceCost}</div>
 						</div>
 					</div>}
-					<div className="AdataStripe2 fdrow sa aicen" >
+					<div className="AdataStripe1 fdrow sa aicen" >
 						<div>Use Charges?</div>
 						<div className="mlr10">{usesChargesFunc()}</div>
 					</div>

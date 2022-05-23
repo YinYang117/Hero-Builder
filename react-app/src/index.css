@@ -87,6 +87,15 @@ body {
     width: 100%;
 }
 
+.w80p {
+    width: 80%;
+}
+
+.w60p {
+    width: 60%;
+}
+
+
 .m10 {
     margin: 10px;
 }

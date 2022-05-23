@@ -35,7 +35,7 @@ const Right = () => {
 
 
 	return (
-		<div className="rgrid">
+		<div className="fdcol rgrid">
 			<button
 				className="hcp sideButton"
 				type="button"
