@@ -1,7 +1,7 @@
 .abilImg {
 	border: 2px gold;
-	max-width: 200px;
-	max-height: 200px;
+	max-width: 400px;
+	max-height: 400px;
 }
 
 .abilImgCarousel{
@@ -46,12 +46,28 @@
 	height: 70px;
 }
 
+.AdataStripe1t{
+	background: rgb(255, 195, 255);
+	border: 2px solid rgb(255, 198, 106);
+	width: 33vw;
+	/* 1/2ish of 70vw main body */
+	height: 90px;
+}
+
 .AdataStripe2{
 	background-color: rgb(245, 132, 255);
 	border: 2px solid rgb(255, 207, 33);
 	width: 33vw;
 	/* 1/2ish of 70vw main body */
 	height: 80px;
+}
+
+.AdataStripe2t{
+	background-color: rgb(245, 132, 255);
+	border: 2px solid rgb(255, 207, 33);
+	width: 33vw;
+	/* 1/2ish of 70vw main body */
+	height: 95px;
 }
 
 .AdataStripe3{
@@ -66,12 +82,24 @@
 	width: 40%;
 }
 
+.w50p {
+	width: 50%;
+}
+
+.w70p {
+	width: 70%;
+}
+
+.w90p {
+	width: 90%;
+}
+
 .h80p {
 	height: 80%;
 }
 
-.bottomSpan {
-	background-color: aqua;
+.AbottomSpan {
+	background: rgb(255, 175, 255);
 	border: 2px solid gold;
 	width: 90%;
 	height: auto;
@@ -108,10 +136,8 @@
 .abilFrame{
 	border: 1px solid rgb(255, 208, 0);
 	background: rgb(255, 195, 255);
-	width: auto;
-	min-width: 120px;
-	height: auto;
-	min-height: 160px;
+	width: 140px;
+	height: 140px;
 	margin: 5px 0px 5px 5px;
 	box-shadow: 0px 10px 15px -5px #34005a, 5px 5px 15px 5px rgba(159,0,173,0);
 }
@@ -119,10 +145,5 @@
 .abilFrameImg{
 	max-width: 110px;
 	max-height: 140px;
-}
-
-.Aflarg {
-	font-size: xx-large;
-	font-style: italic;
 }
 

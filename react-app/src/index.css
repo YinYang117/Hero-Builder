@@ -13,6 +13,16 @@ body {
     font-size: 105%;
 }
 
+.Aflarg {
+	font-size: xx-large;
+	font-style: italic;
+}
+
+.flarg {
+	font-size: larger;
+	font-style: italic;
+}
+
 .fs90 {
     font-size: 90%;
 }
@@ -128,4 +138,8 @@ body {
 
 .rerr{
     color: rgb(132, 29, 0);
+}
+
+.rsn{
+    resize: none;
 }

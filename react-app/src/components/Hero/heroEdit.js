@@ -79,6 +79,7 @@ const HeroEdit = () => {
 
 	return (
 		<div className="fdcol">
+			<div className="mb30"></div>
 			{errors &&
 				<div className="fdcol aicen">
 					{errors.map(error => (
@@ -87,7 +88,7 @@ const HeroEdit = () => {
 						</div>
 						))}
 				</div>}
-			<form className='fs90'
+			<form className='fs90 fdcol aicen'
 				onSubmit={e => {
 				e.preventDefault()
 				submitEditHero()
@@ -97,9 +98,9 @@ const HeroEdit = () => {
 					{/* left, image + name */}
 					<div className="fdcol hfmn" >
 						<div className="fdrow sb" >
-							<label className="mlr10" >Name:</label>
+							<label >Name:</label>
 							<input onChange={e => setHeroName(e.target.value)}
-							className="w100p"
+							className="w100p mlr10"
 							type="text"
 							placeholder='Hero Name'
 							required="required"
@@ -209,7 +210,7 @@ const HeroEdit = () => {
 								<label>Attack Speed</label>
 								<input onChange={e => setAttackSpeed(e.target.value)}
 								type="number" min='0.1' max='10.0' step='0.1'
-								className=""
+								className="ml10"
 								placeholder='0.1 - 10.0'
 								required="required"
 								value={attackSpeed} />
@@ -219,7 +220,7 @@ const HeroEdit = () => {
 								<input onChange={e => setMoveSpeed(e.target.value)}
 								type="number"
 								min='1.0' max='20.0' step='0.1'
-								className=""
+								className="ml10"
 								placeholder='1.0 - 20.0'
 								required="required"
 								value={moveSpeed} />
@@ -228,8 +229,7 @@ const HeroEdit = () => {
 						<div className="dataStripe2 hauto fdcol sa aicen" >
 							<label>Hero Intro</label>
 							<textarea onChange={e => setIntro(e.target.value)}
-							className="hauto editIntro"
-							// type="textarea"
+							className="hauto editIntro rsn"
 							id="editIntro"
 							rows="6" cols="35"
 							placeholder='Introduction for your Hero'
@@ -239,16 +239,16 @@ const HeroEdit = () => {
 					</div>
 				</div>
 				{/* resume column ordering */}
-				<div className="bottomSpan">
+				<div className="bottomSpan fdcol aicen">
 					<label >Technical Details</label>
-					<input onChange={e => setDetails(e.target.value)}
-					className=""
-					type="textarea"
-					rows="5"
+					<textarea onChange={e => setDetails(e.target.value)}
+					className="rsn"
+					rows="5" cols="70"
 					placeholder='Additional Hero Details'
 					value={details} />
 				</div>
 			</form>
+			<div className="mb30"></div>
 		</div>
 	)
 }

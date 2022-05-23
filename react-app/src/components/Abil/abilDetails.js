@@ -114,13 +114,15 @@ const AbilDetails = () => {
 			{addAbilToHeroFunc()}
 			{/* split img / main data */}
 			<div className="fdrow sa">
-
 				{/* left, image + name */}
 				<div className="fdcol hfmn" >
 					<div className="fdrow sb" >
 						<div className="mlr10 w100p aicen abilDetName p5" >Name: {currAbil.name}</div>
 					</div>
 					<img src={currAbil.abilityImage} alt={currAbil.name} className="abilDetImg" />
+					<div className='abilIntro'>
+						{currAbil.description}
+					</div>
 				</div>
 				{/* right, main data */}
 				<div className="fdcol hfmn" >
@@ -179,7 +181,7 @@ const AbilDetails = () => {
 				</div>
 			</div>
 			{currAbil.details &&
-			<div className='abilIntro'>
+			<div className='abilIntro m10'>
 				{currAbil.details}
 			</div>}
 			<div className="mb30"></div>

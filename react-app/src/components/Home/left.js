@@ -10,6 +10,7 @@ const Left = () => {
 			setShowHeroPortraits,
 			buildingNewHero,
 			setBuildingNewHero,
+			currHero,
 			setCurrHero,
 			setEditingHero
 		} = useContext(HeroContext);
@@ -22,6 +23,12 @@ const Left = () => {
 
 	const clickHeroPortrait = (hero) => {
 		setCurrHero(hero)
+		setBuildingNewHero(false)
+		setEditingHero(false)
+	}
+
+	const clearHeroSelection = () => {
+		setCurrHero()
 		setBuildingNewHero(false)
 		setEditingHero(false)
 	}
@@ -43,6 +50,14 @@ const Left = () => {
 			>
 				Toggle All Heros
 			</button>
+		{currHero &&
+			<button
+				className="hcp sideButton"
+				type="button"
+				onClick={e => clearHeroSelection()}
+			>
+				Close Hero Details
+			</button>}
 			{heros &&
 			<div>
 				{heros?.arr?.map(hero => (

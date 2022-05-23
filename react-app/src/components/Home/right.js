@@ -10,6 +10,7 @@ const Right = () => {
 			setShowAbilPortraits,
 			buildingNewAbil,
 			setBuildingNewAbil,
+			currAbil,
 			setCurrAbil,
 			setEditingAbil
 			} = useContext(AbilContext);
@@ -22,6 +23,12 @@ const Right = () => {
 
 	const clickAbilPortrait = (abil) => {
 		setCurrAbil(abil)
+		setBuildingNewAbil(false)
+		setEditingAbil(false)
+	}
+
+	const clearAbilSelection = () => {
+		setCurrAbil()
 		setBuildingNewAbil(false)
 		setEditingAbil(false)
 	}
@@ -43,6 +50,14 @@ const Right = () => {
 			>
 				Toggle All Abilities
 			</button>
+		{currAbil &&
+			<button
+				className="hcp sideButton"
+				type="button"
+				onClick={e => clearAbilSelection()}
+			>
+				Close Hero Details
+			</button>}
 			{abils &&
 			<div>
 				{abils?.arr?.map(abil => (
