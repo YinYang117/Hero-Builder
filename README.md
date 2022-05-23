@@ -28,7 +28,11 @@ ability.
 
 Mix and match to create truly unique combinations!
 
-Technologies used include Python, Postgres, SQLAlchemy, WTForms, JS, React, Redux, and Docker.
+## Frontend Tech
+JS, React, Redux, and Docker.
+
+## Backend Tech
+Python, Postgres, SQLAlchemy, WTForms
 
 # Splash Page
 ![Screenshot 2022-05-22 223004](https://user-images.githubusercontent.com/87918997/169746701-e144168a-014f-4505-a763-5f522dfc0d1e.png)
