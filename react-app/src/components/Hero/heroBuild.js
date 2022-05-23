@@ -94,7 +94,7 @@ const HeroBuild = () => {
 						<div className="fdrow sb" >
 							<label className="mlr10" >Name:</label>
 							<input onChange={e => setHeroName(e.target.value)}
-							className="w100p"
+							className="w100p mr10"
 							type="text"
 							placeholder='Hero Name'
 							required="required"
@@ -140,7 +140,7 @@ const HeroBuild = () => {
 							<div className="mlr10 fdcol" >
 								<label  >Resource Name</label>
 								<input onChange={e => setResourceName(e.target.value)}
-								className=""
+								className="mr10"
 								type="text"
 								placeholder='Mana / Energy / Etc'
 								value={resourceName} />
@@ -157,7 +157,7 @@ const HeroBuild = () => {
 						</div>}
 						<div className="dataStripe1 fdrow sa aicen" >
 							<div className="mlr10 fdrow sa aicen" >
-								<label>Physical Armor</label>
+								<label className="mr10">Physical Armor</label>
 								<input onChange={e => setPhysicalArmor(e.target.value)}
 								className=""
 								type="number"
@@ -167,7 +167,7 @@ const HeroBuild = () => {
 								value={physicalArmor} />
 							</div>
 							<div className="mlr10 fdrow sa aicen" >
-								<label>Magic Resist</label>
+								<label className="mr10">Magic Resist</label>
 								<input onChange={e => setMagicResist(e.target.value)}
 								className=""
 								type="number"
@@ -179,7 +179,7 @@ const HeroBuild = () => {
 						</div>
 						<div className="dataStripe2 fdrow sa aicen" >
 							<div className="mlr10 fdrow sa aicen" >
-								<label>Attack Damage</label>
+								<label className="mr10">Attack Damage</label>
 								<input onChange={e => setAttackDamage(e.target.value)}
 								type="number"
 								min='10' max='2000' step='1'
@@ -189,7 +189,7 @@ const HeroBuild = () => {
 								value={attackDamage} />
 							</div>
 							<div className="mlr10 fdrow sa aicen" >
-								<label>Attack Range</label>
+								<label className="mr10">Attack Range</label>
 								<input onChange={e => setAttackRange(e.target.value)}
 								type="number"
 								min='1' max='500' step='1'
@@ -201,7 +201,7 @@ const HeroBuild = () => {
 						</div>
 						<div className="dataStripe1 fdrow sa aicen" >
 							<div className="mlr10 fdrow sa aicen" >
-								<label>Attack Speed</label>
+								<label className="mr10">Attack Speed</label>
 								<input onChange={e => setAttackSpeed(e.target.value)}
 								type="number" min='0.1' max='10.0' step='0.1'
 								className=""
@@ -210,7 +210,7 @@ const HeroBuild = () => {
 								value={attackSpeed} />
 							</div>
 							<div className="mlr10 fdrow sa aicen" >
-								<label>Move Speed</label>
+								<label className="mr10">Move Speed</label>
 								<input onChange={e => setMoveSpeed(e.target.value)}
 								type="number"
 								min='1.0' max='20.0' step='0.1'
