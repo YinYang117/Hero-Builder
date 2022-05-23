@@ -9,10 +9,7 @@ const Center = () => {
 
 	return (
 		<div className="cgrid aicen fdcol">
-			{user &&
-			<h2>
-				Welcome to Hero Builder {user.username}!
-			</h2>}
+			<div className="mb30"></div>
 			<Heros/>
 			<Abils/>
 		</div>

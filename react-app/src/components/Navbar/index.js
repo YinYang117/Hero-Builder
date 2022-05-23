@@ -28,7 +28,7 @@ const NavBar = () => {
 
 
   return (
-    <nav className="nav fdrow aicen sb">
+    <nav className="nav fdrow aicen sb bsbb">
       <div className="fdcol sa">
         <img src={dwarf} alt="dwarf logo" className="logo m10 hcp" onClick={myLinks} />
         <div className="profile-dropdown fdcol jccen"
@@ -47,9 +47,14 @@ const NavBar = () => {
           </a>
         </div>
       </div>
-      <h1 className="title">
+      {!user &&
+      <h1 className="Aflarg title">
         Hero Builder
-      </h1>
+      </h1>}
+      {user &&
+			<h1 className="Aflarg title">
+				Welcome to Hero Builder {user.username}!
+			</h1>}
       <div>
         {!user &&
           <div className="fdrow m10">

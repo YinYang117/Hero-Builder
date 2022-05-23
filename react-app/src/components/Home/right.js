@@ -56,7 +56,7 @@ const Right = () => {
 				type="button"
 				onClick={e => clearAbilSelection()}
 			>
-				Close Hero Details
+				Close Ability Details
 			</button>}
 			{abils &&
 			<div>

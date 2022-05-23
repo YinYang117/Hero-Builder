@@ -82,7 +82,8 @@ const HeroBuild = () => {
 						</div>
 						))}
 				</div>}
-			<form onSubmit={e => {
+			<form className="fdcol aicen"
+				onSubmit={e => {
 				e.preventDefault()
 				submitNewHero()
 			}}>
@@ -219,10 +220,10 @@ const HeroBuild = () => {
 								value={moveSpeed} />
 							</div>
 						</div>
-						<div className="dataStripe2 hauto fdcol sa aicen" >
+						<div className="dataStripe2 hauto fdcol sa aicen mb10" >
 							<label>Hero Intro</label>
 							<textarea onChange={e => setIntro(e.target.value)}
-							className="hauto editIntro"
+							className="hauto editIntro rsn"
 							id="editIntro"
 							rows="6" cols="35"
 							placeholder='Introduction for your Hero'
@@ -232,12 +233,11 @@ const HeroBuild = () => {
 					</div>
 				</div>
 				{/* resume column ordering */}
-				<div className="bottomSpan">
+				<div className="bottomSpan fdcol aicen mlr10">
 					<label >Technical Details</label>
-					<input onChange={e => setDetails(e.target.value)}
-					className=""
-					type="textarea"
-					rows="5"
+					<textarea onChange={e => setDetails(e.target.value)}
+					className="rsn m10"
+					rows="5" cols="60"
 					placeholder='Additional Hero Details'
 					value={details} />
 				</div>

@@ -15,10 +15,13 @@ const Splash = () => {
 
     return (
     <>
-        <img src={seige} alt="Splash Seige" className="splash" />
+        <img 
+        src={"https://res.cloudinary.com/dzrimpg5t/image/upload/v1653189408/17450_ufsosh.jpg"}
+        alt="Splash Seige"
+        className="splash"
+        />
         {user &&
             <button className="toHome" onClick={toHome}>Start Building Heros!</button>
-            
         }
         {/* TODO fix this weird button, and add the other min req to splash */}
     </>

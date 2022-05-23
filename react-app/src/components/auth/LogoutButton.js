@@ -11,7 +11,7 @@ const LogoutButton = () => {
 
   return (
             <img src={logoutIcon} alt="login"
-            className="smlogo hcp"
+            className="mlogo hcp ml10 m10"
             onClick={onLogout}
             />
   )

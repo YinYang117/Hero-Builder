@@ -121,7 +121,8 @@ const AbilEdit = () => {
 						</div>
 					))}
 				</div>}
-			<form onSubmit={e => {
+			<form className='fdcol aicen'
+				onSubmit={e => {
 				e.preventDefault()
 				submitEditedAbil()
 			}}>
@@ -290,7 +291,6 @@ const AbilEdit = () => {
 			</form>
 			<div className="mb30"></div>
 		</div>
-		
 	)
 }
 

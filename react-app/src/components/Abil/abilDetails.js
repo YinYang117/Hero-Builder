@@ -91,8 +91,8 @@ const AbilDetails = () => {
 		if (currHero) {
 			if (!(currHeroAbils[currAbil.id])) {
 				return (			
-					<div>
-						Add this Ability to your currently selected Hero? <button onClick={addAbilToHero}>Add</button>
+					<div className="Aflarg ">
+						Add this Ability to your currently selected Hero? <button className="hcp sideButton" onClick={addAbilToHero}>Add</button>
 					</div>
 				)
 			}

@@ -113,169 +113,184 @@ const AbilBuild = () => {
 	return (
 		// whole container is col
 		<div className="fdcol">
-			<form onSubmit={e => {
+			<div className="mb30"></div>
+			{errors &&
+				<div className="TODO errors">
+					{errors.map(error => (
+						<div key={error} className="rerr">
+							{error}
+						</div>
+					))}
+				</div>}
+			<form className="fdcol aicen" 
+				onSubmit={e => {
 				e.preventDefault()
 				submitNewAbil()
 			}}>
 				<div className="fdrow">
 					<div className="left side fdcol hfmn">
-						<img src={abilImage} alt="new ability portrait" className="abilImg" /> {/* TODO classname */}
-						<div className="conditionGroup fdcol">
-							<div>Uses Resources?</div>
-							<div className="checkboxContainer fdrow">
-								<input type="checkbox" name="" checked={usesResource === 1} value={1} onClick={e => resourceCheck(e)} />
-								<label>Yes</label>
-								<input type="checkbox" name="" checked={usesResource === 0} value={0} onClick={e => resourceCheck(e)} />
-								<label>No</label>
-							</div>
-						</div>
-						<div className="conditionGroup fdcol">
-							<div>Uses Charges?</div>
-							<div className="checkboxContainer fdrow">
-								<input type="checkbox" name="" checked={usesCharges === 1} value={1} onClick={e => chargesCheck(e)} />
-								<label>Yes</label>
-								<input type="checkbox" name="" checked={usesCharges === 0} value={0} onClick={e => chargesCheck(e)} />
-								<label>No</label>
-							</div>
-						</div>
-						<div className="conditionGroup fdcol">
-							<div>Uses Cooldowns?</div>
-							<div className="checkboxContainer fdrow">
-								<input type="checkbox" name="" checked={usesCooldown === 1} value={1} onClick={e => cooldownCheck(e)} />
-								<label>Yes</label>
-								<input type="checkbox" name="" checked={usesCooldown === 0} value={0} onClick={e => cooldownCheck(e)} />
-								<label>No</label>
-							</div>
-						</div>
-						<div className="conditionGroup fdcol">
-							<div>Channeled While Casting?</div>
-							<div className="checkboxContainer fdrow">
-								<input type="checkbox" name="" checked={channeled === 1} value={1} onClick={e => channeledCheck(e)} />
-								<label>Yes</label>
-								<input type="checkbox" name="" checked={channeled === 0} value={0} onClick={e => channeledCheck(e)} />
-								<label>No</label>
-							</div>
-						</div>
-						<div className="conditionGroup fdcol">
-							<div>Ultimate Ability?</div>
-							<div className="checkboxContainer fdrow">
-								<input type="checkbox" name="" checked={ultimate === 1} value={1} onClick={e => ultCheck(e)} />
-								<label>Yes</label>
-								<input type="checkbox" name="" checked={ultimate === 0} value={0} onClick={e => ultCheck(e)} />
-								<label>No</label>
-							</div>
-						</div>
-					</div>
-					<div className="right side fdcol hfmn">
-						{errors &&
-						<div className="TODO errors">
-							{errors.map(error =>
-								<div key={error} className="rerr">
-									{error}
-								</div>)}
-						</div>}
-						<div className="dataStripe1 fdrow sa aicen" >
-							<button type="submit"
-							className="w40p h80p confirmShadow"
-							>
-								Build Ability!</button>
-							<button onClick={e => setBuildingNewAbil(false)}
-							className="w40p h80p cancelShadow"
-							>
-								Cancel</button>
-						</div>
-						<>
+						<div className="fdrow sb AdataStripe1 aicen" >
 							<label className="mlr10" >Name:</label>
 							<input onChange={e => setName(e.target.value)}
-								className="w100p"
+								className="w100p mlr10"
 								type="text"
 								placeholder='Ability Name'
 								required="required"
 								value={name} />
-						</>
-						<>
-							<label>Description:</label>
-							<textarea onChange={e => setDescription(e.target.value)}
-								className="hauto wauto"
-								id="setNewDescription"
-								rows="6" cols="35"
-								placeholder='General Description of the Ability'
-								required="required"
-								value={description} />
-						</>
-						{(usesResource === 1) && 
-						<div className="conditionDetails1 fdrow sb">
-							<div className="fdcol">
+						</div>
+						<img src={abilImage} alt="new ability portrait" className="abilImg" />
+						<div className="AdataStripe1 fdrow aicen jccen sa">
+							<div>Ultimate Ability?</div>
+							<div className="checkboxContainer fdrow aicen">
+								<input type="checkbox" className="ml10" checked={ultimate === 1} value={1} onClick={e => ultCheck(e)} />
+								<label className="mlr10">Yes</label>
+								<input type="checkbox" className="mlr10" checked={ultimate === 0} value={0} onClick={e => ultCheck(e)} />
+								<label className="mr10">No</label>
+							</div>
+						</div>
+					</div>
+					<div className="right side fdcol hfmn">
+						<div className="AdataStripe1 fdrow sa aicen" >
+							<button type="submit"
+								className="w40p h80p confirmShadow"
+							>
+								Create Ability!</button>
+							<button onClick={e => setBuildingNewAbil(false)}
+								className="w40p h80p cancelShadow"
+							>
+								Cancel</button>
+						</div>
+						<div className="AdataStripe2 fdrow aicen jccen sa">
+							<div>Uses Resources?</div>
+							<div className="checkboxContainer fdrow aicen">
+								<input type="checkbox" className="ml10" checked={usesResource === 1} value={1} onClick={e => resourceCheck(e)} />
+								<label className="mlr10">Yes</label>
+								<input type="checkbox" className="mlr10" checked={usesResource === 0} value={0} onClick={e => resourceCheck(e)} />
+								<label className="mr10">No</label>
+							</div>
+						</div>
+					{(usesResource === 1) &&
+						<div className="AdataStripe2t fdrow sb">
+							<div className="fdcol jccen aicen">
 								<label>Resource Name</label>
 								<input onChange={e => setResourceName(e.target.value)}
-									className=""
+									className="w90p"
 									type="text"
 									placeholder='Resource Name'
+									required="required"
 									value={resourceName} />
 							</div>
-							<div className="fdcol">
+							<div className="fdcol jccen aicen mr10">
 								<label>Resource Cost</label>
 								<input onChange={e => setResourceCost(e.target.value)}
-									className=""
+									className="w70p"
 									type="number"
 									min='1' max='1000' step='1'
 									placeholder='1 - 1000'
+									required="required"
 									value={resourceCost} />
 							</div>
 						</div>}
-						{(usesCharges === 1) &&
-						<div className="conditionDetails2 fdrow sb">
-							<div className="fdcol">
-								<label>Number of Charges</label>
+						<div className="AdataStripe1 fdrow aicen jccen sa">
+							<div>Uses Charge?</div>
+							<div className="checkboxContainer fdrow aicen">
+								<input type="checkbox" className="ml10" checked={usesCharges === 1} value={1} onClick={e => chargesCheck(e)} />
+								<label className="mlr10">Yes</label>
+								<input type="checkbox" className="mlr10" checked={usesCharges === 0} value={0} onClick={e => chargesCheck(e)} />
+								<label className="mr10">No</label>
+							</div>
+						</div>
+					{(usesCharges === 1) &&
+						<div className="AdataStripe1t fdrow sb">
+						<div className="fdcol jccen aicen">
+								<label className="ml10">Number of Charges</label>
 								<input onChange={e => setNumCharges(e.target.value)}
-									className=""
 									type="number"
 									min='1' max='100' step='1'
 									placeholder='1 - 100'
+									required="required"
 									value={numCharges} />
 							</div>
-							<div className="fdcol">
+							<div className="fdcol jccen aicen mr10">
 								<label>Charge Replenish Rate</label>
 								<input onChange={e => setChargeRechargeRate(e.target.value)}
-									className=""
+									className="w40p"
 									type="number"
 									min='1' max='120' step='1'
 									placeholder='1 - 120'
+									required="required"
 									value={chargeRechargeRate} />
 							</div>
 						</div>}
-						{(usesCooldown === 1 ) &&
-						<div className="conditionDetails1 fdrow sa">
-							<label>Cooldown Time</label>
-							<input onChange={e => setCooldown(e.target.value)}
-								className=""
-								type="number"
-								min='2' max='120' step='1'
-								placeholder='1 - 120'
-								value={cooldown} />
-						</div>}
+						<div className="AdataStripe2t fdrow aicen sa jccen">
+							<div>
+								<div>Uses Cooldowns?</div>
+								<div className="checkboxContainer fdrow aicen">
+									<input type="checkbox" className="ml10" checked={usesCooldown === 1} value={1} onClick={e => cooldownCheck(e)} />
+									<label className="mlr10">Yes</label>
+									<input type="checkbox" className="mlr10" checked={usesCooldown === 0} value={0} onClick={e => cooldownCheck(e)} />
+									<label className="mr10">No</label>
+								</div>
+							</div>
+							{(usesCooldown === 1) &&
+							<div>
+								<div className="fdcol aicen sa">
+									<label>Cooldown Time</label>
+									<input onChange={e => setCooldown(e.target.value)}
+										className="w50p"
+										type="number"
+										min='2' max='120' step='1'
+										placeholder='1 - 120'
+										required="required"
+										value={cooldown} />
+								</div>
+							</div>}
+						</div>
+						<div className="AdataStripe1t fdrow aicen sa jccen">
+							<div className="fdcol jccen aicen">
+								<div>Channeled?</div>
+								<div className="checkboxContainer fdrow aicen">
+									<input type="checkbox" className="ml10" checked={channeled === 1} value={1} onClick={e => channeledCheck(e)} />
+									<label className="mlr10">Yes</label>
+									<input type="checkbox" className="mlr10" checked={channeled === 0} value={0} onClick={e => channeledCheck(e)} />
+									<label className="mr10">No</label>
+								</div>
+							</div>
 						{(channeled === 1) &&
-						<div className="conditionDetails2 fdrow sa">
-							<label>Channel Duration</label>
-							<input onChange={e => setChannelTime(e.target.value)}
-								className=""
-								type="number"
-								min='1.5' max='20' step='0.5'
-								placeholder='1.5 - 20.0'
-								value={channelTime} />
-						</div>}
+							<div className=" fdcol aicen sa">
+								<label>Channel Duration</label>
+								<input onChange={e => setChannelTime(e.target.value)}
+									className=""
+									type="number"
+									min='1.5' max='20' step='0.5'
+									placeholder='1.5 - 20.0'
+									required="required"
+									value={channelTime} />
+							</div>}
+						</div>
 					</div>
 				</div>
-				<div className="details container">
-					<label>Ability Details</label>
+				<div className="AbottomSpan fdcol aicen m10">
+					<label className="m10">General Description:</label>
+					<textarea onChange={e => setDescription(e.target.value)}
+						className="rsn m10"
+						id="setNewDescription"
+						rows="5" cols="60"
+						placeholder='General Description of the Ability'
+						required="required"
+						value={description} />
+				</div>
+				<div className="AbottomSpan fdcol aicen mlr10">
+					<label className="m10">Aditional Technical Details</label>
 					<textarea onChange={e => setDetails(e.target.value)}
-						className="hauto wauto"
+						className="rsn m10"
 						id=""
-						rows="6" cols="35"
+						rows="5" cols="60"
 						placeholder='Additional Details on the workings of this Ability'
 						value={details} />
 				</div>
 			</form>
+			<div className="mb30"></div>
 		</div>
 	)
 }

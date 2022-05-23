@@ -105,19 +105,19 @@ const HeroDetails = () => {
 					</div>
 				</div>
 			</div>
-			<div className='heroIntro'>
+			<div className='heroIntro p10 bsbb'>
 				{currHero.intro}
 			</div>
 			{currHero.details &&
-			<div className='heroIntro'>
+			<div className='heroIntro p10 bsbb'>
 				{currHero.details}
 			</div>}
 			{currHeroAbils &&
-			<div className="heroIntro fdcol aicen">
-				<div className="mt30 mb10 flarg">
+			<div className="heroIntro fdcol aicen bsbb">
+				<div className="m10 flarg">
 					Hero Equiped Abils {`(${currHeroAbils?.arr?.length}/6)`}
 				</div>
-				<div className=' p5 fdrow fww mb10'>
+				<div className='p5 fdrow fww mb10'>
 					{currHeroAbils?.arr?.map(abil => (
 						<HeroAbilCard key={abil.id} abil={abil}/>
 					))}

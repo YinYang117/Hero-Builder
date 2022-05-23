@@ -12,14 +12,18 @@
 }
 
 .abilDetImg {
-	border: 1px gold;
+	border: 1px solid gold;
 	max-width: 400px;
 	max-height: 600px;
 }
 
+.gbor {
+	border: 2px solid gold;
+}
+
 .abilDetName {
 	background: rgb(255, 195, 255);
-	border: 2px gold;
+	border: 2px solid gold;
 	width: 200px;
 	height: 30px;
 }
