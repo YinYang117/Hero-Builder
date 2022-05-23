@@ -21,6 +21,12 @@ export const AbilProvider = props => {
 		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652913887/magic_gnchct.png",
 		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652913875/spell-book_n27jh7.png",
 		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1652913823/fireball_vrtuhf.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1653279273/potion_odfiv5.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1653279105/imgbin-vexel-warrior-viking-warrior-PEdh5hsWarj0RELPuR83iME82_dbypid.jpg",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1653279293/fire_1_r9m4bl.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1653279325/freeze_sbc9am.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1653279346/ice_p2bllg.png",
+		"https://res.cloudinary.com/dzrimpg5t/image/upload/v1653279363/shield_ujq6pl.png",
 	]
 
 

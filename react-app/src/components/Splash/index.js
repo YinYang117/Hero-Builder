@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom"
-import seige from "./seige.jpg"
 import './splash.css'
 
 
@@ -17,13 +16,22 @@ const Splash = () => {
     <>
         <img 
         src={"https://res.cloudinary.com/dzrimpg5t/image/upload/v1653189408/17450_ufsosh.jpg"}
-        alt="Splash Seige"
+        alt="Blue and Purple Art"
         className="splash"
         />
+        <div className="welcomeCard fdcol bsbb jccen aicen">
+            <div className="Aflarg p10" >Welcome to</div>
+            <div className="Aflarg" >The one and only</div>
+            <div className="Aflarg p10" >Site for Building Heros!</div>
+            <div>Log in now to start!</div>
+        </div>
         {user &&
-            <button className="toHome" onClick={toHome}>Start Building Heros!</button>
+            <button
+            className="toHome hcp"
+            onClick={toHome}>
+                Start Building Heros!
+            </button>
         }
-        {/* TODO fix this weird button, and add the other min req to splash */}
     </>
     )
 }

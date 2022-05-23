@@ -5,6 +5,24 @@
 }
 
 .toHome {
-    width: 100px;
-    height: 30px;
+    width: 200px;
+    height: 80px;
+    background-color: rgb(142, 62, 188);
+    position: absolute;
+    left:42%;
+    top:65%;
+    border-radius: 10px 30px 10px 30px;
+    font-size: larger;
+    color:rgb(255, 255, 255);
+}
+
+.welcomeCard {
+    position: absolute;
+    left:25%;
+    top:35%;
+    width: 50vw;
+    height: 30vh;
+    border-radius: 200px 20px 200px 20px;
+    background-color: rgb(6, 0, 188);
+    color:aquamarine;
 }
