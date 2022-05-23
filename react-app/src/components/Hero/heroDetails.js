@@ -13,7 +13,7 @@ const HeroDetails = () => {
 	const currHeroAbils = useSelector(state => state.heroAbil)
 
 	const { currHero, setCurrHero, setEditingHero } = useContext(HeroContext);
-	const { currAbil } = useContext(AbilContext);
+	const { currAbil, editingAbil } = useContext(AbilContext);
 
 
 	const [loaded, setLoaded] = useState(false)
@@ -37,7 +37,7 @@ const HeroDetails = () => {
 			dispatch(fetchHeroAbilities(currHero))
 			setLoaded(true)
 		}
-	},[currHero, dispatch, currAbil])
+	},[currHero, dispatch, currAbil, editingAbil])
 
 
 
