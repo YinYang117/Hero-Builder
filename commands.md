@@ -33,11 +33,6 @@ Note: Dont run alembic directly:
 <!-- pipenv run alembic revision -m "the message about the revision" -->
 
 
-
-
-
-
-
 Copy of Flask Starter
 ## Getting started
 1. Clone this repository (only this branch)

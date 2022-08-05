@@ -68,7 +68,6 @@ const HeroBuild = () => {
 			// setCurrHero(newHero) // causing bug if immediately updating
 		}
 		else setErrors(data) // should be an array
-
 	}
 
 
@@ -101,7 +100,7 @@ const HeroBuild = () => {
 							value={heroName} />
 						</div>
 						<img src={heroImage} alt="new hero portrait" className="heroDetImg" />
-					</div>
+					</div> 
 					{/* right, main data */}
 					<div className="fdcol hfmn">
 						<div className="dataStripe1 fdrow sa aicen" >

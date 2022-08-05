@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import SignUpForm from './components/auth/Signup';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import NavBar from './components/Navbar';
+import ButtonAppBar from './components/Navbar/copy';
 import Splash from './components/Splash'
 import Home from './components/Home'
 import { authenticate } from './store/session';
@@ -33,6 +34,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <Splash />
+        </Route>
+        <Route path="/short" exact={true}>
+          <ButtonAppBar />
         </Route>
       </Switch>
     </BrowserRouter>

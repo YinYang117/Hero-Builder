@@ -24,3 +24,12 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// TODO
+// Changes for React 18
+
+// import ReactDOM from 'react-dom/client';
+
+// ReactDOM.render() replaced by
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(<App />);
