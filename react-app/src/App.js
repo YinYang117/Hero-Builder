@@ -7,6 +7,7 @@ import NavBar from './components/Navbar';
 import ButtonAppBar from './components/Navbar/copy';
 import Splash from './components/Splash'
 import Home from './components/Home'
+import UserProfilePage from './components/UserProfile'
 import { authenticate } from './store/session';
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path="/short" exact={true}>
           <ButtonAppBar />
+        </Route>
+        <Route path="/profile" exact={true}>
+          <UserProfilePage />
         </Route>
       </Switch>
     </BrowserRouter>

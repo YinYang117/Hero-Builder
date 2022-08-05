@@ -10,7 +10,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    
+    user_icon = db.Column(db.String(), nullable=False)
+
     heros = db.relationship("Hero", back_populates="owner")
     abilities = db.relationship("Ability", back_populates="owner")
 
