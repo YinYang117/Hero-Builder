@@ -1,4 +1,5 @@
-from .db import db
+# environment for production check and add_prefix-for_prod for schema naming
+from .db import db, environment, add_prefix_for_prod
 
 
 hero_abilities = db.Table("hero_abilities",

@@ -1,4 +1,5 @@
-from .db import db
+# environment for production check and add_prefix-for_prod for schema naming
+from .db import db, environment, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
