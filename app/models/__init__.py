@@ -1,4 +1,4 @@
-from .db import db
+from .db import db, environment
 from .user import User
 from .heros import Hero
 from .abilities import Ability
