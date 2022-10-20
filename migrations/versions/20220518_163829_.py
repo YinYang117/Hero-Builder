@@ -80,7 +80,7 @@ def upgrade():
     # ### end Alembic commands ###
     if environment == "production":
         op.execute('ALTER TABLE users SET SCHEMA hero_builder_schema;')
-        op.execute('ALTER TABLE abibities SET SCHEMA hero_builder_schema;')
+        op.execute('ALTER TABLE abilities SET SCHEMA hero_builder_schema;')
         op.execute('ALTER TABLE heros SET SCHEMA hero_builder_schema;')
         op.execute('ALTER TABLE hero_abilities SET SCHEMA hero_builder_schema;')
 
