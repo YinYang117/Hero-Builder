@@ -3,6 +3,9 @@ from .db import db, environment, add_prefix_for_prod
 
 
 hero_abilities = db.Table("hero_abilities",
-    db.Column("hero_id", db.Integer, db.ForeignKey("heros.id"), primary_key=True),
-    db.Column("ability_id", db.Integer, db.ForeignKey("abilities.id"), primary_key=True)
+    db.Column("hero_id", db.Integer, db.ForeignKey(add_prefix_for_prod("heros.id")), primary_key=True),
+    db.Column("ability_id", db.Integer, db.ForeignKey(add_prefix_for_prod("abilities.id")), primary_key=True)
 )
+
+if environment == "production":
+    hero_abilities.schema = "hero_builder_schema"

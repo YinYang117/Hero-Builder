@@ -9,6 +9,6 @@ db = SQLAlchemy()
 #add a prefix to table names in production environment only
 def add_prefix_for_prod(attr):
     if environment == "production":
-        return hero_builder_schema + "." + attr
+        return "hero_builder_schema" + "." + attr
     else:
         return attr
