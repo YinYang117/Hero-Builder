@@ -1,12 +1,15 @@
-from .db import db
+# environment for production check and add_prefix-for_prod for schema naming
+from .db import db, environment, add_prefix_for_prod
 from datetime import date
 from .hero_abilities import hero_abilities
 
 class Ability(db.Model):
     __tablename__ = "abilities"
+    if environment == "production":
+        __table_args__ = {'schema': 'hero_builder_schema'}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey("hero_builder_schema.users.id"), nullable=False)
     name = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     ability_image = db.Column(db.String, nullable=False)
