@@ -4,17 +4,22 @@ from .heros import seed_heros, undo_heros
 from .abilities import seed_abilities, undo_abilities
 
 # Creates a seed group to hold our commands
-# So we can type `flask seed --help`
+# IE: So we can type `flask seed (AppGroup) all (command)`
 seed_commands = AppGroup('seed')
-
 
 # Creates the `flask seed all` command
 @seed_commands.command('all')
 def seed():
+    if environment == 'production':
+        # Before seeding, truncate all tables prefixed with schema name
+        db.session.execute('TRUNCATE table hero_builder_schema.users RESTART IDENTITY CASCADE;')
+        db.session.execute('TRUNCATE table hero_builder_schema.heros RESTART IDENTITY CASCADE;')
+        db.session.execute('TRUNCATE table hero_builder_schema.abilities RESTART IDENTITY CASCADE;')
+        db.session.commit()
     seed_users()
     seed_heros()
     seed_abilities()
-    # Add other seed functions here
+    # Add future seed functions here
 
 
 # Creates the `flask seed undo` command
@@ -23,5 +28,4 @@ def undo():
     undo_abilities()
     undo_heros()
     undo_users()
-
-    # Add other undo functions here
+    # Add other future undo functions here
