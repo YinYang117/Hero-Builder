@@ -5,6 +5,8 @@ Revises:
 Create Date: 2022-05-18 16:38:29.839205
 
 """
+import os
+environment = os.getenv("FLASK_ENV")
 from alembic import op
 import sqlalchemy as sa
 
@@ -76,6 +78,11 @@ def upgrade():
     sa.PrimaryKeyConstraint('hero_id', 'ability_id')
     )
     # ### end Alembic commands ###
+    if environment == "production":
+        op.execute('ALTER TABLE users SET SCHEMA hero_builder_schema;')
+        op.execute('ALTER TABLE abibities SET SCHEMA hero_builder_schema;')
+        op.execute('ALTER TABLE heros SET SCHEMA hero_builder_schema;')
+        op.execute('ALTER TABLE hero_abilities SET SCHEMA hero_builder_schema;')
 
 
 def downgrade():
