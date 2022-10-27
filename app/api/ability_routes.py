@@ -3,7 +3,6 @@ from app.models import User, Ability, db
 from app.forms import NewAbility
 from app.forms import EditAbility
 from datetime import date
-# from flask_login import current_user
 
 ability_routes = Blueprint('abilities', __name__)
 
