@@ -48,5 +48,5 @@ def seed_heros():
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
 def undo_heros():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE heros RESTART IDENTITY CASCADE;')
     db.session.commit()

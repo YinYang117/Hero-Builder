@@ -3,12 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 #add import and set variable to access flask environment
 import os
 environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get('SCHEMA')
 
 db = SQLAlchemy()
 
 #add a prefix to table names in production environment only
 def add_prefix_for_prod(attr):
     if environment == "production":
-        return "hero_builder_schema" + "." + attr
+        return f"{SCHEMA}.{attr}"
     else:
         return attr

@@ -10,6 +10,7 @@ from alembic import context
 
 import os
 environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -91,12 +92,12 @@ def run_migrations_online():
 
         # Create a schema (only in production)
         if environment == "production":
-            connection.execute("CREATE SCHEMA IF NOT EXISTS hero_builder_schema")
+            connection.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
         
         # Set search path to your schema (only in production)
         with context.begin_transaction():
             if environment == "production":
-                context.execute('SET search_path TO hero_builder_schema')
+                context.execute(f"SET search_path TO {SCHEMA}")
             context.run_migrations()
 
 

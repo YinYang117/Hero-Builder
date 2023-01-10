@@ -3,8 +3,9 @@ Note: App is the flask backend. react-app is frontend
 pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
 
 Personal Reminder:
-On my windows desktop I usually need to do sudo service postgresql restart
+On windows desktop WSL -> sudo service postgresql restart
 
+Create database and owner with postgresql:
 psql
 create user hero_builder_dev with password 'arst';
 create database hero_builder_app with owner hero_builder_dev;

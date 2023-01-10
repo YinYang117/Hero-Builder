@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .heros import seed_heros, undo_heros
 from .abilities import seed_abilities, undo_abilities
+from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
 # IE: So we can type `flask seed (AppGroup) all (command)`

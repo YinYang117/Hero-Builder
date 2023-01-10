@@ -1,5 +1,5 @@
 # environment for production check and add_prefix-for_prod for schema naming
-from .db import db, environment, add_prefix_for_prod
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import date
 from .hero_abilities import hero_abilities
 from app.models import User
@@ -7,7 +7,7 @@ from app.models import User
 class Hero(db.Model):
     __tablename__ = "heros"
     if environment == "production":
-        __table_args__ = {'schema': 'hero_builder_schema'}
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
@@ -30,7 +30,9 @@ class Hero(db.Model):
     # updated_at = db.Column(db.Date, nullable=False, default=date.today)
 
     owner = db.relationship("User", back_populates="heros")
-    hero_equipped_abilities = db.relationship("Ability", secondary=hero_abilities, back_populates="used_by_hero")
+    hero_equipped_abilities = db.relationship(
+            "Ability", secondary=hero_abilities, back_populates="used_by_hero"
+        )
 
     @property
     def to_js_obj(self):
