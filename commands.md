@@ -26,6 +26,11 @@ heroku run -a hero-builder-app flask seed all
 Local Seeds
 pipenv run flask seed all
 
+Create flask db migration repo
+pipenv run flask db init
+<!-- If you've deleted the migrations folder, the revision id may still be saved in the db. -->
+<!-- Can edit the db revision number with: -->
+pipenv run flask db revision --rev-id ###########  
 
 Add a model
 pipenv run flask db migrate     generate a migration
