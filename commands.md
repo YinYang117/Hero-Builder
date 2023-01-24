@@ -19,76 +19,57 @@ npm i
 npm start
 
 
-Heroku Seeds
+<!-- Heroku Seeds
 heroku run -a hero-builder-app flask seed undo
-heroku run -a hero-builder-app flask seed all
+heroku run -a hero-builder-app flask seed all -->
 
 Local Seeds
 pipenv run flask seed all
 
-Create flask db migration repo
+Create migration folder
 pipenv run flask db init
 <!-- If you've deleted the migrations folder, the revision id may still be saved in the db. -->
 <!-- Can edit the db revision number with: -->
-pipenv run flask db revision --rev-id ###########  
+pipenv run flask db revision --rev-id 55b16913c534  
 
 Add a model
 pipenv run flask db migrate     generate a migration
 pipenv run flask db migrate -m  "updates to hero"
 pipenv run flask db upgrade     apply table / model changes to the database
 
+## Helpful commands
+|    Command            |    Purpose    |
+| -------------         | ------------- |
+| `pipenv shell`        | Open your terminal in the virtual environment and be able to run flask commands without a prefix |
+| `pipenv run`          | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands  |
+| `flask db upgrade`    | Check in with the database and run any needed migrations  |
+| `flask db downgrade`  | Check in with the database and revert any needed migrations  |
+| `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
 
-Note: Dont run alembic directly:
-<!-- pipenv run alembic revision -m "the message about the revision" -->
 
+
+<!-- Note: Dont run alembic directly. IE:
+pipenv run alembic revision -m "the message about the revision" -->
 
 Copy of Flask Starter
-## Getting started
-1. Clone this repository (only this branch)
-
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
 
 2. Install dependencies
-
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
-
+   pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
 3. Create a **.env** file based on the example with proper settings for your
    development environment
 4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
-
 5. Get into your pipenv, migrate your database, seed your database, and run your flask app
-
-   ```bash
    pipenv shell
-   ```
-
-   ```bash
    flask db upgrade
-   ```
-
-   ```bash
    flask seed all
-   ```
-
-   ```bash
    flask run
-   ```
-
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
 ***
-
-*IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
-
 <br>
 
+<!-- *IMPORTANT!*
+   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
+   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ## Deploy to Heroku
 This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations. 
 
@@ -97,9 +78,7 @@ ensure that your production environment has all of your up-to-date
 dependencies. You only have to run this command when you have installed new
 Python packages since your last deployment, but if you aren't sure, it won't
 hurt to run it again.
-   ```bash
    pipenv lock -r > requirements.txt
-   ```
 
 2. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
 
@@ -124,21 +103,15 @@ each of the following variables:
    | `HEROKU_API_KEY`  | Heroku Oauth Token (from step 6)|
    | `HEROKU_APP_NAME` | Heroku app name    |
 
-8. Push to your `main` branch!
+8. Push to your `main` branch! 
 
-## Helpful commands
-|    Command            |    Purpose    |
-| -------------         | ------------- |
-| `pipenv shell`        | Open your terminal in the virtual environment and be able to run flask commands without a prefix |
-| `pipenv run`          | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands  |
-| `flask db upgrade`    | Check in with the database and run any needed migrations  |
-| `flask db downgrade`  | Check in with the database and revert any needed migrations  |
-| `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
 | `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
 | `heroku run -a hero-builder-app` | Run a command from within the deployed container on Heroku |
+
 
 heroku run -a hero-builder-app
 heroku logs --tail -a hero-builder-app
 heroku run -a hero-builder-app flask seed all
 
+-->
