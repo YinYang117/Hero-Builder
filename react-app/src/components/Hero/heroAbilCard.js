@@ -17,7 +17,10 @@ const HeroAbilCard = ({abil}) => {
 
 	return (
 		<>
-			<div className="fdcol mlr10 fww aicen" >
+			<div
+			className="fdcol mlr10 fww aicen"
+			id
+			>
 					<div className="abilFrame fdcol jccen aicen">
 						<img
 							className="abilFrameImg"

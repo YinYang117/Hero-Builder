@@ -18,11 +18,6 @@ cd react-app
 npm i
 npm start
 
-
-<!-- Heroku Seeds
-heroku run -a hero-builder-app flask seed undo
-heroku run -a hero-builder-app flask seed all -->
-
 Local Seeds
 pipenv run flask seed all
 
@@ -109,9 +104,10 @@ each of the following variables:
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
 | `heroku run -a hero-builder-app` | Run a command from within the deployed container on Heroku |
 
-
+Heroku commands
+heroku run -a hero-builder-app flask seed undo
+heroku run -a hero-builder-app flask seed all
 heroku run -a hero-builder-app
 heroku logs --tail -a hero-builder-app
-heroku run -a hero-builder-app flask seed all
 
 -->
